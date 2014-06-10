@@ -37,26 +37,6 @@ var TeacupSchema = new Schema({
     }
 });
 
-/**
- * Virtuals
- */
-UserSchema.virtual('password').set(function(password) {
-    this._password = password;
-    this.salt = this.makeSalt();
-    this.hashed_password = this.hashPassword(password);
-}).get(function() {
-    return this._password;
-});
-
-/**
- * Pre-save hook
- */
-UserSchema.pre('save', function(next) {
-    if (this.isNew && this.provider === 'local' && this.password && !this.password.length)
-        return next(new Error('Invalid password'));
-    next();
-});
-
 
 };
 
