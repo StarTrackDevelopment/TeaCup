@@ -1,0 +1,18 @@
+<section data-ng-controller="TeacupsController" data-ng-init="find()">
+    <ul class="teacups unstyled">
+        <li data-ng-repeat="teacup in teacups">
+            <h2>
+                <a data-ng-href="#!/teacups/{{teacup._id}}">{{teacup.title}}</a>
+                <span data-ng-if="hasAuthorization(teacup)">
+                    <a class="btn" href="/#!/teacups/{{teacup._id}}/edit">
+                        <i class="glyphicon glyphicon-edit"></i>
+                    </a>
+                    <a class="btn" data-ng-click="remove(teacup);">
+                        <i class="glyphicon glyphicon-trash"></i>
+                    </a>
+                </span>
+            </h2>
+        </li>
+    </ul>
+    <h1 data-ng-hide="!teacups || teacups.length">No teacups yet. <br> Why don't you <a href="/#!/teacups/create">Create One</a>?</h1>
+</section>
