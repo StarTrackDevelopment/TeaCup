@@ -1,0 +1,14 @@
+<section data-ng-controller="TeacupsController" data-ng-init="findOne()">
+    <span>{{teacup.created | date:'medium'}}</span> /
+    <span>{{teacup.user.name}}</span>
+    <h2>{{teacup.title}}</h2>
+    <div data-ng-if="hasAuthorization(teacup)">
+        <a class="btn" href="/#!/teacups/{{teacups._id}}/edit">
+            <i class="glyphicon glyphicon-edit"></i>
+        </a>
+        <a class="btn" data-ng-click="remove(teacup);">
+            <i class="glyphicon glyphicon-trash"></i>
+        </a>
+    </div>
+    <div>{{teacup.description}}</div>
+</section>
