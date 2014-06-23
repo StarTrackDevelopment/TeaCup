@@ -12,7 +12,8 @@ angular.module('mean.teacups').controller('TeacupsController', ['$scope', '$stat
         $scope.create = function() {
             var teacup = new Teacups({
                 title: this.title,
-                description: this.description
+                description: this.description,
+                scheduleDate: this.scheduleDate
             });
             teacup.$save(function(response) {
                 $location.path('teacups/' + response._id);
@@ -20,6 +21,7 @@ angular.module('mean.teacups').controller('TeacupsController', ['$scope', '$stat
 
             this.title = '';
             this.description = '';
+            this.scheduleDate = new Date();
         };
 
         $scope.remove = function(teacup) {

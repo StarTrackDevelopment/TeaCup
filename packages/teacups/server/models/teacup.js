@@ -20,6 +20,10 @@ var TeacupSchema = new Schema({
         default: '',
         trim: true
     },
+    scheduleDate: {
+        type: Date,
+        default: Date.now
+        },
     description: {
         type: String,
         default: '',
