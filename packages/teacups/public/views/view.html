@@ -1,6 +1,6 @@
 <section ng-controller="TeacupsController" data-ng-init="findOne('true')">
     <h2>{{teacup.title}}</h2>
-    <p>Scheduled on {{teacup.scheduledate | date : 'longDate'}}</p>
+    <p>Scheduled on {{teacup.scheduleDate | date : 'longDate'}}</p>
     <p ng-show="teacup.speaker">
         Speaker is <a data-ng-href="/#!/users/{{teacup.speaker._id}}">{{teacup.speaker.name}}</a>
     </p>

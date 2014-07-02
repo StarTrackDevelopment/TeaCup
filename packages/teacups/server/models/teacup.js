@@ -29,10 +29,6 @@ var TeacupSchema = new Schema({
         default: '',
         trim: true
     },
-    scheduledate: {
-        type: Date,
-        default: Date.now
-    },
     speaker: {
         type: Schema.ObjectId,
         ref: 'User'
