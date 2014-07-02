@@ -1,5 +1,5 @@
 <section ng-controller="TeacupsController" ng-init="findOne('false')">
-    <form class="form-horizontal col-md-6" role="form" ng-submit="update()">
+    <form name="editTeacup" class="form-horizontal col-md-6" role="form" ng-submit="update()">
         <div class="form-group">
             <label mean-token="'edit-title'" for="title" class="col-md-3 control-label">Title</label>
             <div class="col-md-9">
@@ -15,9 +15,9 @@
             </div>
         </div>        
         <div class="form-group">
-            <label mean-token="'edit-scheduleDate'" for="scheduleDate" class="col-md-3 control-label">Date</label>
+            <label mean-token="'edit-scheduleDate'" for="scheduleDate" class="col-md-3 control-label">Date & Time</label>
             <div class="col-md-9">
-                <input type="date" ng-model="teacup.scheduleDate" id="scheduleDate" class="form-control" placeholder="yyyy-MM-dd" required>
+                <input type="datetime-local" ng-model="teacup.scheduleDate" id="scheduleDate" name="input" value="{{teacup.scheduleDate | date:'yyyy-MM-ddTHH:mm:ss'}}" class="form-control" required>
             </div>
         </div>
         <div class="form-group">

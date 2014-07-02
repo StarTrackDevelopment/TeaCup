@@ -50,7 +50,7 @@ TeacupSchema.path('title').validate(function(title) {
  * Statics
  */
 TeacupSchema.statics.load = function (id, populate, cb) {
-    var populateobjects = (populate != null && populate === "true" ? 'user speaker' : 'user');
+    var populateobjects = (populate !== null && populate === 'true' ? 'user speaker' : 'user');
     this.findOne({
         _id: id
     }).populate(populateobjects, 'name username').exec(cb);    

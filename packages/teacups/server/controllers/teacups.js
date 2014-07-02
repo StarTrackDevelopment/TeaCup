@@ -8,11 +8,31 @@ var mongoose = require('mongoose'),
     _ = require('lodash');
 
 
+var getParameterValue = function(name, query) {
+    if (!query)
+        return null;
+    var pairs = query.split('&amp;');
+    var numberOfArguments = pairs.length;
+    for (var i = 0; i < numberOfArguments; i++) {
+        var pos = pairs[i].indexOf('=');
+
+        if (pos === -1) {
+            continue;
+        }
+
+        var argname = pairs[i].substring(0, pos);
+        var value = pairs[i].substring(pos + 1);
+
+        if (argname === name)
+            return value;
+    }
+    return null;
+};
 /**
  * Find teacup by id
  */
 exports.teacup = function(req, res, next, id) {
-    Teacup.load(id, getArg('populate', req._parsedUrl.query), function (err, teacup) {
+    Teacup.load(id, getParameterValue('populate', req._parsedUrl.query), function (err, teacup) {
         if (err) return next(err);
         if (!teacup) return next(new Error('Failed to load teacup ' + id));
         req.teacup = teacup;
@@ -98,40 +118,3 @@ exports.all = function(req, res) {
         }
     });
 };
-
-function getArg(name, query) {
-    if (!query)
-        return null;
-    var args = new Object();
-    var pairs = query.split("&amp;");
- 
-    var numberOfArguments = pairs.length;
- 
-    for (var i = 0; i < numberOfArguments; i++) {
-        var pos = pairs[i].indexOf('=');
- 
-        if (pos == -1){
-            continue;
-        }
- 
-        var argname = pairs[i].substring(0,pos);
-        var value = pairs[i].substring(pos+1);
- 
-        args[argname] = unescape(value);
-    }
- 
-    args["NB_OF_ARGS"] = numberOfArguments;
- 
-    switch(name){
-        case "ALL_ARGS":
-            return args;
-            break;
-        default:
-            if (args[name]){
-                return args[name];
-            } else {
-                return null;
-            }
-            break;
-    }
-}
