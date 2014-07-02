@@ -1,0 +1,1 @@
+README: users to choose speaker
