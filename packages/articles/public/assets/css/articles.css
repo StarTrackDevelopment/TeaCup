@@ -4,3 +4,11 @@ h1 {
 ul.articles li:not(:last-child) {
 	border-bottom: 1px solid #ccc
 }
+
+option:first {
+    color: #999;
+}
+
+select {
+    color:#999;
+}

@@ -25,6 +25,14 @@ var TeacupSchema = new Schema({
         default: '',
         trim: true
     },
+    scheduledate: {
+        type: Date,
+        default: Date.now
+    },
+    speaker: {
+        type: Schema.ObjectId,
+        ref: 'User'
+    },
     user: {
         type: Schema.ObjectId,
         ref: 'User'
@@ -41,10 +49,11 @@ TeacupSchema.path('title').validate(function(title) {
 /**
  * Statics
  */
-TeacupSchema.statics.load = function(id, cb) {
+TeacupSchema.statics.load = function (id, populate, cb) {
+    var populateobjects = (populate != null && populate === "true" ? 'user speaker' : 'user');
     this.findOne({
         _id: id
-    }).populate('user', 'name username').exec(cb);
+    }).populate(populateobjects, 'name username').exec(cb);    
 };
 
 mongoose.model('Teacup', TeacupSchema);

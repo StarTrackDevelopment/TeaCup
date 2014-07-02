@@ -1,3 +1,11 @@
 .teacups-example h1: {
 	background-color: purple
 }
+
+option:first {
+    color: #999;
+}
+
+select {
+    color:#999;
+}

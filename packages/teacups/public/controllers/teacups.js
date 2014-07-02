@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean.teacups').controller('TeacupsController', ['$scope', '$stateParams', '$location', 'Global', 'Teacups',
-    function($scope, $stateParams, $location, Global, Teacups) {
+angular.module('mean.teacups').controller('TeacupsController', ['$scope', '$stateParams', '$location', '$http', 'Global', 'Teacups', 'Users',
+    function ($scope, $stateParams, $location, $http, Global, Teacups, Users) {
         $scope.global = Global;
 
         $scope.hasAuthorization = function(teacup) {
@@ -12,14 +12,18 @@ angular.module('mean.teacups').controller('TeacupsController', ['$scope', '$stat
         $scope.create = function() {
             var teacup = new Teacups({
                 title: this.title,
-                description: this.description
+                description: this.description,
+                speaker: this.speaker,
+                scheduledate: this.scheduledate
             });
             teacup.$save(function(response) {
-                $location.path('teacups/' + response._id);
+                $location.path('teacups/' + response._id + '/view');
             });
 
             this.title = '';
             this.description = '';
+            this.speaker = '';
+            this.scheduledate = Date.now;
         };
 
         $scope.remove = function(teacup) {
@@ -46,7 +50,7 @@ angular.module('mean.teacups').controller('TeacupsController', ['$scope', '$stat
             teacup.updated.push(new Date().getTime());
 
             teacup.$update(function() {
-                $location.path('teacups/' + teacup._id);
+                $location.path('teacups/' + teacup._id + '/view');
             });
         };
 
@@ -56,11 +60,18 @@ angular.module('mean.teacups').controller('TeacupsController', ['$scope', '$stat
             });
         };
 
-        $scope.findOne = function() {
+        $scope.findOne = function(populate) {
             Teacups.get({
-                teacupId: $stateParams.teacupId
-            }, function(teacup) {
+                teacupId: $stateParams.teacupId,
+                populate: populate
+            }, function (teacup) {
                 $scope.teacup = teacup;
+            });
+        };
+
+        $scope.findusers = function() {
+            Users.query(function(users) {
+                $scope.users = users;
             });
         };
     }

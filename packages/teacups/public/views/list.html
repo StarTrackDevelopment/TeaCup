@@ -2,16 +2,24 @@
     <ul class="teacups unstyled">
         <li data-ng-repeat="teacup in teacups">
             <h2>
-                <a data-ng-href="#!/teacups/{{teacup._id}}">{{teacup.title}}</a>
-                <span data-ng-if="hasAuthorization(teacup)">
-                    <a class="btn" href="/#!/teacups/{{teacup._id}}/edit">
-                        <i class="glyphicon glyphicon-edit"></i>
-                    </a>
-                    <a class="btn" data-ng-click="remove(teacup);">
-                        <i class="glyphicon glyphicon-trash"></i>
-                    </a>
-                </span>
+                <a data-ng-href="/#!/teacups/{{teacup._id}}/view">{{teacup.title}}</a>
             </h2>
+            <h4>
+                {{teacup.scheduledate | date : 'longDate'}}
+            </h4>
+            <h4>
+                Speaker:
+                <a data-ng-href="/#!/users/{{teacup.speaker._id}}">{{teacup.speaker.name}}</a>
+                <span ng-show="!teacup.speaker">--no speaker yet--</span>
+            </h4>
+            <span data-ng-if="hasAuthorization(teacup)">
+                <a class="btn" href="/#!/teacups/{{teacup._id}}/edit">
+                    <i class="glyphicon glyphicon-edit"></i>
+                </a>
+                <a class="btn" data-ng-click="remove(teacup);">
+                    <i class="glyphicon glyphicon-trash"></i>
+                </a>
+            </span>
         </li>
     </ul>
     <h1 data-ng-hide="!teacups || teacups.length">No teacups yet. <br> Why don't you <a href="/#!/teacups/create">Create One</a>?</h1>

@@ -1,14 +1,26 @@
-<section data-ng-controller="TeacupsController" data-ng-init="findOne()">
-    <span>{{teacup.created | date:'medium'}}</span> /
-    <span>{{teacup.user.name}}</span>
+<section ng-controller="TeacupsController" data-ng-init="findOne('true')">
     <h2>{{teacup.title}}</h2>
-    <div data-ng-if="hasAuthorization(teacup)">
-        <a class="btn" href="/#!/teacups/{{teacups._id}}/edit">
-            <i class="glyphicon glyphicon-edit"></i>
-        </a>
-        <a class="btn" data-ng-click="remove(teacup);">
-            <i class="glyphicon glyphicon-trash"></i>
-        </a>
-    </div>
-    <div>{{teacup.description}}</div>
+    <p>Scheduled on {{teacup.scheduledate | date : 'longDate'}}</p>
+    <p ng-show="teacup.speaker">
+        Speaker is <a data-ng-href="/#!/users/{{teacup.speaker._id}}">{{teacup.speaker.name}}</a>
+    </p>
+    <p ng-show="!teacup.speaker">
+        No speaker is defined
+    </p>
+    <p>
+        <h4>Description</h4>
+        <div>{{teacup.description}}</div>
+        <div data-ng-if="hasAuthorization(teacup)">
+            <a class="btn" href="/#!/teacups/{{teacup._id}}/edit">
+                <i class="glyphicon glyphicon-edit"></i>
+            </a>
+            <a class="btn" data-ng-click="remove(teacup);">
+                <i class="glyphicon glyphicon-trash"></i>
+            </a>
+        </div>
+    </p>
+    <p>
+        <span>Created on {{teacup.created | date:'longDate'}}</span> by
+        <a data-ng-href="/#!/users/{{teacup.user._id}}">{{teacup.user.name}}</a>
+    </p>
 </section>

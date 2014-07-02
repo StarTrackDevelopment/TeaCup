@@ -10,7 +10,7 @@ var hasAuthorization = function(req, res, next) {
     next();
 };
 
-module.exports = function(Teacups, app, auth) {
+module.exports = function (res, app, auth) {
 
     app.route('/teacups')
         .get(teacups.all)
@@ -20,6 +20,5 @@ module.exports = function(Teacups, app, auth) {
         .put(auth.requiresLogin, hasAuthorization, teacups.update)
         .delete(auth.requiresLogin, hasAuthorization, teacups.destroy);
 
-    // Finish with setting up the teacupId param
     app.param('teacupId', teacups.teacup);
 };

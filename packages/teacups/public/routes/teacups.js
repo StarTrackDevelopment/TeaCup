@@ -21,8 +21,8 @@ angular.module('mean.teacups').config(['$stateProvider',
             });
 
             return deferred.promise;
-        };
-
+        };        
+         
         // states for my app
         $stateProvider
             .state('all teacups', {
@@ -47,7 +47,7 @@ angular.module('mean.teacups').config(['$stateProvider',
                 }
             })
             .state('teacup by id', {
-                url: '/teacups/:teacupId',
+                url: '/teacups/:teacupId/view',
                 templateUrl: 'teacups/views/view.html',
                 resolve: {
                     loggedin: checkLoggedin

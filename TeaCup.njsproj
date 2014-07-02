@@ -12,6 +12,9 @@
     <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <StartWebBrowser>False</StartWebBrowser>
+    <DebuggerPort>5858</DebuggerPort>
+    <NodejsPort>3000</NodejsPort>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
@@ -27,6 +30,12 @@
     <Content Include="packages\teacups\public\views\view.html" />
     <Content Include="packages\teacups\README.md" />
     <Content Include="packages\teacups\server\views\index.html" />
+    <Content Include="packages\users\package.json" />
+    <Content Include="packages\users\public\assets\css\users.css" />
+    <Content Include="packages\users\public\assets\img\logo.png" />
+    <Content Include="packages\users\public\views\view.html" />
+    <Content Include="packages\users\README.md" />
+    <Content Include="packages\users\server\views\index.html" />
     <Content Include="README.md" />
     <Compile Include="Gruntfile.js" />
     <Compile Include="packages\teacups\app.js" />
@@ -36,6 +45,14 @@
     <Compile Include="packages\teacups\server\controllers\teacups.js" />
     <Compile Include="packages\teacups\server\models\teacup.js" />
     <Compile Include="packages\teacups\server\routes\teacups.js" />
+    <Compile Include="packages\users\app.js" />
+    <Compile Include="packages\users\public\controllers\users.js" />
+    <Compile Include="packages\users\public\routes\users.js" />
+    <Compile Include="packages\users\public\services\users.js" />
+    <Compile Include="packages\users\server\controllers\users.js" />
+    <Compile Include="packages\users\server\routes\users.js" />
+    <Compile Include="public\system\controllers\users.js" />
+    <Compile Include="public\system\services\users.js" />
     <Compile Include="server.js" />
     <Content Include="public\humans.txt" />
     <Content Include="public\robots.txt" />
@@ -324,6 +341,20 @@
     <Folder Include="packages\teacups\server\models\" />
     <Folder Include="packages\teacups\server\routes\" />
     <Folder Include="packages\teacups\server\views\" />
+    <Folder Include="packages\users\" />
+    <Folder Include="packages\users\public\" />
+    <Folder Include="packages\users\public\assets\" />
+    <Folder Include="packages\users\public\assets\css\" />
+    <Folder Include="packages\users\public\assets\img\" />
+    <Folder Include="packages\users\public\controllers\" />
+    <Folder Include="packages\users\public\routes\" />
+    <Folder Include="packages\users\public\services\" />
+    <Folder Include="packages\users\public\views\" />
+    <Folder Include="packages\users\server\" />
+    <Folder Include="packages\users\server\controllers\" />
+    <Folder Include="packages\users\server\models\" />
+    <Folder Include="packages\users\server\routes\" />
+    <Folder Include="packages\users\server\views\" />
     <Folder Include="public" />
     <Folder Include="public\auth" />
     <Folder Include="public\auth\assets" />
