@@ -12,3 +12,5 @@ option:first {
 select {
     color:#999;
 }
+
+li {list-style-type: none;}

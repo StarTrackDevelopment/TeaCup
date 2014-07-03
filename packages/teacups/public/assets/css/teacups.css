@@ -1,11 +1,92 @@
-.teacups-example h1: {
-	background-color: purple
-}
-
 option:first {
     color: #999;
 }
 
 select {
     color:#999;
+}
+
+li {list-style-type: none;}
+
+.customcontainer
+{
+	margin: 1em 5%;
+	background-color: #FFF;
+	border: 1px solid #333;    
+    background-image: url(/public/auth/assets/img/icons/navbackground.png);
+	background-repeat: repeat-y;
+}
+
+.custombanner
+{
+	background-color: #aaa;
+    border-bottom: 1px solid #333;
+}
+
+.custombanner a
+{
+	color: #000000;
+}
+
+.custombanner h2
+{
+	margin: 0;
+	padding: .5em;
+}
+
+.custommenu
+{
+    background-color: #666;
+	border-bottom: 1px solid #333;
+}
+
+.customnavleft
+{
+    float: left;
+	width: 160px;
+    /*margin: 0px auto;*/
+    background-color: #ddd;
+    padding: 1em;
+    overflow: auto;
+}
+
+.customnavleft p
+{ 
+	margin-top: 0;    
+}
+
+.customcontent
+{
+    padding-bottom: 1em;
+    padding-top: 1em;
+    margin: 0 1em 0 180px;
+}
+
+.customfooter
+{    
+	clear: both;
+	background-color: #ddd;/*#666;*/
+    text-align: right;
+    padding: 0.2em;
+	border-top: 1px solid #333;
+}
+
+ul.horizontalnav {
+  list-style:none;
+  padding:0.2em;
+}
+
+ul.horizontalnav li {
+  display:inline-block;
+}
+
+ul.horizontalnav li a {
+  text-decoration:none;
+  color:#000;
+  text-align:center;
+  margin-left: 0.5em;
+}
+
+ul.horizontalnav li a:hover {
+    color: #fff;
 }

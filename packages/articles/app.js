@@ -45,7 +45,7 @@ Articles.register(function(app, auth, database) {
       //you now have the settings object
     });
     */
-    Articles.aggregateAsset('css', 'articles.css');
+    
 
     return Articles;
 });

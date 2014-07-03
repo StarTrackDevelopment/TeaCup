@@ -51,5 +51,7 @@ Teacups.register(function(app, auth, database) {
     });
     */
 
+    Teacups.aggregateAsset('css', 'teacups.css');
+
     return Teacups;
 });

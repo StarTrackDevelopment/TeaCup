@@ -1,13 +1,15 @@
 <section ng-controller="TeacupsController" data-ng-init="findOne('true')">
-    <h2>{{teacup.title}}</h2>
-    <p>Scheduled on {{teacup.scheduleDate | date : 'longDate'}}</p>
-    <p>Begins at {{teacup.scheduleDate | date: 'HH:mm'}}</p>
-    <p ng-show="teacup.speaker">
-        Speaker is <a data-ng-href="/#!/users/{{teacup.speaker._id}}">{{teacup.speaker.name}}</a>
-    </p>
-    <p ng-show="!teacup.speaker">
-        No speaker is defined
-    </p>
+    <h2 class="title">{{teacup.title}}</h2>
+    <h4>
+        <p>Scheduled on {{teacup.scheduleDate | date : 'longDate'}}</p>
+        <p>Begins at {{teacup.scheduleDate | date: 'HH:mm'}}</p>
+        <p ng-show="teacup.speaker">
+            Speaker is <a data-ng-href="/#!/users/{{teacup.speaker._id}}">{{teacup.speaker.name}}</a>
+        </p>
+        <p ng-show="!teacup.speaker">
+            No speaker is defined
+        </p>
+    </h4>
     <p>
         <h4>Description</h4>
         <div>{{teacup.description}}</div> 
