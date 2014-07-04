@@ -57,6 +57,10 @@ li {list-style-type: none;}
 	padding: .5em;
 }
 
+.custombannercentered {
+    text-align: center;
+}
+
 .custommenu
 {
     background-color: #666;
@@ -113,6 +117,11 @@ li {list-style-type: none;}
 	border-top: 1px solid #333;
 }
 
+.customfooterdark
+{    
+    background-color: #aaa;
+}
+
 .customheader
 {    
 	clear: both;
@@ -122,22 +131,38 @@ li {list-style-type: none;}
     border-bottom: 1px solid #333;
 }
 
+.custominput
+{    
+	clear: both;
+	background-color: #ddd;/*#666;*/
+    padding: 0.2em;
+    padding-left: 1em;
+}
+
+textarea {
+    resize: none;
+}
+
 ul.horizontalnav {
   list-style:none;
   padding:0.2em;
 }
 
-ul.horizontalnav li {
+ul.horizontalnav > li {
   display:inline-block;
 }
 
-ul.horizontalnav li a {
+ul.horizontalnav > li a {
   text-decoration:none;
   color:#000;
   text-align:center;
   margin-left: 0.5em;
 }
 
-ul.horizontalnav li a:hover {
+ul.horizontalnav > li a:hover {
     color: #fff;
+}
+
+ul.customlist > li {
+    padding-bottom: 1em;
 }
