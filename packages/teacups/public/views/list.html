@@ -1,37 +1,39 @@
 <section data-ng-controller="TeacupsController" data-ng-init="find()">
-    <ul class="customlist">
-        <li data-ng-repeat="teacup in teacups">
-            <div class="customcontainer">                
-                <div class="custombanner">
-                    <h2>
-                        <a data-ng-href="/#!/teacups/{{teacup._id}}/view">{{teacup.title}}</a>
-                    </h2>
-                </div>   
-                <div class="custommenu">
-                    <ul class="horizontalnav">
-                        <li><a href="/#!/teacups/{{teacup._id}}/view">Details</a></li>
-                        <li><a href="/#!/teacups/{{teacup._id}}/edit">Edit</a></li>
-                        <li><a href="#" data-ng-click="remove(teacup);">Delete</a></li>
-                    </ul>
-                </div>            
-                <div class="customnavleft">
-                    <p>
-                        {{teacup.scheduleDate | date : 'longDate'}} {{teacup.scheduleDate | date: 'HH:mm'}}
-                    </p>
-                    <p>
-                        Author: <a data-ng-href="/#!/users/{{teacup.speaker._id}}">{{teacup.speaker.name}}</a>
-                        <span ng-show="!teacup.speaker">--no speaker yet--</span>
-                    </p>
-                </div>                
-                <div class="customcontent">
-                    {{teacup.description | limitTo: 250}}
+    <div class="row">
+        <ul>
+            <li data-ng-repeat="teacup in teacups">
+                <div class="customcontainer customcontainerwithleft">
+                    <div class="custombanner customtitle">
+                        <h2>
+                            <a data-ng-href="/#!/teacups/{{teacup._id}}/view">{{teacup.title}}</a>
+                        </h2>
+                    </div>
+                    <div class="custommenu">
+                        <ul class="horizontalnav">
+                            <li><a href="/#!/teacups/{{teacup._id}}/view">Details</a></li>
+                            <li data-ng-if="hasAuthorization(teacup)"><a href="/#!/teacups/{{teacup._id}}/edit">Edit</a></li>
+                            <li data-ng-if="hasAuthorization(teacup)"><a href="#" data-ng-click="remove(teacup);">Delete</a></li>
+                        </ul>
+                    </div>
+                    <div class="customnav customnavleft">
+                        <p>
+                            {{teacup.scheduleDate | date : 'longDate'}} {{teacup.scheduleDate | date: 'HH:mm'}}
+                        </p>
+                        <p>
+                            Speaker: <a data-ng-href="/#!/users/{{teacup.speaker._id}}">{{teacup.speaker.name}}</a>
+                            <span ng-show="!teacup.speaker">--no speaker yet--</span>
+                        </p>
+                    </div>
+                    <div class="customcontent customcontentwithleft">
+                        {{teacup.description | limitTo: 250}}
+                    </div>
+                    <div class="customfooter">
+                        created on {{teacup.created | date:'longDate'}} by
+                        <a data-ng-href="/#!/users/{{teacup.user._id}}">{{teacup.user.name}}</a>
+                    </div>
                 </div>
-                <div class="customfooter">
-                    created on {{teacup.created | date:'longDate'}} by
-                    <a data-ng-href="/#!/users/{{teacup.user._id}}">{{teacup.user.name}}</a>
-                </div>     
-            </div>
-        </li>
-    </ul>
-    <h1 data-ng-hide="!teacups || teacups.length">No teacups yet. <br> Why don't you <a href="/#!/teacups/create">Create One</a>?</h1>
+            </li>
+        </ul>
+        <h1 data-ng-hide="!teacups || teacups.length">No teacups yet. <br> Why don't you <a href="/#!/teacups/create">Create One</a>?</h1>
+    </div>
 </section>
