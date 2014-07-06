@@ -156,7 +156,7 @@ ul.horizontalnav > li a {
   text-decoration:none;
   color:#000;
   text-align:center;
-  /*margin-left: 0.5em;*/
+  margin-left: 0.5em;
 }
 
 ul.horizontalnav > li a:hover {
