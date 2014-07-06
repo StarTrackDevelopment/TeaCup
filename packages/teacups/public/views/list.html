@@ -29,6 +29,12 @@
                         <p data-ng-show="!teacup.subscribedusers || !teacup.subscribedusers.length">
                             No subscribed users
                         </p>
+                        <p data-ng-show="teacup.comments && teacup.comments.length">
+                            {{teacup.comments.length}} comment(s)
+                        </p>
+                        <p data-ng-show="!teacup.comments || !teacup.comments.length">
+                            No comments
+                        </p>
                     </div>
                     <div class="customcontent customcontentwithleft">
                         {{teacup.description | limitTo: 250}}

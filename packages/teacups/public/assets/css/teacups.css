@@ -98,6 +98,14 @@ li {list-style-type: none;}
     margin: 1em;
 }
 
+.customcomment
+{
+    padding-bottom: 0.4em;
+    padding-top: 0.4em;
+    margin: 0.4em;
+    margin-left: 1em;
+}
+
 .customcontentwithleft
 {
     margin-left: 180px; /*top, right, bottom, left*/
@@ -166,3 +174,9 @@ ul.horizontalnav > li a:hover {
 ul.customlist > li {
     padding-bottom: 1em;
 }
+
+ul.circle { list-style-type: circle;}
+
+ul.square { list-style-type: square;}
+
+ul.disc { list-style-type: disc;}

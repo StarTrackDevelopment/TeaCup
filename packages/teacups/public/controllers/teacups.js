@@ -79,6 +79,28 @@ angular.module('mean.teacups').controller('TeacupsController', ['$scope', '$stat
             });
         };
 
+        $scope.addcomment = function () {
+            Teacups.get({
+                teacupId: $stateParams.teacupId,
+                populate: 'false'
+            }, function (teacup) {
+                var newcomment = {
+                    comment: $scope.comment,
+                    createdby: $scope.global.user._id,
+                    createdwhen: Date.now()
+                };
+                teacup.comments.push(newcomment);
+                if (!teacup.updated) {
+                    teacup.updated = [];
+                }
+                teacup.updated.push(new Date().getTime());
+                teacup.$update();
+                newcomment.createdby = $scope.global.user;
+                $scope.teacup.comments.push(newcomment);
+                $scope.comment = '';
+            });
+        };        
+
         $scope.unsubscribeuser = function () {
             Teacups.get({
                 teacupId: $stateParams.teacupId,

@@ -111,6 +111,7 @@ exports.all = function(req, res) {
     Teacup.find().sort('-created')
     .populate('user speaker')
     .populate('subscribedusers')
+    .populate('comments.createdby')
     .exec(function (err, teacups) {
         if (err) {
             res.render('error', {

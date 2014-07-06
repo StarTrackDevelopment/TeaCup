@@ -40,7 +40,22 @@ var TeacupSchema = new Schema({
     user: {
         type: Schema.ObjectId,
         ref: 'User'
-    }
+    },
+    comments: [{
+        createdwhen: {
+            type: Date,
+            default: Date.now
+        },
+        createdby: {
+            type: Schema.ObjectId,
+            ref: 'User'
+        },
+        comment: {
+            type: String,
+            default: '',
+            trim: true
+        }
+    }]
 });
 
 /**
@@ -60,6 +75,7 @@ TeacupSchema.statics.load = function (id, populate, cb) {
     })
     .populate(populateobjects)
     .populate('subscribedusers')
+    .populate('comments.createdby')
     .exec(cb);
 };
 
