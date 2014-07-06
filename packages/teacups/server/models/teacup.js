@@ -33,6 +33,10 @@ var TeacupSchema = new Schema({
         type: Schema.ObjectId,
         ref: 'User'
     },
+    subscribedusers: [{
+        type: Schema.ObjectId,
+        ref: 'User'        
+    }],
     user: {
         type: Schema.ObjectId,
         ref: 'User'
@@ -53,7 +57,10 @@ TeacupSchema.statics.load = function (id, populate, cb) {
     var populateobjects = (populate !== null && populate === 'true' ? 'user speaker' : 'user');
     this.findOne({
         _id: id
-    }).populate(populateobjects, 'name username').exec(cb);    
+    })
+    .populate(populateobjects)
+    .populate('subscribedusers')
+    .exec(cb);
 };
 
 mongoose.model('Teacup', TeacupSchema);
