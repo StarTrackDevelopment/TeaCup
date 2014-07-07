@@ -61,8 +61,8 @@ select {
 
 .custommenu
 {
-    background-color: #ddd;
-	border-bottom: 1px solid #333;
+    background-color: #222;
+	border-bottom: 1px solid #080808;
 }
 
 .customnav
@@ -70,7 +70,7 @@ select {
 	width: 160px;
     /*margin: 0px auto;*/
     background-color: #ddd;
-    padding: 0.2em;
+    padding: 0.5em;
     overflow: auto;
 }
 
@@ -87,7 +87,7 @@ select {
 .customnavright
 { 
 	float: right;
-    background-color: #ff0000;
+    background-color: #ddd;
 }
 
 .customcontent
@@ -159,19 +159,17 @@ ul.horizontalnav > li {
   display:inline-block;
 }
 
-ul.horizontalnav > li a {
+ul.horizontalnav > li > a {
   text-decoration:none;
-  color:black;
+  color:#999;
   text-align:center;
   margin-left: 0.5em;
 }
 
-ul.horizontalnav li a:hover {
-  background-color: #ff6a00;
-}
-
-ul.horizontalnav > li a:hover {
-    color: #fff;
+ul.horizontalnav > li a:hover,
+ul.horizontalnav > li > a:focus {
+  color: #fff;
+  background-color: transparent;
 }
 
 ul.customlist > li {
