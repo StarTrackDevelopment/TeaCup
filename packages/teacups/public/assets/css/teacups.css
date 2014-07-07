@@ -166,10 +166,6 @@ ul.horizontalnav > li a {
   margin-left: 0.5em;
 }
 
-ul.horizontalnav li a:hover {
-  background-color: #ff6a00;
-}
-
 ul.horizontalnav > li a:hover {
     color: #fff;
 }
