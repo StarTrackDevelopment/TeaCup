@@ -56,7 +56,13 @@
                     </p>
                 </li>
             </ul>
-            <form name="editTeacup" class="form-horizontal" role="form" ng-submit="addcomment()">
+                       
+            <form name="editTeacup" 
+                  class="form-horizontal" 
+                  role="form" 
+                  ng-submit="addcomment()" 
+                  data-ng-show="teacup.subscribedusers && teacup.subscribedusers.length"
+                  data-ng-model="teacup.subscribedusers">
                 <p>
                     <div class=" custominput">
                         <label for="comment" class="control-label">New comment</label>
@@ -69,6 +75,7 @@
                     <button mean-token="'add-comment'" class="btn btn-info" type="submit">Add comment</button>
                 </p>
             </form>
+            <strong data-ng-hide="!teacup.subscribedusers || teacup.subscribedusers.length">Only subscribed users can comment</strong>
         </div>
         <div class="customfooter customfooterdark">
             <span>created on {{teacup.created | date:'longDate'}}</span> by
