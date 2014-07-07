@@ -12,10 +12,3 @@ angular.module('mean.teacups').factory('Teacups', [
         });
     }
 ]);
-
-angular.module('mean.teacups').factory('Rooms', [
-    '$resource',
-    function($resource) {
-        return $resource('rooms');
-    }
-]);
