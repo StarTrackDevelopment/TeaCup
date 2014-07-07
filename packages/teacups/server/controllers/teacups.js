@@ -105,7 +105,7 @@ exports.show = function(req, res) {
 };
 
 /**
- * List of Articles
+ * List of teacups
  */
 exports.all = function(req, res) {
     Teacup.find().sort('-created')
