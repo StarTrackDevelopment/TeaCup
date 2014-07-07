@@ -59,7 +59,7 @@ li {list-style-type: none;}
 
 .custommenu
 {
-    background-color: #666;
+    background-color: #ddd;
 	border-bottom: 1px solid #333;
 }
 
@@ -68,7 +68,7 @@ li {list-style-type: none;}
 	width: 160px;
     /*margin: 0px auto;*/
     background-color: #ddd;
-    padding: 1em;
+    padding: 0.2em;
     overflow: auto;
 }
 
@@ -85,6 +85,7 @@ li {list-style-type: none;}
 .customnavright
 { 
 	float: right;
+    background-color: #ff0000;
 }
 
 .customcontent
@@ -133,11 +134,11 @@ ul.horizontalnav li {
 
 ul.horizontalnav li a {
   text-decoration:none;
-  color:#000;
+  color:black;
   text-align:center;
   margin-left: 0.5em;
 }
 
 ul.horizontalnav li a:hover {
-    color: #fff;
+  background-color: #ff6a00;
 }
