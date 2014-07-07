@@ -33,6 +33,10 @@ var TeacupSchema = new Schema({
         type: Schema.ObjectId,
         ref: 'User'
     },
+    rating: {
+        type: Number,
+        default: 0
+    },
     subscribedusers: [{
         type: Schema.ObjectId,
         ref: 'User'        

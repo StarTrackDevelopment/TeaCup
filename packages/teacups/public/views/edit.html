@@ -24,6 +24,16 @@
                     <input type="datetime-local" ng-model="teacup.scheduleDate" id="scheduleDate" name="input" value="{{teacup.scheduleDate | date:'yyyy-MM-ddTHH:mm:ss'}}" class="form-control" required>
                 </div>
             </div>
+               <div class="custominput">
+                <label mean-token="'create-scheduleDate'" class="control-label">Rating</label>
+                <div >                         
+                    <input type="radio" class="form-control" data-ng-model="teacup.raing" id="rating1" value="1"  style="width:10px;display:table-cell;height:8px;margin-right:2px;">1&nbsp;{{teacup.rating}}
+                    <input type="radio" class="form-control" data-ng-model="teacup.raing" id="rating2" value="2"  style="width:10px;display:table-cell;height:8px;margin-right:2px;">2&nbsp;
+                    <input type="radio" class="form-control" data-ng-model="teacup.raing" id="rating3" value="3"  style="width:10px;display:table-cell;height:8px;margin-right:2px;">3&nbsp;
+                    <input type="radio" class="form-control" data-ng-model="teacup.raing" id="rating4" value="4"  style="width:10px;display:table-cell;height:8px;margin-right:2px;">4&nbsp;
+                    <input type="radio" class="form-control" data-ng-model="teacup.raing" id="rating5" value="5"  style="width:10px;display:table-cell;height:8px;margin-right:2px;">5&nbsp;                    
+                </div>
+            </div>
             <div class="custominput">
                 <label mean-token="'edit-description'" for="description" class="control-label">Description</label>
                 <div>

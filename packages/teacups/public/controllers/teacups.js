@@ -24,6 +24,7 @@ angular.module('mean.teacups').controller('TeacupsController', ['$scope', '$stat
                 title: this.title,
                 description: this.description,
                 speaker: this.speaker,
+                rating: this.rating,
                 scheduleDate: this.scheduleDate
             });
             teacup.$save(function(response) {
@@ -33,6 +34,7 @@ angular.module('mean.teacups').controller('TeacupsController', ['$scope', '$stat
             this.title = '';
             this.description = '';
             this.speaker = '';
+            this.rating = 0;
             this.scheduleDate = Date.now;
         };
 
