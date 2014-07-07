@@ -21,7 +21,7 @@ angular.module('mean.teacups').controller('TeacupsController', ['$scope', '$stat
 
         $scope.isTeacupinFuture = function () {
             if (!$scope.teacup || !$scope.teacup.scheduleDate) return false;
-            if ($scope.teacup.scheduleDate > Date.now())
+            if ($scope.teacup.scheduleDate.valueOf() > Date.now().valueOf())
                 return true;
             else
                 return false;
