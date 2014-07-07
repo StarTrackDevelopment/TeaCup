@@ -6,8 +6,6 @@ select {
     color:#999;
 }
 
-li {list-style-type: none;}
-
 .customcontainer
 {	
 	background-color: #FFF;
@@ -173,6 +171,7 @@ ul.horizontalnav > li a:hover {
 
 ul.customlist > li {
     padding-bottom: 1em;
+    list-style-type: none;
 }
 
 ul.circle { list-style-type: circle;}
