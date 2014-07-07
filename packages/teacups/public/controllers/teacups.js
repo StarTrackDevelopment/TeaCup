@@ -19,6 +19,14 @@ angular.module('mean.teacups').controller('TeacupsController', ['$scope', '$stat
             return false;
         };
 
+        $scope.isTeacupinFuture = function () {
+            if (!$scope.teacup || !$scope.teacup.scheduleDate) return false;
+            if ($scope.teacup.scheduleDate > Date.now())
+                return true;
+            else
+                return false;
+        };
+
         $scope.create = function() {
             var teacup = new Teacups({
                 title: this.title,
