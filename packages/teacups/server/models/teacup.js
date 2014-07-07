@@ -61,7 +61,7 @@ var TeacupSchema = new Schema({
 /**
  * Validations
  */
-TeacupSchema.path('title').validate(function(title) {
+TeacupSchema.path('title').validate(function (title) {
     return title.length;
 }, 'Title cannot be blank');
 

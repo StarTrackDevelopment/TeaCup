@@ -1,9 +1,9 @@
 'use strict';
 
-angular.module('mean.teacups').controller('TeacupsController', ['$scope', '$stateParams', '$location', '$http', 'Global', 'Teacups', 'Users',
-    function ($scope, $stateParams, $location, $http, Global, Teacups, Users) {
+angular.module('mean.teacups').controller('TeacupsController', ['$scope', '$stateParams', '$location', '$http', 'Global', 'Teacups', 'Users', 'Rooms',
+    function ($scope, $stateParams, $location, $http, Global, Teacups, Users, Rooms) {
         $scope.global = Global;
-
+                
         $scope.hasAuthorization = function(teacup) {
             if (!teacup || !teacup.user) return false;
             return $scope.global.isAdmin || teacup.user._id === $scope.global.user._id;
@@ -19,15 +19,24 @@ angular.module('mean.teacups').controller('TeacupsController', ['$scope', '$stat
             return false;
         };
 
+        $scope.isTeacupinFuture = function () {
+            if (!$scope.teacup || !$scope.teacup.scheduleDate) return false;
+            if ($scope.teacup.scheduleDate.valueOf() > Date.now().valueOf())
+                return true;
+            else
+                return false;
+        };
+
         $scope.create = function() {
             var teacup = new Teacups({
                 title: this.title,
                 description: this.description,
                 speaker: this.speaker,
-                scheduleDate: this.scheduleDate
+                scheduleDate: this.scheduleDate,
+                room: this.room
             });
             teacup.$save(function(response) {
-                $location.path('teacups/' + response._id + '/view');
+                $location.path('teacups/' + response.teacup._id + '/view');
             });
 
             this.title = '';
@@ -145,6 +154,12 @@ angular.module('mean.teacups').controller('TeacupsController', ['$scope', '$stat
         $scope.findusers = function() {
             Users.query(function(users) {
                 $scope.users = users;
+            });
+        };
+        
+        $scope.findRooms = function() {
+            Rooms.query(function(rooms) {
+                $scope.rooms = rooms;
             });
         };
     }

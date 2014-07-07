@@ -2,6 +2,8 @@
 
 var teacups = require('../controllers/teacups');
 
+var rooms = require('../controllers/rooms');
+
 // Teacup authorization helpers
 var hasAuthorization = function(req, res, next) {
     if (!req.user.isAdmin && req.teacup.user.id !== req.user.id) {
@@ -21,4 +23,6 @@ module.exports = function (res, app, auth) {
         .delete(auth.requiresLogin, hasAuthorization, teacups.destroy);
 
     app.param('teacupId', teacups.teacup);
+    
+    app.route('/rooms').get(rooms.all);
 };

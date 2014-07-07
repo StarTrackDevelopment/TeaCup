@@ -40,11 +40,30 @@
                             </div>
                         </div>
                 </div>
+<<<<<<< HEAD
                 
                 <div class="custominput">
                     <div>
                         <button type="submit" class="btn btn-info">Submit</button>
                     </div>
+=======
+            </div>
+            <div class="custominput" data-ng-init="findRooms()">
+                <label mean-token="'create-room'" class="control-label">Room</label>
+                <div>
+                    <select data-ng-model="room" ng-options="room.name for room in rooms"></select>
+                </div>
+            </div>
+            <div class="custominput">
+                <label mean-token="'create-description'" for="description" class="control-label">Description</label>
+                <div>
+                    <textarea data-ng-model="description" id="description" cols="30" rows="10" placeholder="Description" class="form-control" required></textarea>
+                </div>
+            </div>
+            <div class="custominput">
+                <div>
+                    <button type="submit" class="btn btn-info">Submit</button>
+>>>>>>> origin/master
                 </div>
             </div>
 
