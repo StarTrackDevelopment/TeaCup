@@ -140,7 +140,7 @@ select {
 
 .custominput
 {    
-	clear: both;
+	/*clear: both;*/
 	background-color: #ddd;/*#666;*/
     padding: 0.2em;
     padding-left: 1em;
