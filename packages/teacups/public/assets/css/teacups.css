@@ -6,8 +6,6 @@ select {
     color:#999;
 }
 
-li {list-style-type: none;}
-
 .customcontainer
 {	
 	background-color: #FFF;
@@ -57,6 +55,10 @@ li {list-style-type: none;}
 	padding: .5em;
 }
 
+.custombannercentered {
+    text-align: center;
+}
+
 .custommenu
 {
     background-color: #ddd;
@@ -95,6 +97,14 @@ li {list-style-type: none;}
     margin: 1em;
 }
 
+.customcomment
+{
+    padding-bottom: 0.4em;
+    padding-top: 0.4em;
+    margin: 0.4em;
+    margin-left: 1em;
+}
+
 .customcontentwithleft
 {
     margin-left: 180px; /*top, right, bottom, left*/
@@ -114,6 +124,11 @@ li {list-style-type: none;}
 	border-top: 1px solid #333;
 }
 
+.customfooterdark
+{    
+    background-color: #aaa;
+}
+
 .customheader
 {    
 	clear: both;
@@ -123,16 +138,28 @@ li {list-style-type: none;}
     border-bottom: 1px solid #333;
 }
 
+.custominput
+{    
+	clear: both;
+	background-color: #ddd;/*#666;*/
+    padding: 0.2em;
+    padding-left: 1em;
+}
+
+textarea {
+    resize: none;
+}
+
 ul.horizontalnav {
   list-style:none;
   padding:0.2em;
 }
 
-ul.horizontalnav li {
+ul.horizontalnav > li {
   display:inline-block;
 }
 
-ul.horizontalnav li a {
+ul.horizontalnav > li a {
   text-decoration:none;
   color:black;
   text-align:center;
@@ -142,3 +169,19 @@ ul.horizontalnav li a {
 ul.horizontalnav li a:hover {
   background-color: #ff6a00;
 }
+
+ul.horizontalnav > li a:hover {
+    color: #fff;
+}
+
+ul.customlist > li {
+    padding-bottom: 1em;
+    list-style-type: none;
+}
+
+ul.circle { list-style-type: circle;}
+
+ul.square { list-style-type: square;}
+
+ul.disc { list-style-type: disc;}
+

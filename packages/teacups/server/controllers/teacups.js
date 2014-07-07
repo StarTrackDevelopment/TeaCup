@@ -108,7 +108,11 @@ exports.show = function(req, res) {
  * List of Articles
  */
 exports.all = function(req, res) {
-    Teacup.find().sort('-created').populate('user speaker', 'name username').exec(function(err, teacups) {
+    Teacup.find().sort('-created')
+    .populate('user speaker')
+    .populate('subscribedusers')
+    .populate('comments.createdby')
+    .exec(function (err, teacups) {
         if (err) {
             res.render('error', {
                 status: 500

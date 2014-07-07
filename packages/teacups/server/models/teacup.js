@@ -33,10 +33,29 @@ var TeacupSchema = new Schema({
         type: Schema.ObjectId,
         ref: 'User'
     },
+    subscribedusers: [{
+        type: Schema.ObjectId,
+        ref: 'User'        
+    }],
     user: {
         type: Schema.ObjectId,
         ref: 'User'
-    }
+    },
+    comments: [{
+        createdwhen: {
+            type: Date,
+            default: Date.now
+        },
+        createdby: {
+            type: Schema.ObjectId,
+            ref: 'User'
+        },
+        comment: {
+            type: String,
+            default: '',
+            trim: true
+        }
+    }]
 });
 
 /**
@@ -53,7 +72,11 @@ TeacupSchema.statics.load = function (id, populate, cb) {
     var populateobjects = (populate !== null && populate === 'true' ? 'user speaker' : 'user');
     this.findOne({
         _id: id
-    }).populate(populateobjects, 'name username').exec(cb);    
+    })
+    .populate(populateobjects)
+    .populate('subscribedusers')
+    .populate('comments.createdby')
+    .exec(cb);
 };
 
 mongoose.model('Teacup', TeacupSchema);

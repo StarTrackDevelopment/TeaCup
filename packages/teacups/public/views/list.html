@@ -1,6 +1,6 @@
 <section data-ng-controller="TeacupsController" data-ng-init="find()">
     <div class="row">
-        <ul>
+        <ul class="customlist">
             <li data-ng-repeat="teacup in teacups">
                 <div class="customcontainer customcontainerwithleft">
                     <div class="custombanner customtitle">
@@ -23,11 +23,23 @@
                             Speaker: <a data-ng-href="/#!/users/{{teacup.speaker._id}}">{{teacup.speaker.name}}</a>
                             <span ng-show="!teacup.speaker">--no speaker yet--</span>
                         </p>
+                        <p data-ng-show="teacup.subscribedusers && teacup.subscribedusers.length">
+                            {{teacup.subscribedusers.length}} subscriped user(s)
+                        </p>
+                        <p data-ng-show="!teacup.subscribedusers || !teacup.subscribedusers.length">
+                            No subscribed users
+                        </p>
+                        <p data-ng-show="teacup.comments && teacup.comments.length">
+                            {{teacup.comments.length}} comment(s)
+                        </p>
+                        <p data-ng-show="!teacup.comments || !teacup.comments.length">
+                            No comments
+                        </p>
                     </div>
                     <div class="customcontent customcontentwithleft">
                         {{teacup.description | limitTo: 250}}
                     </div>
-                    <div class="customfooter">
+                    <div class="customfooter customfooterdark">
                         created on {{teacup.created | date:'longDate'}} by
                         <a data-ng-href="/#!/users/{{teacup.user._id}}">{{teacup.user.name}}</a>
                     </div>
