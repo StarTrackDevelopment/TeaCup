@@ -19,6 +19,9 @@
                 <h3>No speaker is defined</h3>
             </p>
             <p>
+                <h3>Rating: {{teacup.rating}}</h3>
+            </p>
+            <p>
                 <button class="btn btn-info" data-ng-model="teacup.subscribedusers" ng-hide="isUserSubscribed()" ng-click="subscribeuser()">Subscribe Me</button>
                 <button class="btn btn-info" data-ng-model="teacup.subscribedusers" ng-show="isUserSubscribed()" ng-click="unsubscribeuser()">Unsubscribe Me</button>
             </p>
