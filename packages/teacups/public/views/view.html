@@ -1,0 +1,81 @@
+<section ng-controller="TeacupsController" data-ng-init="findOne('true')">
+    <div class="row customcontainer">        
+        <div class="custombanner customtitle">
+            <h1 class="title">{{teacup.title}}</h1>
+        </div>
+        <div class="custommenu" ng-show="hasAuthorization(teacup)">
+            <ul class="horizontalnav">
+                <li><a href="/#!/teacups/{{teacup._id}}/edit">Edit</a></li>
+                <li><a href="#" data-ng-click="remove(teacup);">Delete</a></li>
+            </ul>
+        </div>
+        <div class="customheader">            
+            <p><h3>Scheduled on {{teacup.scheduleDate | date : 'longDate'}}</h3></p>
+            <p><h3>Begins at {{teacup.scheduleDate | date: 'HH:mm'}}</h3></p>
+            <p ng-show="teacup.speaker">
+                <h3>Speaker is <a data-ng-href="/#!/users/{{teacup.speaker._id}}">{{teacup.speaker.name}}</a></h3>
+            </p>
+            <p ng-show="!teacup.speaker">
+                <h3>No speaker is defined</h3>
+            </p>
+            <p>
+                <h3>Rating: {{teacup.rating}}</h3>
+            </p>
+            <p>
+                <button class="btn btn-info" data-ng-model="teacup.subscribedusers" ng-hide="isUserSubscribed()" ng-click="subscribeuser()">Subscribe Me</button>
+                <button class="btn btn-info" data-ng-model="teacup.subscribedusers" ng-show="isUserSubscribed()" ng-click="unsubscribeuser()">Unsubscribe Me</button>
+            </p>
+        </div>        
+        <div class="customcontent">
+            <p><strong>Content</strong><p>{{teacup.description}}</p>
+            <p>
+                <strong data-ng-show="teacup.subscribedusers && teacup.subscribedusers.length"
+                        data-ng-model="teacup.subscribedusers">
+                    {{teacup.subscribedusers.length}} subscriped user(s)
+                </strong>
+                <strong data-ng-hide="!teacup.subscribedusers || teacup.subscribedusers.length">No subscribed users</strong>
+            </p>
+            <ul class="disc">
+                <li data-ng-repeat="user in teacup.subscribedusers"><a data-ng-href="/#!/users/{{user._id}}">{{user.name}}</a></li>
+            </ul>
+            <p>
+                <strong data-ng-show="teacup.comments && teacup.comments.length"
+                        data-ng-model="teacup.comments">{{teacup.comments.length}} comments</strong>
+                <strong data-ng-hide="!teacup.comments || teacup.comments.length"
+                        data-ng-model="teacup.comments">No available comments</strong>
+            </p>
+            <ul class="customlist">
+                <li data-ng-repeat="comment in teacup.comments">
+                    <p>
+                        <div class="customcontainer customtitle">
+                            <div class="customheader">
+                                <a data-ng-href="/#!/teacups/{{comment.createdby._id}}/view">{{comment.createdby.name}}</a>
+                                ({{comment.createdwhen | date: 'longDate'}} {{comment.createdwhen | date: 'HH:mm'}})
+                            </div>
+                            <div class="customcomment">
+                                {{comment.comment}}
+                            </div>
+                        </div>
+                    </p>
+                </li>
+            </ul>
+            <form name="editTeacup" class="form-horizontal" role="form" ng-submit="addcomment()">
+                <p>
+                    <div class=" custominput">
+                        <label for="comment" class="control-label">New comment</label>
+                        <div>
+                            <textarea ng-model="comment" ng-init="comment=''" id="comment" cols="30" rows="10" placeholder="Type your comment hier" class="form-control" required></textarea>
+                        </div>
+                    </div>
+                </p>
+                <p>
+                    <button mean-token="'add-comment'" class="btn btn-info" type="submit">Add comment</button>
+                </p>
+            </form>
+        </div>
+        <div class="customfooter customfooterdark">
+            <span>created on {{teacup.created | date:'longDate'}}</span> by
+            <a data-ng-href="/#!/users/{{teacup.user._id}}">{{teacup.user.name}}</a>
+        </div>
+    </div>
+</section>
