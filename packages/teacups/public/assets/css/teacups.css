@@ -9,7 +9,8 @@ select {
 .customcontainer
 {	
 	background-color: #FFF;
-	border: 1px solid #333;    
+	border: 1px solid #333;
+    box-shadow: 0 4px 4px #000;    
 }
 
 .customcontainerwithleft {
