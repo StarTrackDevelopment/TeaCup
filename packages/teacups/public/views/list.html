@@ -23,6 +23,9 @@
                             Speaker: <a data-ng-href="/#!/users/{{teacup.speaker._id}}">{{teacup.speaker.name}}</a>
                             <span ng-show="!teacup.speaker">--no speaker yet--</span>
                         </p>
+                        <p>
+                            Rating: {{teacup.rating}}                            
+                        </p>
                         <p data-ng-show="teacup.subscribedusers && teacup.subscribedusers.length">
                             {{teacup.subscribedusers.length}} subscriped user(s)
                         </p>
