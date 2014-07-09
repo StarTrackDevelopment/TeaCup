@@ -25,6 +25,15 @@ select {
     background-position: right;
 }
 
+.customshadow {
+    -webkit-box-shadow: 4px 4px 5px 0px #323232;
+    -webkit-box-shadow: 4px 4px 5px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow: 4px 4px 5px 0px #323232;
+    -moz-box-shadow: 4px 4px 5px 0px rgba(50, 50, 50, 0.75);
+    box-shadow: 4px 4px 5px 0px #323232;
+    box-shadow: 4px 4px 5px 0px rgba(50, 50, 50, 0.75);
+}
+
 .custombanner
 {
 	background-color: #aaa;
@@ -172,7 +181,7 @@ ul.horizontalnav > li > a:focus {
   background-color: transparent;
 }
 
-ul.customlist > li {
+ul.customlist > li {    
     padding-bottom: 1em;
     list-style-type: none;
 }
