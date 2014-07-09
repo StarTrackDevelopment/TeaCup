@@ -25,6 +25,8 @@
     <Content Include="packages\teacups\public\assets\css\teacups.css" />
     <Content Include="packages\teacups\public\assets\img\logo.png" />
     <Content Include="packages\teacups\public\views\create.html" />
+    <Content Include="packages\teacups\public\views\Directives\teacup-comments.html" />
+    <Content Include="packages\teacups\public\views\Directives\teacup-list.html" />
     <Content Include="packages\teacups\public\views\edit.html" />
     <Content Include="packages\teacups\public\views\list.html" />
     <Content Include="packages\teacups\public\views\view.html" />
@@ -36,6 +38,10 @@
     <Content Include="packages\users\public\views\view.html" />
     <Content Include="packages\users\README.md" />
     <Content Include="packages\users\server\views\index.html" />
+    <Content Include="public\auth\assets\img\icons\navbackground.png" />
+    <Content Include="public\auth\assets\img\icons\navbackgroundleft.png" />
+    <Content Include="public\auth\assets\img\icons\navbackgroundright.png" />
+    <Content Include="public\auth\assets\img\icons\teacuplogo.png" />
     <Content Include="README.md" />
     <Compile Include="Gruntfile.js" />
     <Compile Include="packages\teacups\app.js" />
@@ -336,6 +342,7 @@
     <Folder Include="packages\teacups\public\routes\" />
     <Folder Include="packages\teacups\public\services\" />
     <Folder Include="packages\teacups\public\views\" />
+    <Folder Include="packages\teacups\public\views\Directives\" />
     <Folder Include="packages\teacups\server\" />
     <Folder Include="packages\teacups\server\controllers\" />
     <Folder Include="packages\teacups\server\models\" />

@@ -30,7 +30,11 @@ angular.module('mean.system').controller('HeaderController', ['$scope', '$rootSc
 
             $scope.global = {
                 authenticated: !! $rootScope.user,
-                user: $rootScope.user
+                user: $rootScope.user,
+                hasAuthorization: function(teacup) {
+                    if (!teacup || !teacup.user) return false;
+                    return $scope.isAdmin || teacup.user._id === $scope.user._id;
+                }
             };
         });
 

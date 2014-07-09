@@ -1,8 +1,13 @@
 'use strict';
 
-angular.module('mean.users').controller('UsersController', ['$scope', '$stateParams', '$location', 'Global', 'Users',
-    function ($scope, $stateParams, $location, Global, Users) {
+angular.module('mean.users').controller('UsersController', ['$scope', '$stateParams', '$location', 'Global', 'Users', 'Teacups',
+    function ($scope, $stateParams, $location, Global, Users, Teacups) {
         $scope.global = Global;               
+
+        $scope.hasAuthorization = function (teacup) {
+            if (!teacup || !teacup.user) return false;
+            return $scope.global.isAdmin || teacup.user._id === $scope.global.user._id;
+        };
 
         $scope.findOne = function() {
             Users.get({
@@ -17,5 +22,18 @@ angular.module('mean.users').controller('UsersController', ['$scope', '$statePar
                 $scope.users = users;
             });
         };
+
+        $scope.findteacups = function() {
+            Teacups.query({
+                speaker: $stateParams.userId
+            }, function(teacups) {
+                $scope.teacups = teacups;
+            });
+        };
+
+        $scope.resetteacups = function () {
+            $scope.teacups = undefined;
+        };
+
     }
 ]);

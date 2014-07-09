@@ -8,7 +8,7 @@ var mongoose = require('mongoose'),
     _ = require('lodash');
 
 
-var getParameterValue = function(name, query) {
+/*var getParameterValue = function(name, query) {
     if (!query)
         return null;
     var pairs = query.split('&amp;');
@@ -27,12 +27,12 @@ var getParameterValue = function(name, query) {
             return value;
     }
     return null;
-};
+};*/
 /**
  * Find teacup by id
  */
-exports.teacup = function(req, res, next, id) {
-    Teacup.load(id, getParameterValue('populate', req._parsedUrl.query), function (err, teacup) {
+exports.teacup = function (req, res, next, id) {
+    Teacup.load(id, req.query.populate, function (err, teacup) {
         if (err) return next(err);
         if (!teacup) return next(new Error('Failed to load teacup ' + id));
         req.teacup = teacup;
@@ -105,14 +105,18 @@ exports.show = function(req, res) {
 };
 
 /**
- * List of Articles
+ * List of Teacups
  */
 exports.all = function(req, res) {
-    Teacup.find().sort('-created')
-    .populate('user speaker')
-    .populate('subscribedusers')
-    .populate('comments.createdby')
-    .exec(function (err, teacups) {
+    var query = Teacup.find();
+    if (req.query.speaker) {
+        query.where('speaker').equals(req.query.speaker);
+    }
+    query.sort('-created');
+    query.populate('user speaker')
+        .populate('subscribedusers')
+        .populate('comments.createdby');
+    query.exec(function (err, teacups) {
         if (err) {
             res.render('error', {
                 status: 500

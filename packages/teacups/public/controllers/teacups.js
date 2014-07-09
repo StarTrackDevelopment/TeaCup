@@ -1,6 +1,7 @@
 'use strict';
 
-angular.module('mean.teacups').controller('TeacupsController', ['$scope', '$stateParams', '$location', '$http', 'Global', 'Teacups', 'Users',
+angular.module('mean.teacups')
+.controller('TeacupsController', ['$scope', '$stateParams', '$location', '$http', 'Global', 'Teacups', 'Users',
     function ($scope, $stateParams, $location, $http, Global, Teacups, Users) {
         $scope.global = Global;
 

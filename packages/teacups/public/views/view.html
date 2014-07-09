@@ -38,40 +38,16 @@
             <ul class="disc">
                 <li data-ng-repeat="user in teacup.subscribedusers"><a data-ng-href="/#!/users/{{user._id}}">{{user.name}}</a></li>
             </ul>
-            <p>
+            <p data-ng-init="showcomments=false">
                 <strong data-ng-show="teacup.comments && teacup.comments.length"
-                        data-ng-model="teacup.comments">{{teacup.comments.length}} comments</strong>
+                        data-ng-model="teacup.comments">{{teacup.comments.length}} comments (
+                    <a href="" ng-model="showcomments" ng-show="!showcomments" ng-click="showcomments=true"> Show</a>   
+                    <a href="" ng-model="showcomments" ng-show="showcomments" ng-click="showcomments=false"> Hide</a>)
+                </strong>
                 <strong data-ng-hide="!teacup.comments || teacup.comments.length"
                         data-ng-model="teacup.comments">No available comments</strong>
             </p>
-            <ul class="customlist">
-                <li data-ng-repeat="comment in teacup.comments">
-                    <p>
-                        <div class="customcontainer customtitle">
-                            <div class="customheader">
-                                <a data-ng-href="/#!/teacups/{{comment.createdby._id}}/view">{{comment.createdby.name}}</a>
-                                ({{comment.createdwhen | date: 'longDate'}} {{comment.createdwhen | date: 'HH:mm'}})
-                            </div>
-                            <div class="customcomment">
-                                {{comment.comment}}
-                            </div>
-                        </div>
-                    </p>
-                </li>
-            </ul>
-            <form name="editTeacup" class="form-horizontal" role="form" ng-submit="addcomment()">
-                <p>
-                    <div class=" custominput">
-                        <label for="comment" class="control-label">New comment</label>
-                        <div>
-                            <textarea ng-model="comment" ng-init="comment=''" id="comment" cols="30" rows="10" placeholder="Type your comment hier" class="form-control" required></textarea>
-                        </div>
-                    </div>
-                </p>
-                <p>
-                    <button mean-token="'add-comment'" class="btn btn-info" type="submit">Add comment</button>
-                </p>
-            </form>
+            <teacup-comments data-ng-if="showcomments"></teacup-comments>
         </div>
         <div class="customfooter customfooterdark">
             <span>created on {{teacup.created | date:'longDate'}}</span> by
