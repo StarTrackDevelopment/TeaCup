@@ -1,21 +1,19 @@
 <div class="container-fluid">
-    <div class="row">
-        <ul class="customlist">
-            <li class="col-xs-12 col-sm-8 col-md-6 col-lg-4" data-ng-repeat="comment in teacup.comments">
-                <p>
-                    <div class="customcontainer customshadow">
-                        <div class="customheader">
-                            <a data-ng-href="/#!/teacups/{{comment.createdby._id}}/view">{{comment.createdby.name}}</a>
-                            ({{comment.createdwhen | date: 'longDate'}} {{comment.createdwhen | date: 'HH:mm'}})
-                        </div>
-                        <div class="customcomment">
-                            {{comment.comment}}
-                        </div>
+    <ul class="customlist">
+        <li class="col-xs-12 col-sm-12 col-md-6 col-lg-4" data-ng-repeat="comment in teacup.comments">
+            <p>
+                <div class="customcontainer customshadow">
+                    <div class="customheader">
+                        <a data-ng-href="/#!/teacups/{{comment.createdby._id}}/view">{{comment.createdby.name}}</a>
+                        ({{comment.createdwhen | date: 'longDate'}} {{comment.createdwhen | date: 'HH:mm'}})
                     </div>
-                </p>
-            </li>
-        </ul>
-    </div>
+                    <div class="customcomment">
+                        {{comment.comment}}
+                    </div>
+                </div>
+            </p>
+        </li>
+    </ul>
     <form name="editTeacup" class="form-horizontal" role="form" ng-show="isUserSubscribed()" ng-submit="addcomment()">
         <p>
             <div class=" custominput customshadow">

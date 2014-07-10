@@ -12,11 +12,11 @@
         <div class="customheader">            
             <p><h3>Scheduled on {{teacup.scheduleDate | date : 'longDate'}}</h3></p>
             <p><h3>Begins at {{teacup.scheduleDate | date: 'HH:mm'}}</h3></p>
-            <p ng-show="teacup.speaker">
-                <h3>Speaker is <a data-ng-href="/#!/users/{{teacup.speaker._id}}">{{teacup.speaker.name}}</a></h3>
+            <p>
+                <h3 ng-show="teacup.speaker">Speaker is <a data-ng-href="/#!/users/{{teacup.speaker._id}}">{{teacup.speaker.name}}</a></h3>
             </p>
-            <p ng-show="!teacup.speaker">
-                <h3>No speaker is defined</h3>
+            <p>
+                <h3 ng-show="!teacup.speaker">No speaker is defined</h3>
             </p>
             <p>
                 <h3>Rating: {{teacup.rating}}</h3>
