@@ -1,0 +1,32 @@
+<div class="container-fluid">
+    <div class="row">
+        <ul class="customlist">
+            <li class="col-xs-12 col-sm-8 col-md-6 col-lg-4" data-ng-repeat="comment in teacup.comments">
+                <p>
+                    <div class="customcontainer customshadow">
+                        <div class="customheader">
+                            <a data-ng-href="/#!/teacups/{{comment.createdby._id}}/view">{{comment.createdby.name}}</a>
+                            ({{comment.createdwhen | date: 'longDate'}} {{comment.createdwhen | date: 'HH:mm'}})
+                        </div>
+                        <div class="customcomment">
+                            {{comment.comment}}
+                        </div>
+                    </div>
+                </p>
+            </li>
+        </ul>
+    </div>
+    <form name="editTeacup" class="form-horizontal" role="form" ng-show="isUserSubscribed()" ng-submit="addcomment()">
+        <p>
+            <div class=" custominput customshadow">
+                <label for="comment" class="control-label">New comment</label>
+                <div>
+                    <textarea ng-model="$parent.comment" ng-init="$parent.comment=''" id="comment" cols="30" rows="10" placeholder="Type your comment hier" class="form-control" required></textarea>
+                </div>
+            </div>
+        </p>
+        <p>
+            <button mean-token="'add-comment'" class="btn btn-info" type="submit">Add comment</button>
+        </p>
+    </form>
+    <p ng-show="!isUserSubscribed()"><strong>Only subscribed users can comment</strong></p>    
