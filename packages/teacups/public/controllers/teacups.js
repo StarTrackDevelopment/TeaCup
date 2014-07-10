@@ -20,12 +20,25 @@ angular.module('mean.teacups')
             return false;
         };
 
+        $scope.calculaterating = function (teacup) {
+            if (!teacup)
+                return 0;
+            var ratingCount = 0;
+            var ratingSum = 0.0;
+            for (var i in teacup.comments) {
+                ratingCount++;
+                ratingSum += parseFloat(teacup.comments[i].rating);
+            }
+            if (ratingSum === 0)
+                return 0;
+            return parseFloat(ratingSum / ratingCount).toFixed(2);
+        };
+
         $scope.create = function() {
             var teacup = new Teacups({
                 title: this.title,
                 description: this.description,
                 speaker: this.speaker,
-                rating: this.rating,
                 scheduleDate: this.scheduleDate
             });
             teacup.$save(function(response) {
@@ -35,7 +48,6 @@ angular.module('mean.teacups')
             this.title = '';
             this.description = '';
             this.speaker = '';
-            this.rating = 0;
             this.scheduleDate = Date.now;
         };
 
@@ -88,6 +100,7 @@ angular.module('mean.teacups')
                 populate: 'false'
             }, function (teacup) {
                 var newcomment = {
+                    rating: $scope.rating,
                     comment: $scope.comment,
                     createdby: $scope.global.user._id,
                     createdwhen: Date.now()
@@ -101,6 +114,7 @@ angular.module('mean.teacups')
                 newcomment.createdby = $scope.global.user;
                 $scope.teacup.comments.push(newcomment);
                 $scope.comment = '';
+                $scope.rating = 1;
             });
         };        
 
@@ -149,6 +163,6 @@ angular.module('mean.teacups')
             Users.query(function(users) {
                 $scope.users = users;
             });
-        };
+        };        
     }
 ]);

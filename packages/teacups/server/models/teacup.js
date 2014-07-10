@@ -32,11 +32,7 @@ var TeacupSchema = new Schema({
     speaker: {
         type: Schema.ObjectId,
         ref: 'User'
-    },
-    rating: {
-        type: Number,
-        default: 0
-    },
+    },    
     subscribedusers: [{
         type: Schema.ObjectId,
         ref: 'User'        
@@ -53,6 +49,10 @@ var TeacupSchema = new Schema({
         createdby: {
             type: Schema.ObjectId,
             ref: 'User'
+        },
+        rating: {
+            type: Number,
+            default: 0
         },
         comment: {
             type: String,

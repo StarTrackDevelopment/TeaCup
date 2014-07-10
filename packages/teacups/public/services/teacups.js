@@ -25,7 +25,7 @@ angular.module('mean.teacups')
     .directive('teacupComments', function() {
         return {
             restrict: 'E',
-            replace: true,
+            replace: false,
             templateUrl: '/teacups/views/Directives/teacup-comments.html'
         };
     });
