@@ -49,6 +49,7 @@
                         data-ng-model="teacup.comments">No available comments</strong>
             </p>
             <teacup-comments data-ng-if="showcomments"></teacup-comments>
+            <teacup-addcomment></teacup-addcomment>
         </div>
         <div class="customfooter customfooterdark">
             <span>created on {{teacup.created | date:'longDate'}}</span> by

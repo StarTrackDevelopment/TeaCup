@@ -1,0 +1,24 @@
+<form name="editTeacup" class="form-horizontal" role="form" ng-show="isUserSubscribed()" ng-submit="addcomment()">
+    <div class="customcontent">
+        <div class="custominput customshadow">
+            <label class="control-label">Rating</label>
+            <div ng-init="$parent.rating=1">
+                <input type="radio" data-ng-model="$parent.rating" id="rating1" value=1 style="width:10px;display:table-cell;height:8px;margin-right:2px;">1&nbsp;
+                <input type="radio" data-ng-model="$parent.rating" id="rating2" value=2 style="width:10px;display:table-cell;height:8px;margin-right:2px;">2&nbsp;
+                <input type="radio" data-ng-model="$parent.rating" id="rating3" value=3 style="width:10px;display:table-cell;height:8px;margin-right:2px;">3&nbsp;
+                <input type="radio" data-ng-model="$parent.rating" id="rating4" value=4 style="width:10px;display:table-cell;height:8px;margin-right:2px;">4&nbsp;
+                <input type="radio" data-ng-model="$parent.rating" id="rating5" value=5 style="width:10px;display:table-cell;height:8px;margin-right:2px;">5&nbsp;
+            </div>
+        </div>
+        <div class="custominput customshadow">
+            <label for="comment" class="control-label">New comment</label>
+            <div>
+                <textarea class="form-control" ng-model="$parent.comment" ng-init="$parent.comment=''" id="comment" cols="30" rows="10" placeholder="Type your comment hier" class="form-control" required></textarea>
+            </div>
+        </div>
+    </div>
+    <p>
+        <button mean-token="'add-comment'" class="btn btn-info" type="submit">Add comment</button>
+    </p>
+</form>
+<p ng-show="!isUserSubscribed()"><strong>Only subscribed users can comment</strong></p>

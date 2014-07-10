@@ -29,3 +29,12 @@ angular.module('mean.teacups')
             templateUrl: '/teacups/views/Directives/teacup-comments.html'
         };
     });
+
+angular.module('mean.teacups')
+    .directive('teacupAddcomment', function () {
+        return {
+            restrict: 'E',
+            replace: false,
+            templateUrl: '/teacups/views/Directives/teacup-addcomment.html'
+        };
+    });
