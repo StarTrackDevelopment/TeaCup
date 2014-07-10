@@ -3,12 +3,8 @@
         <div class="custominput customshadow">         
             <div ng-init="$parent.rating=1;isReadOnly=false;setRateText(1)" ng-controller="CustomRatingController">
                 <label class="control-label">Rating:</label>                
-                <!--
-                    <rating ng-model="$parent.rating" max="5" readonly="isReadOnly" on-hover="hoveringOver(value)" state-on="'glyphicon-star customyellow'" state-off="'glyphicon-star-empty customyellow'" on-leave="overStar = null" required></rating>
-                    <span class="label" ng-class="{'label-warning': percent<=40, 'label-info': percent>40 && percent<70, 'label-success': percent>=70}" ng-show="overStar && !isReadonly">{{ratetext}}</span>
-                -->
                 <rating ng-model="$parent.rating" max="5" readonly="isReadOnly" on-hover="hoveringOver(value)" state-on="'glyphicon-star customyellow'" state-off="'glyphicon-star-empty customyellow'" on-leave="overStar = null" required></rating>
-                <div class="label" ng-class="{'label-warning': percent<=40, 'label-info': percent>40 && percent<70, 'label-success': percent>=70}" ng-show="!isReadonly">{{ratetext}}</div>
+                <span class="label" ng-class="{'label-warning': percent<=40, 'label-info': percent>40 && percent<70, 'label-success': percent>=70}" ng-show="overStar && !isReadonly">{{ratetext}}</span>
             </div>            
         </div>
         <div class="custominput customshadow">

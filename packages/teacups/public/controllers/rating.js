@@ -7,8 +7,6 @@ angular.module('mean.teacups')
             $scope.max = 5;
             $scope.isReadonly = false;
             $scope.ratetext = 'very displeased';
-            $scope.overStar = 1;
-            $scope.percent = 10;
 
             $scope.hoveringOver = function (value) {
                 $scope.overStar = value;
