@@ -1,4 +1,4 @@
-<section ng-controller="TeacupsController" data-ng-init="findOne('true')">
+<section ng-controller="TeacupsController" data-ng-init="findOne('true')">    
     <div class="row customcontainer">        
         <div class="custombanner customtitle">
             <h1 class="title">{{teacup.title}}</h1>
@@ -50,7 +50,7 @@
             </p>
             <teacup-comments data-ng-if="showcomments"></teacup-comments>
             <teacup-addcomment></teacup-addcomment>
-        </div>
+        </div>        
         <div class="customfooter customfooterdark">
             <span>created on {{teacup.created | date:'longDate'}}</span> by
             <a data-ng-href="/#!/users/{{teacup.user._id}}">{{teacup.user.name}}</a>

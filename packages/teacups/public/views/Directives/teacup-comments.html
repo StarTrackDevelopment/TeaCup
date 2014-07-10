@@ -3,7 +3,10 @@
         <p>
             <div class="customcontainer customshadow">
                 <div class="customheader">
-                    <mark>{{comment.rating}}</mark> from <a data-ng-href="/#!/teacups/{{comment.createdby._id}}/view">{{comment.createdby.name}}</a>
+                    <span ng-controller="CustomRatingController" ng-init="isReadOnly=true">
+                        <rating ng-model="comment.rating" max="getMaxRate(comment.rating)" readonly="isReadOnly" on-hover="hoveringOver(value)" state-on="'glyphicon-star customyellow'" state-off="'glyphicon-star-empty customyellow'"></rating>
+                    </span>
+                    <a data-ng-href="/#!/teacups/{{comment.createdby._id}}/view">{{comment.createdby.name}}</a>                    
                     on {{comment.createdwhen | date: 'longDate'}} {{comment.createdwhen | date: 'HH:mm'}}
                 </div>
                 <div class="customcomment">
