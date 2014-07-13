@@ -182,9 +182,19 @@ ul.horizontalnav > li > a:focus {
   background-color: transparent;
 }
 
+ul.customlist {
+    padding: 0;
+    margin: 0;
+}
+
 ul.customlist > li {    
     padding-bottom: 1em;
     list-style-type: none;
+}
+
+.nopadding {    
+    padding: 0;
+    margin: 0;
 }
 
 ul.circle { list-style-type: circle;}

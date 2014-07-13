@@ -1,6 +1,6 @@
 <div class="container-fluid">
     <ul class="customlist">
-        <li class="col-xs-12 col-sm-12 col-md-12 col-lg-6" data-ng-repeat="teacup in teacups">
+        <li class="col-xs-12 col-sm-12 col-md-12 col-lg-6 nopadding" data-ng-repeat="teacup in teacups">
             <div class="customcontainer customcontainerwithleft customshadow">
                 <div class="custombanner customtitle">
                     <h2>
@@ -22,7 +22,7 @@
                         Speaker: <a data-ng-href="/#!/users/{{teacup.speaker._id}}">{{teacup.speaker.name}}</a>
                         <span ng-show="!teacup.speaker">--no speaker yet--</span>
                     </p>
-                    
+
                     <p>
                         <teacup-rating teacup='teacup'></teacup-rating>
                     </p>
@@ -49,5 +49,5 @@
                 </div>
             </div>
         </li>
-    </ul> 
+    </ul>
 </div>
