@@ -196,3 +196,49 @@ ul.disc { list-style-type: disc;}
 .customyellow {
     color: rgb(184, 184, 31);
 }
+
+.customrating {
+    border: transparent;
+    outline: transparent;
+}
+
+.iconpercentage {
+    overflow:hidden;
+    margin-left: -0.1em;
+}
+
+.iconpercentage-1 {
+    width:0.1em;
+}
+
+.iconpercentage-2 {
+    width: 0.2em;
+}
+
+.iconpercentage-3 {
+    width:0.3em;
+}
+
+.iconpercentage-4 {
+    width:0.4em;
+}
+
+.iconpercentage-5 {
+    width:0.5em;
+}
+
+.iconpercentage-6 {
+    width:0.6em;
+}
+
+.iconpercentage-7 {
+    width:0.7em;
+}
+
+.iconpercentage-8 {
+    width:0.8em;
+}
+
+.iconpercentage-9 {
+    width:0.9em;
+}

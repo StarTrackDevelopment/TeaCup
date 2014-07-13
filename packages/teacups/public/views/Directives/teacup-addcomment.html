@@ -1,21 +1,24 @@
 <form name="editTeacup" class="form-horizontal" role="form" ng-show="isUserSubscribed()" ng-submit="addcomment()">
     <div class="customcontent">
-        <div class="custominput customshadow">         
-            <div ng-init="$parent.rating=1;isReadOnly=false;setRateText(1)" ng-controller="CustomRatingController">
-                <label class="control-label">Rating:</label>                
-                <rating ng-model="$parent.rating" max="5" readonly="isReadOnly" on-hover="hoveringOver(value)" state-on="'glyphicon-star customyellow'" state-off="'glyphicon-star-empty customyellow'" on-leave="overStar = null" required></rating>
-                <span class="label" ng-class="{'label-warning': percent<=40, 'label-info': percent>40 && percent<70, 'label-success': percent>=70}" ng-show="overStar && !isReadonly">{{ratetext}}</span>
-            </div>            
-        </div>
         <div class="custominput customshadow">
-            <label for="comment" class="control-label">Comment</label>
+            <div ng-init="$parent.rating=1;isReadOnly=false;setRateText(1)" ng-controller="CustomRatingController">
+                <label class="control-label">Rating:</label>
+                <h4>
+                    <rating class="customrating" ng-model="$parent.rating" max="5" readonly="isReadOnly" on-hover="hoveringOver(value)" state-on="'glyphicon-star customyellow'" state-off="'glyphicon-star-empty'" on-leave="overStar = null" required></rating>
+                    <span class="label" ng-class="{'label-danger': percent<=20,'label-warning': percent<=40, 'label-info': percent>40 && percent<70, 'label-success': percent>=70}" ng-show="overStar && !isReadonly">{{ratetext}}</span>
+                </h4> 
+                <div>
+                    <label for="comment" class="control-label">Comment</label>
+                    <textarea class="form-control" ng-model="$parent.comment" ng-init="$parent.comment=''" id="comment" cols="30" rows="10" placeholder="Type your comment here" required></textarea>
+                </div>
+            </div>
             <div>
-                <textarea class="form-control" ng-model="$parent.comment" ng-init="$parent.comment=''" id="comment" cols="30" rows="10" placeholder="Type your comment here" class="form-control" required></textarea>
+                <p class="control-label">
+                    <button mean-token="'add-comment'" class="btn btn-info" type="submit">Add comment</button>
+                </p>
             </div>
         </div>
     </div>
-    <p>
-        <button mean-token="'add-comment'" class="btn btn-info" type="submit">Add comment</button>
-    </p>
+
 </form>
 <p ng-show="!isUserSubscribed()"><strong>Only subscribed users can comment</strong></p>

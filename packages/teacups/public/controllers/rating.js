@@ -3,10 +3,10 @@
 angular.module('mean.teacups')
     .controller('CustomRatingController', [
         '$scope', function ($scope) {
-            $scope.rate = 0;
-            $scope.max = 5;
             $scope.isReadonly = false;
             $scope.ratetext = 'very displeased';
+            $scope.rate = 1;
+            $scope.max = 5;
 
             $scope.hoveringOver = function (value) {
                 $scope.overStar = value;
@@ -14,7 +14,7 @@ angular.module('mean.teacups')
                 $scope.setRateText();
             };
 
-            $scope.setRateText = function () {                
+            $scope.setRateText = function() {
                 if ($scope.percent < 21) {
                     $scope.ratetext = 'very displeased';
                 } else if ($scope.percent < 41) {
@@ -26,7 +26,7 @@ angular.module('mean.teacups')
                 } else if ($scope.percent <= 100) {
                     $scope.ratetext = 'very pleased';
                 }
-            }
+            };
 
             $scope.getMaxRate = function (commentrate) {
                 if (commentrate === 0)
@@ -34,13 +34,5 @@ angular.module('mean.teacups')
                 else
                     return commentrate;
             };
-
-            $scope.ratingStates = [
-              { stateOn: 'icon-chevron-down', stateOff: 'glyphicon-ok-circle' },
-              { stateOn: 'glyphicon-star', stateOff: 'glyphicon-star-empty' },
-              { stateOn: 'glyphicon-heart', stateOff: 'glyphicon-ban-circle' },
-              { stateOn: 'glyphicon-heart' },
-              { stateOff: 'glyphicon-off' }
-            ];
-        }
+    }
     ]);

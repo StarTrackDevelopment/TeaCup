@@ -28,6 +28,7 @@
     <Content Include="packages\teacups\public\views\Directives\teacup-addcomment.html" />
     <Content Include="packages\teacups\public\views\Directives\teacup-comments.html" />
     <Content Include="packages\teacups\public\views\Directives\teacup-list.html" />
+    <Content Include="packages\teacups\public\views\Directives\teacup-rating.html" />
     <Content Include="packages\teacups\public\views\edit.html" />
     <Content Include="packages\teacups\public\views\list.html" />
     <Content Include="packages\teacups\public\views\view.html" />

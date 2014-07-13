@@ -38,3 +38,12 @@ angular.module('mean.teacups')
             templateUrl: '/teacups/views/Directives/teacup-addcomment.html'
         };
     });
+
+angular.module('mean.teacups')
+    .directive('teacupRating', function () {
+        return {
+            restrict: 'E',
+            replace: false,
+            templateUrl: '/teacups/views/Directives/teacup-rating.html'
+        };
+    });
