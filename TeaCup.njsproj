@@ -25,6 +25,7 @@
     <Content Include="packages\teacups\public\assets\css\teacups.css" />
     <Content Include="packages\teacups\public\assets\img\logo.png" />
     <Content Include="packages\teacups\public\views\create.html" />
+    <Content Include="packages\teacups\public\views\Directives\star.html" />
     <Content Include="packages\teacups\public\views\Directives\teacup-addcomment.html" />
     <Content Include="packages\teacups\public\views\Directives\teacup-comments.html" />
     <Content Include="packages\teacups\public\views\Directives\teacup-list.html" />
