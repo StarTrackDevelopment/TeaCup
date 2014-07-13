@@ -20,33 +20,6 @@ angular.module('mean.teacups')
             return false;
         };
 
-        $scope.calculaterating = function (teacup) {
-            if (!teacup)
-                return 0;            
-            var ratingCount = 0;
-            var ratingSum = 0.0;
-            for (var i in teacup.comments) {
-                ratingCount++;
-                ratingSum += parseFloat(teacup.comments[i].rating);
-            }
-            if (ratingSum === 0)
-                return 0;
-            var rate = parseFloat(ratingSum / ratingCount);
-            var fullpart = Math.floor(rate);
-            $scope.teacuprating = [];
-            for (i = 1; i <= 5; i++) {
-                var partvalue = 0;
-                if (fullpart >= i) {
-                    partvalue = 100;
-                }
-                else if (i === fullpart + 1) {
-                    partvalue = (rate - fullpart)*100;
-                }
-                $scope.teacuprating.push(partvalue);
-            }
-            return rate;
-        };
-
         $scope.create = function() {
             var teacup = new Teacups({
                 title: this.title,

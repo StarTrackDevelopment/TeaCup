@@ -1,4 +1,5 @@
-<div ng-controller="CustomRatingController" ng-init="calculaterating(teacup)">
+<div>
+    {{calculaterating(teacup)}}
     <span ng-show="teacup.comments.length">Rating({{teacup.comments.length}}):</span>
     <star starpercent='teacuprating[0]'></star>
     <star starpercent='teacuprating[1]'></star>
@@ -6,4 +7,4 @@
     <star starpercent='teacuprating[3]'></star>
     <star starpercent='teacuprating[4]'></star>
     <span ng-show="!teacup.comments.length">No available rating yet</span>
-</div>                   
+</div>
