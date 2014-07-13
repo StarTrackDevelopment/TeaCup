@@ -19,72 +19,7 @@
                 <h3 ng-show="!teacup.speaker">No speaker is defined</h3>
             </p>
             <p>
-                <h3 ng-model="teacup.comments.length" ng-show="false">{{calculaterating(teacup)}}</h3>                
-                <h3 ng-show="teacup.comments.length">
-                    Rating:
-                    <i ng-show="teacuprating[0]" class="glyphicon glyphicon-star customyellow iconpercentage"
-                       ng-class="{'iconpercentage-1': teacuprating[0]>0 && teacuprating[0]<=10,
-                                'iconpercentage-2': teacuprating[0]>10 && teacuprating[0]<=20,
-                                'iconpercentage-3': teacuprating[0]>20 && teacuprating[0]<=30,
-                                'iconpercentage-4': teacuprating[0]>40 && teacuprating[0]<=50,
-                                'iconpercentage-5': teacuprating[0]>50 && teacuprating[0]<=60,
-                                'iconpercentage-6': teacuprating[0]>60 && teacuprating[0]<=70,
-                                'iconpercentage-7': teacuprating[0]>70 && teacuprating[0]<=80,
-                                'iconpercentage-8': teacuprating[0]>80 && teacuprating[0]<=90,
-                                'iconpercentage-9': teacuprating[0]>90 && teacuprating[0]<=100
-                       }">
-                    </i>
-                    <i ng-show="teacuprating[1]" class="glyphicon glyphicon-star customyellow iconpercentage"
-                       ng-class="{'iconpercentage-1': teacuprating[1]>0 && teacuprating[1]<=10,
-                                'iconpercentage-2': teacuprating[1]>10 && teacuprating[1]<=20,
-                                'iconpercentage-3': teacuprating[1]>20 && teacuprating[1]<=30,
-                                'iconpercentage-4': teacuprating[1]>40 && teacuprating[1]<=50,
-                                'iconpercentage-5': teacuprating[1]>50 && teacuprating[1]<=60,
-                                'iconpercentage-6': teacuprating[1]>60 && teacuprating[1]<=70,
-                                'iconpercentage-7': teacuprating[1]>70 && teacuprating[1]<=80,
-                                'iconpercentage-8': teacuprating[1]>80 && teacuprating[1]<=90,
-                                'iconpercentage-9': teacuprating[1]>90 && teacuprating[1]<=100
-                       }">
-                    </i>
-                    <i ng-show="teacuprating[2]" class="glyphicon glyphicon-star customyellow iconpercentage"
-                       ng-class="{'iconpercentage-1': teacuprating[2]>0 && teacuprating[2]<=10,
-                                'iconpercentage-2': teacuprating[2]>10 && teacuprating[2]<=20,
-                                'iconpercentage-3': teacuprating[2]>20 && teacuprating[2]<=30,
-                                'iconpercentage-4': teacuprating[2]>40 && teacuprating[2]<=50,
-                                'iconpercentage-5': teacuprating[2]>50 && teacuprating[2]<=60,
-                                'iconpercentage-6': teacuprating[2]>60 && teacuprating[2]<=70,
-                                'iconpercentage-7': teacuprating[2]>70 && teacuprating[2]<=80,
-                                'iconpercentage-8': teacuprating[2]>80 && teacuprating[2]<=90,
-                                'iconpercentage-9': teacuprating[2]>90 && teacuprating[2]<=100
-                       }">
-                    </i>
-                    <i ng-show="teacuprating[3]" class="glyphicon glyphicon-star customyellow iconpercentage"
-                       ng-class="{'iconpercentage-1': teacuprating[3]>0 && teacuprating[3]<=10,
-                                'iconpercentage-2': teacuprating[3]>10 && teacuprating[3]<=20,
-                                'iconpercentage-3': teacuprating[3]>20 && teacuprating[3]<=30,
-                                'iconpercentage-4': teacuprating[3]>40 && teacuprating[3]<=50,
-                                'iconpercentage-5': teacuprating[3]>50 && teacuprating[3]<=60,
-                                'iconpercentage-6': teacuprating[3]>60 && teacuprating[3]<=70,
-                                'iconpercentage-7': teacuprating[3]>70 && teacuprating[3]<=80,
-                                'iconpercentage-8': teacuprating[3]>80 && teacuprating[3]<=90,
-                                'iconpercentage-9': teacuprating[3]>90 && teacuprating[3]<=100
-                       }">
-                    </i>
-                    <i ng-show="teacuprating[4]" class="glyphicon glyphicon-star customyellow iconpercentage"
-                       ng-class="{'iconpercentage-1': teacuprating[4]>0 && teacuprating[4]<=10,
-                                'iconpercentage-2': teacuprating[4]>10 && teacuprating[4]<=20,
-                                'iconpercentage-3': teacuprating[4]>20 && teacuprating[4]<=30,
-                                'iconpercentage-4': teacuprating[4]>40 && teacuprating[4]<=50,
-                                'iconpercentage-5': teacuprating[4]>50 && teacuprating[4]<=60,
-                                'iconpercentage-6': teacuprating[4]>60 && teacuprating[4]<=70,
-                                'iconpercentage-7': teacuprating[4]>70 && teacuprating[4]<=80,
-                                'iconpercentage-8': teacuprating[4]>80 && teacuprating[4]<=90,
-                                'iconpercentage-9': teacuprating[4]>90 && teacuprating[4]<=100
-                       }">
-                    </i>
-                    
-                </h3>
-                <h3 ng-show="!teacup.comments.length">No available rating yet</h3>
+                <h3><teacup-rating></teacup-rating></h3>
             </p>
             <p>
                 <button class="btn btn-info" data-ng-model="teacup.subscribedusers" ng-hide="isUserSubscribed()" ng-click="subscribeuser()">Subscribe Me</button>
