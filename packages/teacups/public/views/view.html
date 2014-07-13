@@ -19,7 +19,7 @@
                 <h3 ng-show="!teacup.speaker">No speaker is defined</h3>
             </p>
             <p>
-                <h3><teacup-rating></teacup-rating></h3>
+                <h3><teacup-rating teacup='teacup'></teacup-rating></h3>
             </p>
             <p>
                 <button class="btn btn-info" data-ng-model="teacup.subscribedusers" ng-hide="isUserSubscribed()" ng-click="subscribeuser()">Subscribe Me</button>

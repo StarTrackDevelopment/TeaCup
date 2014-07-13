@@ -43,7 +43,10 @@ angular.module('mean.teacups')
     .directive('teacupRating', function () {
         return {
             restrict: 'E',
-            replace: false,
+            //replace: false,
+            scope: {
+                teacup: '='
+            },
             templateUrl: '/teacups/views/Directives/teacup-rating.html'
         };
     });

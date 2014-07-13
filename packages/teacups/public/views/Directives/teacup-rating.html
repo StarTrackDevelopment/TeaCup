@@ -1,6 +1,5 @@
-<span ng-model="teacup.comments.length" ng-show="false">{{calculaterating(teacup)}}</span>
-<span ng-show="teacup.comments.length">
-    Rating: 
+<div ng-controller="CustomRatingController" ng-init="{{calculaterating(teacup)}}">
+    <span ng-show="teacup.comments.length">Rating({{teacup.comments.length}}):</span>
     <i ng-show="teacuprating[0]" class="glyphicon glyphicon-star customyellow iconpercentage"
        ng-class="{'iconpercentage-1': teacuprating[0]>0 && teacuprating[0]<=10,
                                 'iconpercentage-2': teacuprating[0]>10 && teacuprating[0]<=20,
@@ -61,6 +60,5 @@
                                 'iconpercentage-9': teacuprating[4]>90 && teacuprating[4]<=100
                        }">
     </i>
-    <span> ({{teacup.comments.length}})</span>
-</span>
-<span ng-show="!teacup.comments.length">No available rating yet</span>                             
+    <span ng-show="!teacup.comments.length">No available rating yet</span>
+</div>                   
