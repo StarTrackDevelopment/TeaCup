@@ -50,3 +50,15 @@ angular.module('mean.teacups')
             templateUrl: '/teacups/views/Directives/teacup-rating.html'
         };
     });
+
+angular.module('mean.teacups')
+.directive('star', function () {
+    return {
+        restrict: 'E',
+        //replace: false,
+        scope: {
+            starpercent: '='
+        },
+        templateUrl: '/teacups/views/Directives/star.html'
+    };
+});
