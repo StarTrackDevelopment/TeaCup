@@ -1,0 +1,12 @@
+<div ng-model="limitedDescription" ng-init="limitedDescription=true;limitedTo=limit">
+    <span data-ng-if="limitedDescription">{{text | limitTo:limitedTo}}</span>
+    <span data-ng-if="!limitedDescription">{{text}}</span>
+    <span data-ng-if="limitedDescription && text.length>limitedTo">
+        ...<br />
+        <a href="" ng-click="limitDescription(false)"> [read more]</a>
+    </span>
+    <span ng-show="!limitedDescription">
+        <br />
+        <a href="" ng-click="limitDescription(true)"> [read less]</a>
+    </span>
+</div>

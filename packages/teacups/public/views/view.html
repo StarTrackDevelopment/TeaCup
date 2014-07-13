@@ -27,17 +27,21 @@
             </p>
         </div>        
         <div class="customcontent">
-            <p><strong>Content</strong><p>{{teacup.description}}</p>
+            <p><strong>Content</strong></p>
+            <p>
+                <teacup-toogledescription ng-attr-text="{{teacup.description}}" ng-attr-limit="1500"></teacup-toogledescription>
+            </p>
             <p>
                 <strong data-ng-show="teacup.subscribedusers && teacup.subscribedusers.length"
                         data-ng-model="teacup.subscribedusers">
                     {{teacup.subscribedusers.length}} subscriped user(s)
                 </strong>
                 <strong data-ng-hide="!teacup.subscribedusers || teacup.subscribedusers.length">No subscribed users</strong>
+
+                <ul class="disc">
+                    <li data-ng-repeat="user in teacup.subscribedusers"><a data-ng-href="/#!/users/{{user._id}}">{{user.name}}</a></li>
+                </ul>
             </p>
-            <ul class="disc">
-                <li data-ng-repeat="user in teacup.subscribedusers"><a data-ng-href="/#!/users/{{user._id}}">{{user.name}}</a></li>
-            </ul>
             <p data-ng-init="showcomments=false">
                 <strong data-ng-show="teacup.comments && teacup.comments.length"
                         data-ng-model="teacup.comments">{{teacup.comments.length}} comments (

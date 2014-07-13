@@ -62,3 +62,23 @@ angular.module('mean.teacups')
         templateUrl: '/teacups/views/Directives/star.html'
     };
 });
+
+angular.module('mean.teacups')
+.directive('teacupToogledescription', function () {
+    return {
+        restrict: 'E',
+        //replace: false,
+        scope: {
+            text: '@text',
+            limit: '@limit'
+        },
+        controller: function ($scope){
+            $scope.limitedDescription = true;
+            $scope.limitedTo = 250;
+            $scope.limitDescription = function(islimited) {
+                $scope.limitedDescription = islimited;               
+            };
+        },
+        templateUrl: '/teacups/views/Directives/teacup-toogledescription.html'
+    };
+});

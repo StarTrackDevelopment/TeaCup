@@ -10,7 +10,7 @@
                     on {{comment.createdwhen | date: 'longDate'}} {{comment.createdwhen | date: 'HH:mm'}}
                 </div>
                 <div class="customcomment">
-                    {{comment.comment}}
+                    <teacup-toogledescription ng-attr-text="{{comment.comment}}" ng-attr-limit="100"></teacup-toogledescription>
                 </div>
             </div>
         </p>

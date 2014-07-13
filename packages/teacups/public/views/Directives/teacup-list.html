@@ -41,7 +41,7 @@
                     </p>
                 </div>
                 <div class="customcontent customcontentwithleft">
-                    {{teacup.description | limitTo: 250}}
+                    <teacup-toogledescription ng-attr-text="{{teacup.description}}" ng-attr-limit="250"></teacup-toogledescription>
                 </div>
                 <div class="customfooter customfooterdark">
                     created on {{teacup.created | date:'longDate'}} by
