@@ -1,8 +1,8 @@
 <div>
     {{calculaterating(teacup)}}
-    <span ng-show="teacup.comments.length">Rating({{teacup.comments.length}}):</span>
-    <span data-ng-repeat="i in teacuprating track by $index">
+    <span ng-show="teacup.comments.length">Rating<em>({{teacup.comments.length}})</em>:</span>
+    <a href="" tooltip-html-unsafe="{{htmlTooltip}}" data-ng-repeat="i in teacuprating track by $index">
         <star ng-attr-starpercent="teacuprating[$index]"></star>
-    </span> 
+    </a>
     <span ng-show="!teacup.comments.length">No available rating yet</span>
 </div>

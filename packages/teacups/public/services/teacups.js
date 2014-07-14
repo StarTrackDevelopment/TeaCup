@@ -40,45 +40,6 @@ angular.module('mean.teacups')
     });
 
 angular.module('mean.teacups')
-    .directive('teacupRating', function () {
-        return {
-            restrict: 'E',
-            //replace: false,
-            scope: {
-                teacup: '='
-            },
-            controller: function ($scope) {
-                $scope.calculaterating = function (teacup) {
-                    if (!teacup)
-                        return;
-                    var ratingCount = 0;
-                    var ratingSum = 0.0;
-                    for (var i in teacup.comments) {
-                        ratingCount++;
-                        ratingSum += parseFloat(teacup.comments[i].rating);
-                    }
-                    if (ratingSum === 0)
-                        return;
-                    var rate = parseFloat(ratingSum / ratingCount);
-                    var fullpart = Math.floor(rate);
-                    $scope.teacuprating = [];
-                    for (i = 1; i <= 5; i++) {
-                        var partvalue = 0;
-                        if (fullpart >= i) {
-                            partvalue = 100;
-                        }
-                        else if (i === fullpart + 1) {
-                            partvalue = (rate - fullpart) * 100;
-                        }
-                        $scope.teacuprating.push(partvalue);
-                    }
-                };
-            },
-            templateUrl: '/teacups/views/Directives/teacup-rating.html'
-        };
-    });
-
-angular.module('mean.teacups')
 .directive('star', function () {
     return {
         restrict: 'E',
@@ -89,6 +50,52 @@ angular.module('mean.teacups')
         templateUrl: '/teacups/views/Directives/star.html'
     };
 });
+
+angular.module('mean.teacups')
+    .directive('teacupRating', function () {
+        return {
+            restrict: 'E',
+            //replace: false,
+            scope: {
+                teacup: '='
+            },
+            controller: function ($scope) {
+                $scope.htmlTooltip = 'n.a.';
+                $scope.calculaterating = function (teacup) {
+                    if (!teacup)
+                        return;
+                    var ratingCount = 0;
+                    var ratingSum = 0.0;
+                    $scope.ratingcounts = [];
+                    for (var index = 0; index < 6; index++)
+                        $scope.ratingcounts.push(0);
+                    for (index in teacup.comments) {
+                        ratingCount++;
+                        ratingSum += parseFloat(teacup.comments[index].rating);
+                        $scope.ratingcounts[teacup.comments[index].rating] += 1;
+                    }
+                    if (ratingSum === 0)
+                        return;
+                    $scope.rate = parseFloat(ratingSum / ratingCount);
+                    var fullpart = Math.floor($scope.rate);
+                    $scope.teacuprating = [];
+                    for (index = 1; index <= 5; index++) {
+                        var partvalue = 0;
+                        if (fullpart >= index) {
+                            partvalue = 100;
+                        }
+                        else if (index === fullpart + 1) {
+                            partvalue = ($scope.rate - fullpart) * 100;
+                        }
+                        $scope.teacuprating.push(partvalue);
+                    }
+                    $scope.htmlTooltip = $scope.rate.toFixed(2);
+                };
+            },
+            templateUrl: '/teacups/views/Directives/teacup-rating.html'
+        };
+    });
+
 
 angular.module('mean.teacups')
 .directive('teacupToogledescription', function () {

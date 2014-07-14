@@ -252,3 +252,11 @@ ul.disc { list-style-type: disc;}
 .iconpercentage-9 {
     width:0.9em;
 }
+
+.tooltip.top .tooltip-inner {
+    background-color:black;
+    color:white;
+}
+.tooltip.top .tooltip-arrow {
+      border-top-color: black;
+}
