@@ -1,10 +1,8 @@
 <div>
     {{calculaterating(teacup)}}
     <span ng-show="teacup.comments.length">Rating({{teacup.comments.length}}):</span>
-    <star starpercent='teacuprating[0]'></star>
-    <star starpercent='teacuprating[1]'></star>
-    <star starpercent='teacuprating[2]'></star>
-    <star starpercent='teacuprating[3]'></star>
-    <star starpercent='teacuprating[4]'></star>
+    <span data-ng-repeat="i in teacuprating track by $index">
+        <star ng-attr-starpercent="teacuprating[$index]"></star>
+    </span> 
     <span ng-show="!teacup.comments.length">No available rating yet</span>
 </div>
