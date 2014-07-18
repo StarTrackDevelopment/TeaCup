@@ -1,41 +1,38 @@
 <section ng-controller="TeacupsController" ng-init="findOne('false')">
-    <form name="editTeacup" class="form-horizontal" role="form" ng-submit="update()">
-        <div class="row customcontainer">
-            <div class="custombanner custombannercentered">
-                <h2>Edit teacup</h2>
-            </div>
-            <div class="custominput">
-                <label mean-token="'edit-title'" for="title" class="control-label">Title</label>
-                <div>
+    <form name="editTeacup" class="form-horizontal" role="form" ng-submit="update()">        
+        <div class="panel">            
+            <div class="row">
+                <label mean-token="'edit-title'" for="title" class="control-label col-lg-1 col-md-4 col-sm-4">Title</label>
+                <div class="col-lg-11 col-md-8 col-sm-8">
                     <input type="text" data-ng-model="teacup.title" id="title" class="form-control" placeholder="Title" required>
                 </div>
             </div>
-            <div class="custominput">
-                <label mean-token="'edit-speaker'" class="control-label">Speaker</label>
-                <div ng-init="findusers()">
+            <div class="row">
+                <label mean-token="'edit-speaker'" class="control-label col-lg-1 col-md-4 col-sm-4">Speaker</label>
+                <div ng-init="findusers()" class="col-lg-5 col-md-8 col-sm-8">
                     <select size="1" class="form-control" data-ng-model="teacup.speaker" data-ng-options="a._id as a.name for a in users" required>
                         <option value="">--unkown speaker--</option>
                     </select>
                 </div>
             </div>
-            <div class="custominput">
-                <label mean-token="'edit-scheduleDate'" for="scheduleDate" class="control-label">Date & Time</label>
-                <div>
+            <div class="row">
+                <label mean-token="'edit-scheduleDate'" for="scheduleDate" class="control-label col-lg-1 col-md-4 col-sm-4">Date & Time</label>
+                <div class="col-lg-5 col-md-8 col-sm-8">
                     <input type="datetime-local" ng-model="teacup.scheduleDate" id="scheduleDate" name="input" value="{{teacup.scheduleDate | date:'yyyy-MM-ddTHH:mm:ss'}}" class="form-control" required>
                 </div>
             </div>
-            <div class="custominput">
-                <label mean-token="'edit-description'" for="description" class="control-label">Description</label>
-                <div>
+            <div class="row">
+                <label mean-token="'edit-description'" for="description" class="control-label col-lg-1 col-md-4 col-sm-4">Description</label>
+                <div class="col-lg-11 col-md-8 col-sm-8">
                     <textarea data-ng-model="teacup.description" id="description" cols="30" rows="10" placeholder="Description" class="form-control" required></textarea>
                 </div>
-            </div>            
-            <div class="custominput">
-                <div>
-                    <button mean-token="'edit-submit'" type="submit" class="btn btn-default">Submit</button>
+            </div>
+            <div class="row">
+                <div class="control-label col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <button mean-token="'edit-submit'" type="submit" class="btn btn-info">Submit</button>
                 </div>
             </div>
-            <div class="customfooter">
+            <div class="panel-info pull-right">
                 <span>created on {{teacup.created | date:'longDate'}}</span> by
                 <a data-ng-href="/#!/users/{{teacup.user._id}}">{{teacup.user.name}}</a>
             </div>
