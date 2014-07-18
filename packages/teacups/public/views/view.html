@@ -1,6 +1,6 @@
-<section ng-controller="TeacupsController" data-ng-init="findOne('true')">    
-    <div class="row customcontainer">        
-        <div class="custombanner customtitle">
+<section ng-controller="TeacupsController" data-ng-init="findOne('true')">
+    <div class="row panel panel-primary">
+        <div class="panel-heading customtitle">
             <h1 class="title">{{teacup.title}}</h1>
         </div>
         <div class="custommenu" ng-show="hasAuthorization(teacup)">
@@ -9,7 +9,7 @@
                 <li><a href="#" data-ng-click="remove(teacup);">Delete</a></li>
             </ul>
         </div>
-        <div class="customheader">            
+        <div class="customheader">
             <p><h3>Scheduled on {{teacup.scheduleDate | date : 'longDate'}}</h3></p>
             <p><h3>Begins at {{teacup.scheduleDate | date: 'HH:mm'}}</h3></p>
             <p>
@@ -22,10 +22,10 @@
                 <h3><teacup-rating teacup='teacup'></teacup-rating></h3>
             </p>
             <p>
-                <button class="btn btn-info" data-ng-model="teacup.subscribedusers" ng-hide="isUserSubscribed()" ng-click="subscribeuser()">Subscribe Me</button>
-                <button class="btn btn-info" data-ng-model="teacup.subscribedusers" ng-show="isUserSubscribed()" ng-click="unsubscribeuser()">Unsubscribe Me</button>
+                <button type="submit" class="btn btn-primary" data-ng-model="teacup.subscribedusers" ng-hide="isUserSubscribed()" ng-click="subscribeuser()">Subscribe Me</button>
+                <button type="submit" class="btn btn-primary" data-ng-model="teacup.subscribedusers" ng-show="isUserSubscribed()" ng-click="unsubscribeuser()">Unsubscribe Me</button>
             </p>
-        </div>        
+        </div>
         <div class="customcontent">
             <p><strong>Content</strong></p>
             <p>
@@ -44,8 +44,9 @@
             </p>
             <p data-ng-init="showcomments=false">
                 <strong data-ng-show="teacup.comments && teacup.comments.length"
-                        data-ng-model="teacup.comments">{{teacup.comments.length}} comments (
-                    <a href="" ng-model="showcomments" ng-show="!showcomments" ng-click="showcomments=true"> Show</a>   
+                        data-ng-model="teacup.comments">
+                    {{teacup.comments.length}} comments (
+                    <a href="" ng-model="showcomments" ng-show="!showcomments" ng-click="showcomments=true"> Show</a>
                     <a href="" ng-model="showcomments" ng-show="showcomments" ng-click="showcomments=false"> Hide</a>)
                 </strong>
                 <strong data-ng-hide="!teacup.comments || teacup.comments.length"
@@ -53,7 +54,7 @@
             </p>
             <teacup-comments data-ng-if="showcomments"></teacup-comments>
             <teacup-addcomment></teacup-addcomment>
-        </div>        
+        </div>
         <div class="customfooter customfooterdark">
             <span>created on {{teacup.created | date:'longDate'}}</span> by
             <a data-ng-href="/#!/users/{{teacup.user._id}}">{{teacup.user.name}}</a>

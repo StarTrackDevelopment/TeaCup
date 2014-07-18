@@ -42,7 +42,7 @@ select {
 
 .customtitle a
 {
-	color: #000000;
+	color: #FFF;
 }
 
 .custombanner h1
@@ -71,7 +71,9 @@ select {
 .custommenu
 {
     background-color: #222;
-	border-bottom: 1px solid #080808;
+/*	border-bottom: 1px solid #ddd; */
+	padding: .5em;
+
 }
 
 .customnav
@@ -103,7 +105,7 @@ select {
 {
     padding-bottom: 1em;
     padding-top: 1em;
-    margin: 1em;
+    margin: 1em; 
     text-align: justify;
 }
 
@@ -145,7 +147,6 @@ select {
 	background-color: #ddd;/*#666;*/
     padding: 0.2em;
     padding-left: 1em;
-    border-bottom: 1px solid #333;
 }
 
 .custominput
@@ -188,7 +189,7 @@ ul.customlist {
 }
 
 ul.customlist > li {    
-    padding-bottom: 1em;
+    /*padding-bottom: 1em; */
     list-style-type: none;
 }
 

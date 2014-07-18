@@ -1,8 +1,8 @@
 <div class="container-fluid">
     <ul class="customlist">
         <li class="col-xs-12 col-sm-12 col-md-12 col-lg-6 nopadding" data-ng-repeat="teacup in teacups">
-            <div class="customcontainer customcontainerwithleft customshadow">
-                <div class="custombanner customtitle">
+            <div class="panel panel-primary customcontainerwithleft customshadow">
+                <div class="panel-heading customtitle">
                     <h2>
                         <a data-ng-href="/#!/teacups/{{teacup._id}}/view">{{teacup.title}}</a>
                     </h2>
@@ -14,32 +14,32 @@
                         <li data-ng-if="hasAuthorization(teacup)"><a href="#" data-ng-click="remove(teacup);">Delete</a></li>
                     </ul>
                 </div>
-                <div class="customnav customnavleft">
-                    <p>
-                        {{teacup.scheduleDate | date : 'longDate'}} {{teacup.scheduleDate | date: 'HH:mm'}}
-                    </p>
-                    <p>
-                        Speaker: <a data-ng-href="/#!/users/{{teacup.speaker._id}}">{{teacup.speaker.name}}</a>
-                        <span ng-show="!teacup.speaker">--no speaker yet--</span>
-                    </p>
+                <div class="customheader customnavleft"> 
+                        <p>
+                            {{teacup.scheduleDate | date : 'longDate'}} {{teacup.scheduleDate | date: 'HH:mm'}}
+                        </p>
+                        <p>
+                            Speaker: <a data-ng-href="/#!/users/{{teacup.speaker._id}}">{{teacup.speaker.name}}</a>
+                            <span ng-show="!teacup.speaker">--no speaker yet--</span>
+                        </p>
 
-                    <p>
-                        <teacup-rating teacup='teacup'></teacup-rating>
-                    </p>
+                        <p>
+                            <teacup-rating teacup='teacup'></teacup-rating>
+                        </p>
 
-                    <p data-ng-show="teacup.subscribedusers && teacup.subscribedusers.length">
-                        {{teacup.subscribedusers.length}} subscriped user(s)
-                    </p>
-                    <p data-ng-show="!teacup.subscribedusers || !teacup.subscribedusers.length">
-                        No subscribed users
-                    </p>
-                    <p data-ng-show="teacup.comments && teacup.comments.length">
-                        {{teacup.comments.length}} comment(s)
-                    </p>
-                    <p data-ng-show="!teacup.comments || !teacup.comments.length">
-                        No comments
-                    </p>
-                </div>
+                        <p data-ng-show="teacup.subscribedusers && teacup.subscribedusers.length">
+                            {{teacup.subscribedusers.length}} subscriped user(s)
+                        </p>
+                        <p data-ng-show="!teacup.subscribedusers || !teacup.subscribedusers.length">
+                            No subscribed users
+                        </p>
+                        <p data-ng-show="teacup.comments && teacup.comments.length">
+                            {{teacup.comments.length}} comment(s)
+                        </p>
+                        <p data-ng-show="!teacup.comments || !teacup.comments.length">
+                            No comments
+                        </p>
+                    </div>
                 <div class="customcontent customcontentwithleft">
                     <teacup-toogledescription ng-attr-text="{{teacup.description}}" ng-attr-limit="250"></teacup-toogledescription>
                 </div>
@@ -47,7 +47,7 @@
                     created on {{teacup.created | date:'longDate'}} by
                     <a data-ng-href="/#!/users/{{teacup.user._id}}">{{teacup.user.name}}</a>
                 </div>
-            </div>
+            </!--div>
         </li>
     </ul>
 </div>
