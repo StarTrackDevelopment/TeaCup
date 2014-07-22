@@ -1,11 +1,16 @@
 <section ng-controller="TeacupsController" data-ng-init="findOne('true')">
     
     <div class="h3">
-        {{teacup.title}}
+        <!--<img src="/public/auth/assets/img/icons/favicon.ico" alt="user" width="75" height="75" class="pull-left">-->
+        <span>{{teacup.title}}</span>
         <div>
             <teacup-rating teacup='teacup'></teacup-rating>
-        </div>
+        </div>        
     </div>    
+    <div>   
+        <button type="submit" class="btn btn-primary btn-sm" data-ng-model="teacup.subscribedusers" ng-hide="isUserSubscribed()" ng-click="subscribeuser()">Subscribe Me</button>
+        <button type="submit" class="btn btn-primary btn-sm" data-ng-model="teacup.subscribedusers" ng-show="isUserSubscribed()" ng-click="unsubscribeuser()">Unsubscribe Me</button>
+    </div>
     <div class="panel">
         <div class="h4">
             {{teacup.scheduleDate | date : 'longDate'}}
@@ -14,11 +19,7 @@
         <div class="h4">
             Referent:<a ng-show="teacup.speaker" data-ng-href="/#!/users/{{teacup.speaker._id}}">{{teacup.speaker.name}}</a>
             <span ng-show="!teacup.speaker">--unkown--</span>
-        </div>
-        <div>
-            <button type="submit" class="btn btn-primary btn-sm" data-ng-model="teacup.subscribedusers" ng-hide="isUserSubscribed()" ng-click="subscribeuser()">Subscribe Me</button>
-            <button type="submit" class="btn btn-primary btn-sm" data-ng-model="teacup.subscribedusers" ng-show="isUserSubscribed()" ng-click="unsubscribeuser()">Unsubscribe Me</button>
-        </div>
+        </div>        
     </div>
         <div class="panel panel-default noborder" id="panel1">
             <span class="panel-title">

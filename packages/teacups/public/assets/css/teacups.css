@@ -218,6 +218,10 @@ ul.disc { list-style-type: disc;}
     margin-left: -0.1em;
 }
 
+.iconpercentage-0 {
+    width:0.05em;
+}
+
 .iconpercentage-1 {
     width:0.1em;
 }
