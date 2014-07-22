@@ -149,6 +149,10 @@ angular.module('mean.teacups')
             Users.query(function(users) {
                 $scope.users = users;
             });
-        };        
+        };
+
+        $scope.goto = function (path) {
+            $location.path(path);
+        };
     }
 ]);

@@ -57,9 +57,9 @@ angular.module('mean.teacups')
             restrict: 'E',
             //replace: false,
             scope: {
-                teacup: '='
+                teacup: '=teacup'
             },
-            controller: function ($scope) {
+            controller: function ($scope, $location, $anchorScroll) {
                 $scope.htmlTooltip = 'n.a.';
                 $scope.calculaterating = function (teacup) {
                     if (!teacup)
