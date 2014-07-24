@@ -1,34 +1,35 @@
 <section ng-controller="TeacupsController" data-ng-init="findOne('true')">
+    <div class="panel-default pull-left">
+        <i class="glyphicon glyphicon-user pictureinview"></i>
+        <!--<img src="/public/auth/assets/img/icons/favicon.ico" alt="user" width="75" height="75" class="pull-left">-->
+    </div>
     <div class="panel-default">
-        <div class="h3">
-            <i class="glyphicon glyphicon-user pull-left" style="font-size:75px"></i>
-            <!--<img src="/public/auth/assets/img/icons/favicon.ico" alt="user" width="75" height="75" class="pull-left">--><span>{{teacup.title}}</span>
+        <span class="h4">{{teacup.title}}</span>
+        <div>
+            <teacup-rating teacup='teacup'></teacup-rating>
+        </div>
+    </div>
+    <div class="panel-default">
+        <div>
+            <div>Referent:<a ng-show="teacup.speaker" data-ng-href="/#!/users/{{teacup.speaker._id}}">{{teacup.speaker.name}}</a></div>
             <div>
-                <teacup-rating teacup='teacup'></teacup-rating>
-            </div>
-        </div>
-    </div>
-    <div class="row panel">
-        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-2">
-            <div class="h4">
-                {{teacup.scheduleDate | date : 'longDate'}}
-                <span>{{teacup.scheduleDate | date: 'HH:mm'}}</span>
-            </div>
-            <div class="h4">
-                Referent:<a ng-show="teacup.speaker" data-ng-href="/#!/users/{{teacup.speaker._id}}">{{teacup.speaker.name}}</a>
                 <span ng-show="!teacup.speaker">--unkown--</span>
-            </div>
-        </div>
-        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-            <button type="submit" class="btn btn-primary btn-sm" data-ng-model="teacup.subscribedusers" ng-hide="isUserSubscribed()" ng-click="subscribeuser()">Subscribe Me</button>
-            <button type="submit" class="btn btn-primary btn-sm" data-ng-model="teacup.subscribedusers" ng-show="isUserSubscribed()" ng-click="unsubscribeuser()">Unsubscribe Me</button>
-        </div>
-    </div>
+                <span>
+                    {{teacup.scheduleDate | date : 'longDate'}}
+                    {{teacup.scheduleDate | date: 'HH:mm'}}
+                </span>
+            </div>            
+        </div>        
+    </div>    
+    <div class="panel noborder">
+        <button type="submit" class="btn btn-primary btn-sm" data-ng-model="teacup.subscribedusers" ng-hide="isUserSubscribed()" ng-click="subscribeuser()">Subscribe Me</button>
+        <button type="submit" class="btn btn-primary btn-sm" data-ng-model="teacup.subscribedusers" ng-show="isUserSubscribed()" ng-click="unsubscribeuser()">Unsubscribe Me</button>
+    </div>    
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-6 panel panel-default noborder" id="panel1">
             <span class="panel-title">
                 <a data-toggle="collapse" data-target="#collapseOne"
-                   href="" class="collapsed">
+                    href="" class="collapsed">
                     Content
                 </a>
             </span>
@@ -41,9 +42,9 @@
         <div class="col-xs-12 col-sm-4 col-md-4 col-lg-6 panel-default panel noborder" data-ng-model="teacup.subscribedusers.length" id="panelsubscribeduser">
             <span class="panel-title">
                 <a data-ng-show="teacup.subscribedusers && teacup.subscribedusers.length"
-                   data-toggle="collapse"
-                   data-target="#collapsesubscribedusers"
-                   href="" class="collapsed">
+                    data-toggle="collapse"
+                    data-target="#collapsesubscribedusers"
+                    href="" class="collapsed">
                     <span class="panel-title">Subscriped users <em>({{teacup.subscribedusers.length}})</em></span>
                 </a>
             </span>
@@ -53,9 +54,13 @@
             <div id="collapsesubscribedusers" class="panel-collapse collapse">
                 <!-- in">-->
                 <div data-ng-show="teacup.subscribedusers && teacup.subscribedusers.length"
-                     class="panel-body">
-                    <ul class="disc">
-                        <li data-ng-repeat="user in teacup.subscribedusers"><a data-ng-href="/#!/users/{{user._id}}">{{user.name}}</a></li>
+                        class="panel-body">
+                    <ul class="customlist">
+                        <li data-ng-repeat="user in teacup.subscribedusers">
+                            <i class="btn glyphicon glyphicon-user pull-left pictureinlist" ng-click="goto('users/{{user._id}}')">
+                                <a data-ng-href="/#!/users/{{user._id}}">{{user.name}}</a>
+                            </i>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -64,9 +69,9 @@
         <div class="col-xs-12 col-sm-8 col-md-12 col-lg-6 panel-default panel noborder" data-ng-model="teacup.comments" id="panelcomments">
             <div class="panel-title">
                 <a data-ng-show="teacup.comments && teacup.comments.length"
-                   data-toggle="collapse"
-                   data-target="#collapsecomments"
-                   href="" class="collapsed">
+                    data-toggle="collapse"
+                    data-target="#collapsecomments"
+                    href="" class="collapsed">
                     <span>Comments <em>({{teacup.comments.length}})</em></span>
                 </a>
                 <div data-ng-hide="!teacup.comments || teacup.comments.length">
@@ -83,9 +88,9 @@
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 panel-default panel noborder" ng-show="isUserSubscribed()" data-ng-model="teacup.comments" id="paneladdcomment">
             <div class="panel-title">
                 <a data-ng-show="teacup.comments && teacup.comments.length"
-                   data-toggle="collapse"
-                   data-target="#collapseaddcomment"
-                   href="" class="collapsed">
+                    data-toggle="collapse"
+                    data-target="#collapseaddcomment"
+                    href="" class="collapsed">
                     <span>Add comment</span>
                 </a>
             </div>
@@ -96,14 +101,14 @@
             </div>
         </div>
     </div>
-        <div data-ng-if="hasAuthorization(teacup)">
-            <button class="btn btn-info btn-sm" ng-click="goto('teacups/{{teacup._id}}/edit')">Edit</button>
-            <button class="btn btn-info btn-sm" data-ng-click="remove(teacup);">Remove</button>
-        </div>
+    <div data-ng-if="hasAuthorization(teacup)">
+        <button class="btn btn-info btn-sm" ng-click="goto('teacups/{{teacup._id}}/edit')">Edit</button>
+        <button class="btn btn-info btn-sm" data-ng-click="remove(teacup);">Remove</button>
+    </div>
 
-        <div class="pull-right">
-            <span>created on {{teacup.created | date:'longDate'}}</span> by
-            <a data-ng-href="/#!/users/{{teacup.user._id}}">{{teacup.user.name}}</a>
-        </div>
+    <div class="pull-right">
+        <span>created on {{teacup.created | date:'longDate'}}</span> by
+        <a data-ng-href="/#!/users/{{teacup.user._id}}">{{teacup.user.name}}</a>
+    </div>
 
 </section>

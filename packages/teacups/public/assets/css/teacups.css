@@ -284,3 +284,12 @@ ul.disc { list-style-type: disc;}
 .panel-title a:hover{
     text-decoration: none;
 }
+
+.pictureinlist {
+    font-size: 20px;
+}
+
+.pictureinview {
+    font-size: 75px;
+    margin-right: 9px;
+}
