@@ -317,6 +317,7 @@
     <Compile Include="test\karma\unit\controllers\headers.spec.js" />
     <Compile Include="test\karma\unit\controllers\index.spec.js" />
     <Compile Include="test\mocha\user\model.js" />
+    <Content Include="Uploads\avatar-tiny.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="packages" />
@@ -447,6 +448,7 @@
     <Folder Include="test\karma\unit\controllers" />
     <Folder Include="test\mocha" />
     <Folder Include="test\mocha\user" />
+    <Folder Include="Uploads\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />

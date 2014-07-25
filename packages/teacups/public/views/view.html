@@ -1,8 +1,7 @@
 <section ng-controller="TeacupsController" data-ng-init="findOne('true')">
     <div class="panel-default pull-left">
-        <i class="glyphicon glyphicon-user pictureinview"></i>
-        <!--<img src="/public/auth/assets/img/icons/favicon.ico" alt="user" width="75" height="75" class="pull-left">-->
-    </div>    
+        <teacup-userpicture class="pictureinview" ng-attr-userid="teacup.speaker._id"></teacup-userpicture>
+    </div>
     <div class="panel-default">
         <span class="h4">{{teacup.title}}</span>        
         <div>
@@ -57,8 +56,7 @@
                         class="panel-body">
                     <ul class="customlist">
                         <li data-ng-repeat="user in teacup.subscribedusers">
-                            <i class="glyphicon glyphicon-user pull-left pictureinlist">
-                            </i>
+                            <teacup-userpicture class="pictureinlist" ng-attr-userid="user._id"></teacup-userpicture>
                             <a data-ng-href="/#!/users/{{user._id}}">{{user.name}}</a>
                         </li>
                     </ul>

@@ -208,6 +208,10 @@ ul.disc { list-style-type: disc;}
     color: rgb(184, 184, 31);
 }
 
+.customgrey {
+    color: rgb(200,200,200);
+}
+
 .customrating {
     border: transparent;
     outline: transparent;

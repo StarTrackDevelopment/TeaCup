@@ -135,3 +135,15 @@ angular.module('mean.teacups')
         templateUrl: '/teacups/views/Directives/teacup-toogledescription.html'
     };
 });
+
+angular.module('mean.teacups')
+.directive('teacupUserpicture', function () {
+    return {
+        restrict: 'E',
+        replace: true,
+        scope: {
+            userid: '@userid'
+        },
+        template: '<i class="glyphicon glyphicon-user customgrey"></i>'
+    };
+});
