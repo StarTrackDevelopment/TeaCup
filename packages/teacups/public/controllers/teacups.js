@@ -10,11 +10,21 @@ angular.module('mean.teacups')
             return $scope.global.isAdmin || teacup.user._id === $scope.global.user._id;
         };
 
-        $scope.isUserSubscribed = function () {
-            if (!$scope.teacup || !$scope.teacup.user) return false;
-            for (var i in $scope.teacup.subscribedusers) {
-                if ($scope.teacup.subscribedusers[i]._id === $scope.global.user._id) {
-                    return true;
+        $scope.isUserSubscribed = function (teacup) {
+            var i;
+            if (teacup) {
+                if (!teacup.user) return false;
+                for (i in teacup.subscribedusers) {
+                    if (teacup.subscribedusers[i]._id === $scope.global.user._id) {
+                        return true;
+                    }
+                }
+            } else {
+                if (!$scope.teacup || !$scope.teacup.user) return false;
+                for (i in $scope.teacup.subscribedusers) {
+                    if ($scope.teacup.subscribedusers[i]._id === $scope.global.user._id) {
+                        return true;
+                    }
                 }
             }
             return false;
@@ -65,9 +75,18 @@ angular.module('mean.teacups')
             });
         };
 
-        $scope.subscribeuser = function () {
+        $scope.subscribeuser = function (ateacup) {
+            var tmpteacup;
+            var paramid;
+            if (!ateacup) {
+                tmpteacup = $scope.teacup;
+                paramid = $stateParams.teacupId;
+            } else {
+                tmpteacup = ateacup;
+                paramid = ateacup._id;
+            }
             Teacups.get({
-                teacupId: $stateParams.teacupId,
+                teacupId: paramid,
                 populate: 'false'
             }, function (teacup) {
                 teacup.subscribedusers.push($scope.global.user._id);
@@ -76,7 +95,42 @@ angular.module('mean.teacups')
                 }
                 teacup.updated.push(new Date().getTime());
                 teacup.$update();
-                $scope.teacup.subscribedusers.push($scope.global.user);
+                tmpteacup.subscribedusers.push($scope.global.user);
+            });
+        };
+
+        $scope.unsubscribeuser = function (ateacup) {
+            var tmpteacup;
+            var paramid;
+            if (!ateacup) {
+                tmpteacup = $scope.teacup;
+                paramid = $stateParams.teacupId;
+            } else {
+                tmpteacup = ateacup;
+                paramid = ateacup._id;
+            }
+            Teacups.get({
+                teacupId: paramid,
+                populate: 'false'
+            }, function (teacup) {
+
+                for (var i in teacup.subscribedusers) {
+                    if (teacup.subscribedusers[i]._id === $scope.global.user._id) {
+                        teacup.subscribedusers.splice(i, 1);
+                    }
+                }
+
+                if (!teacup.updated) {
+                    teacup.updated = [];
+                }
+                teacup.updated.push(new Date().getTime());
+                teacup.$update();
+
+                for (i in tmpteacup.subscribedusers) {
+                    if (tmpteacup.subscribedusers[i]._id === $scope.global.user._id) {
+                        tmpteacup.subscribedusers.splice(i, 1);
+                    }
+                }
             });
         };
 
@@ -102,33 +156,7 @@ angular.module('mean.teacups')
                 $scope.comment = '';
                 $scope.rating = 1;
             });
-        };        
-
-        $scope.unsubscribeuser = function () {
-            Teacups.get({
-                teacupId: $stateParams.teacupId,
-                populate: 'false'
-            }, function (teacup) {
-
-                for (var i in teacup.subscribedusers) {
-                    if (teacup.subscribedusers[i]._id === $scope.global.user._id) {
-                        teacup.subscribedusers.splice(i, 1);
-                    }
-                }
-              
-                if (!teacup.updated) {
-                    teacup.updated = [];
-                }
-                teacup.updated.push(new Date().getTime());
-                teacup.$update();
-
-                for (i in $scope.teacup.subscribedusers) {
-                    if ($scope.teacup.subscribedusers[i]._id === $scope.global.user._id) {
-                        $scope.teacup.subscribedusers.splice(i, 1);
-                    }
-                }
-            });
-        };
+        };                
 
         $scope.find = function() {
             Teacups.query(function(teacups) {

@@ -1,5 +1,5 @@
 <ul class="customlist">
-    <li class="col-xs-12 col-sm-12 col-md-6 col-lg-6" data-ng-repeat="comment in teacup.comments">
+    <li class="col-xs-12 col-sm-12 col-md-6 col-lg-4" data-ng-model="comments" data-ng-repeat="comment in comments">
         <p>
             <div class="customcontainer customshadow">
                 <div class="customheader">
@@ -16,3 +16,19 @@
         </p>
     </li>
 </ul>
+<!--<center>
+    <div class="row col-xs-push-1 col-xs-11 col-sm-push-1 col-sm-11 col-md-push-1 col-md-11 col-lg-push-1 col-lg-11">
+        <pagination total-items="bigTotalItems"
+                    ng-model="bigCurrentPage"
+                    max-size="maxSize"
+                    class="pagination-sm"
+                    boundary-links="true"
+                    rotate="false"
+                    num-pages="numPages"
+                    previous-text="&lsaquo;"
+                    next-text="&rsaquo;"
+                    first-text="&laquo;"
+                    last-text="&raquo;">
+        </pagination>
+    </div>
+</center>-->

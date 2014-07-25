@@ -1,53 +1,38 @@
-<div class="container-fluid">
-    <ul class="customlist">
-        <li class="col-xs-12 col-sm-12 col-md-12 col-lg-6 nopadding" data-ng-repeat="teacup in teacups">
-            <div class="panel panel-primary customcontainerwithleft customshadow">
-                <div class="panel-heading customtitle">
-                    <h2>
-                        <a data-ng-href="/#!/teacups/{{teacup._id}}/view">{{teacup.title}}</a>
-                    </h2>
+<ul class="customlist nopadding">    
+    <li class="col-xs-12 col-sm-12 col-md-6 col-lg-4" data-ng-repeat="teacup in teacups">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 detailsicon panel-heading panel-title">
+                <a data-ng-href="/#!/teacups/{{teacup._id}}/view"><strong>{{teacup.title}}</strong></a>                                
+            </div>
+            <div class="panel-default">
+                <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2">
+                    <i class="glyphicon glyphicon-user pictureinlistlarge"></i>
+                    <!--<img src="/public/auth/assets/img/icons/favicon.ico" alt="user" width="75" height="75" class="pull-left">-->                    
                 </div>
-                <div class="custommenu">
-                    <ul class="horizontalnav">
-                        <li><a href="/#!/teacups/{{teacup._id}}/view">Details</a></li>
-                        <li data-ng-if="hasAuthorization(teacup)"><a href="/#!/teacups/{{teacup._id}}/edit">Edit</a></li>
-                        <li data-ng-if="hasAuthorization(teacup)"><a href="#" data-ng-click="remove(teacup);">Delete</a></li>
-                    </ul>
-                </div>
-                <div class="customheader customnavleft"> 
-                        <p>
-                            {{teacup.scheduleDate | date : 'longDate'}} {{teacup.scheduleDate | date: 'HH:mm'}}
-                        </p>
-                        <p>
-                            Speaker: <a data-ng-href="/#!/users/{{teacup.speaker._id}}">{{teacup.speaker.name}}</a>
-                            <span ng-show="!teacup.speaker">--no speaker yet--</span>
-                        </p>
-
-                        <p>
-                            <teacup-rating teacup='teacup'></teacup-rating>
-                        </p>
-
-                        <p data-ng-show="teacup.subscribedusers && teacup.subscribedusers.length">
-                            {{teacup.subscribedusers.length}} subscriped user(s)
-                        </p>
-                        <p data-ng-show="!teacup.subscribedusers || !teacup.subscribedusers.length">
-                            No subscribed users
-                        </p>
-                        <p data-ng-show="teacup.comments && teacup.comments.length">
-                            {{teacup.comments.length}} comment(s)
-                        </p>
-                        <p data-ng-show="!teacup.comments || !teacup.comments.length">
-                            No comments
-                        </p>
+                <div class="col-xs-9 col-sm-10 col-md-10 col-lg-10">
+                    <span class="pull-right">
+                        <button type="submit" class="btn btn-warning btn-xs" data-ng-model="teacup.subscribedusers" ng-hide="isUserSubscribed(teacup)" ng-click="subscribeuser(teacup)">Subscribe</button>
+                        <button type="submit" class="btn btn-success btn-xs" data-ng-model="teacup.subscribedusers" ng-show="isUserSubscribed(teacup)" ng-click="unsubscribeuser(teacup)">Unsubscribe</button>
+                    </span>
+                    <teacup-rating teacup='teacup'></teacup-rating>                                        
+                    <span>{{teacup.scheduleDate | date : 'longDate'}} {{teacup.scheduleDate | date: 'HH:mm'}}</span>                    
+                    <div ng-show="!teacup.speaker">--no speaker yet--</div>
+                    <div>Referent:<a data-ng-href="/#!/users/{{teacup.speaker._id}}">{{teacup.speaker.name}}</a></div>
+                    <div data-ng-show="teacup.subscribedusers && teacup.subscribedusers.length">
+                        Subscriped users <em>({{teacup.subscribedusers.length}})</em>
                     </div>
-                <div class="customcontent customcontentwithleft">
-                    <teacup-toogledescription ng-attr-text="{{teacup.description}}" ng-attr-limit="250"></teacup-toogledescription>
-                </div>
-                <div class="customfooter customfooterdark">
-                    created on {{teacup.created | date:'longDate'}} by
-                    <a data-ng-href="/#!/users/{{teacup.user._id}}">{{teacup.user.name}}</a>
-                </div>
-            </!--div>
-        </li>
-    </ul>
-</div>
+                    <div data-ng-show="!teacup.subscribedusers || !teacup.subscribedusers.length">
+                        No subscribed users
+                    </div>
+                    <div data-ng-show="teacup.comments && teacup.comments.length">
+                        Comments <em>({{teacup.comments.length}})</em>
+                    </div>
+                    <div data-ng-show="!teacup.comments || !teacup.comments.length">
+                        No comments
+                    </div>
+                </div>                
+            </div>            
+        </div>
+        <hr class="nopadding" />
+    </li>
+</ul>
