@@ -1,19 +1,19 @@
 <ul class="customlist">
     <li class="col-xs-12 col-sm-12 col-md-6 col-lg-4" data-ng-model="comments" data-ng-repeat="comment in comments">
-        <p>
-            <div class="customcontainer customshadow">
-                <div class="customheader">
-                    <span ng-controller="CustomRatingController" ng-init="isReadOnly=true">
-                        <rating class="rating" ng-model="comment.rating" max="getMaxRate(comment.rating)" readonly="isReadOnly" on-hover="hoveringOver(value)" state-on="'glyphicon-star customyellow'" state-off="'glyphicon-star-empty customyellow'"></rating>
-                    </span>
-                    <a data-ng-href="/#!/teacups/{{comment.createdby._id}}/view">{{comment.createdby.name}}</a>                    
-                    on {{comment.createdwhen | date: 'longDate'}} {{comment.createdwhen | date: 'HH:mm'}}
-                </div>
-                <div class="customcomment">
-                    <teacup-toogledescription ng-attr-text="{{comment.comment}}" ng-attr-limit="100"></teacup-toogledescription>
-                </div>
+        <hr class="nopadding" />
+        <div class="media">
+            <a data-ng-href="/#!/users/{{comment.createdby._id}}" class="pull-right">
+                <teacup-userpicture class="pictureinlistmedium" ng-attr-userid="comment.createdby._id"></teacup-userpicture>
+            </a>            
+            <div class="media-body">                
+                <h4 class="media-heading">
+                    <rating ng-controller="CustomRatingController" ng-init="isReadOnly=true" ng-model="comment.rating" max="getMaxRate(comment.rating)" readonly="isReadOnly" on-hover="hoveringOver(value)" state-on="'glyphicon-star customyellow'" state-off="'glyphicon-star-empty customyellow'"></rating>
+                    <a data-ng-href="/#!/users/{{comment.createdby._id}}">{{comment.createdby.name}}</a>                                           
+                    <small><i>{{comment.createdwhen | date: 'longDate'}} {{comment.createdwhen | date: 'HH:mm'}}</i></small>
+                </h4>
+                <p><teacup-toogledescription ng-attr-text="{{comment.comment}}" ng-attr-limit="100"></teacup-toogledescription></p>
             </div>
-        </p>
+        </div>       
     </li>
 </ul>
 <!--<center>

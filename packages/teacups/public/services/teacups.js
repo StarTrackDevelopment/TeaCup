@@ -29,7 +29,7 @@ angular.module('mean.teacups')
             scope: {
                 comments: '=comments'
             },
-            controller: function ($scope) {
+            /*controller: function ($scope) {
                 $scope.totalItems = 64;
                 $scope.currentPage = 4;
 
@@ -44,8 +44,20 @@ angular.module('mean.teacups')
                 $scope.maxSize = 5;
                 $scope.bigTotalItems = 175;
                 $scope.bigCurrentPage = 1;
-            },
+            },*/
             templateUrl: '/teacups/views/Directives/teacup-comments.html'
+        };
+    });
+
+angular.module('mean.teacups')
+    .directive('teacupSubscribedusers', function () {
+        return {
+            restrict: 'E',
+            replace: false,
+            scope: {
+                subscribedusers: '=subscribedusers'
+            },            
+            templateUrl: '/teacups/views/Directives/teacup-subscribedusers.html'
         };
     });
 
@@ -144,6 +156,6 @@ angular.module('mean.teacups')
         scope: {
             userid: '@userid'
         },
-        template: '<i class="glyphicon glyphicon-user customgrey"></i>'
+        template: '<a data-ng-href="/#!/users/{{userid}}"><i class="glyphicon glyphicon-user customgrey"></i></a>'
     };
 });

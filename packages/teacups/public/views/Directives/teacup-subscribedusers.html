@@ -1,0 +1,14 @@
+<ul class="customlist">
+    <li class="col-xs-12 col-sm-12 col-md-12 col-lg-12" data-ng-model="subscribedusers" data-ng-repeat="user in subscribedusers">
+        <div class="media">
+            <a data-ng-href="/#!/users/{{user._id}}" class="pull-left">
+                <teacup-userpicture class="pictureinlistmedium" ng-attr-userid="user._id"></teacup-userpicture>
+            </a>
+            <div class="media-body">
+                <h4>
+                    <a data-ng-href="/#!/users/{{user._id}}">{{user.name}}</a>
+                </h4>
+            </div>
+        </div>
+    </li>
+</ul>

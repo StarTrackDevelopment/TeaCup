@@ -310,3 +310,8 @@ ul.disc { list-style-type: disc;}
     font-size: 60px;
     margin-right: 9px;
 }
+
+.pictureinlistmedium
+{
+    font-size: 40px;
+}
