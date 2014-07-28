@@ -15,20 +15,20 @@
                         <button type="submit" class="btn btn-success btn-xs" data-ng-model="teacup.subscribedusers" ng-show="isUserSubscribed(teacup)" ng-click="unsubscribeuser(teacup)">Unsubscribe</button>
                     </span>
                     <teacup-rating teacup='teacup'></teacup-rating>                                        
-                    <span>{{teacup.scheduleDate | date : 'longDate'}} {{teacup.scheduleDate | date: 'HH:mm'}}</span>                    
-                    <div ng-show="!teacup.speaker">--no speaker yet--</div>
-                    <div>Referent:<a data-ng-href="/#!/users/{{teacup.speaker._id}}">{{teacup.speaker.name}}</a></div>
+                    <span class="glyphicon glyphicon-calendar"></span><span> {{teacup.scheduleDate | date : 'longDate'}} {{teacup.scheduleDate | date: 'HH:mm'}}</span>                    
+                    <div ng-show="!teacup.speaker"><span class="glyphicon glyphicon-user"></span> --no speaker yet--</div>
+                    <div><span class="glyphicon glyphicon-user"></span> Referent: <a data-ng-href="/#!/users/{{teacup.speaker._id}}">{{teacup.speaker.name}}</a></div>
                     <div data-ng-show="teacup.subscribedusers && teacup.subscribedusers.length">
-                        Subscriped users <em>({{teacup.subscribedusers.length}})</em>
+                        <span class="glyphicon glyphicon-check"></span> Subscriped users <span class="badge alert-info">{{teacup.subscribedusers.length}}</span>
                     </div>
                     <div data-ng-show="!teacup.subscribedusers || !teacup.subscribedusers.length">
-                        No subscribed users
+                        <span class="glyphicon glyphicon-check"></span> No subscribed users
                     </div>
                     <div data-ng-show="teacup.comments && teacup.comments.length">
-                        Comments <em>({{teacup.comments.length}})</em>
+                        <span class="glyphicon glyphicon-comment"></span> Comments <span class="badge alert-info">{{teacup.comments.length}}</span>
                     </div>
                     <div data-ng-show="!teacup.comments || !teacup.comments.length">
-                        No comments
+                        <span class="glyphicon glyphicon-comment"></span> No comments
                     </div>
                 </div>                
             </div>            
