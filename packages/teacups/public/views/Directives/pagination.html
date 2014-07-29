@@ -1,28 +1,19 @@
-<div class="text-center" ng-show="paginator.pageCount() > 1">
+<div class="text-center" ng-if="1 < pages.length">
     <ul class="pagination">
-        <li ng-click="paginator.firstPage()" ng-class="{'disabled': paginator.isFirstPage()}">
-            <a href="">&laquo;</a>
+        <li ng-if="boundaryLinks" ng-class="{ disabled : pagination.current == 1 }">
+            <a href="" ng-click="setCurrent(1)">&laquo;</a>
         </li>
-        <li ng-click="paginator.perviousPage()" ng-class="{'disabled': paginator.isFirstPage()}" class="ng-binding">
-            <a href="">&#139;</a>
+        <li ng-if="directionLinks" ng-class="{ disabled : pagination.current == 1 }" class="ng-scope">
+            <a href="" ng-click="setCurrent(pagination.current - 1)" class="ng-binding">&#139;</a>
         </li>
-        <!--<li ng-click="paginator.setPage(i)" ng-repeat="i in [] | forLoop:0:paginator.pageCount()" ng-class="paginator.page==i && 'active'">
-            <a>{{i+1}}</a>
-        </li>-->
-        <li ng-click="paginator.setPage(i)" ng-repeat="i in [] | forLoop:paginator.lowerLimit():paginator.pageCount() | limitTo:paginator.limitPerPage"
-            ng-class="{'active': paginator.page === i}">
-            <a> <i>{{i+1}}</i> </a>
+        <li ng-repeat="pageNumber in pages track by $index" ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == '...' }">
+            <a href="" ng-click="setCurrent(pageNumber)">{{ pageNumber }}</a>
         </li>
-
-        <li ng-click="paginator.nextPage()" ng-hide="paginator.isLastPage()">
-            <a href="">...</a>
+        <li ng-if="directionLinks" ng-class="{ disabled : pagination.current == pagination.last }" class="ng-scope">
+            <a href="" ng-click="setCurrent(pagination.current + 1)" class="ng-binding">&#155;</a>
         </li>
-
-        <li ng-click="paginator.nextPage()" ng-class="{'disabled': paginator.isLastPage()}" class="ng-binding">
-            <a href="">&#155;</a>
-        </li>
-        <li ng-click="paginator.lastPage()" ng-class="{'disabled': paginator.isLastPage()}">
-            <a href="">&raquo;</a>
+        <li ng-if="boundaryLinks" ng-class="{ disabled : pagination.current == pagination.last }">
+            <a href="" ng-click="setCurrent(pagination.last)">&raquo;</a>
         </li>
     </ul>
 </div>

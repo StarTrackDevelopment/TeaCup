@@ -160,13 +160,14 @@ angular.module('mean.teacups')
     };
 });
 
-angular.module('mean.teacups')
+/*angular.module('mean.teacups')
 
     .filter('paginate', function (Paginator) {
+
         return function (input, rowsPerPage) {
             if (!input) {
                 return input;
-            }
+            }            
 
             if (rowsPerPage) {
                 Paginator.rowsPerPage = rowsPerPage;
@@ -267,4 +268,4 @@ angular.module('mean.teacups')
             },
             templateUrl: '/teacups/views/Directives/pagination.html'
         };
-    });
+    });*/

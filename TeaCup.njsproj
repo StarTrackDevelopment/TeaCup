@@ -51,9 +51,11 @@
     <Content Include="README.md" />
     <Compile Include="Gruntfile.js" />
     <Compile Include="packages\teacups\app.js" />
+    <Compile Include="packages\teacups\public\controllers\pagination.js" />
     <Compile Include="packages\teacups\public\controllers\rating.js" />
     <Compile Include="packages\teacups\public\controllers\teacups.js" />
     <Compile Include="packages\teacups\public\routes\teacups.js" />
+    <Compile Include="packages\teacups\public\services\dirPagination.js" />
     <Compile Include="packages\teacups\public\services\teacups.js" />
     <Compile Include="packages\teacups\server\controllers\teacups.js" />
     <Compile Include="packages\teacups\server\models\teacup.js" />

@@ -1,38 +1,42 @@
-<ul class="customlist nopadding">    
-    <li class="col-xs-12 col-sm-12 col-md-6 col-lg-4" data-ng-repeat="teacup in teacups | paginate">
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 detailsicon panel-heading panel-title">
-                <a data-ng-href="/#!/teacups/{{teacup._id}}/view"><strong>{{teacup.title}}</strong></a>
-            </div>
-            <div class="panel-default">
-                <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2">
-                    <teacup-userpicture class="pictureinlistlarge" ng-attr-userid="teacup.speaker._id"></teacup-userpicture>
-                    <!--<img src="/public/auth/assets/img/icons/favicon.ico" alt="user" width="75" height="75" class="pull-left">-->
+<div ng-controller="CustomPaginationController" ng-init="pageSize=8;currentPage=1">
+    <ul class="customlist nopadding">
+        <li class="col-xs-12 col-sm-12 col-md-6 col-lg-4" dir-paginate="teacup in teacups | filter:q | itemsPerPage: pageSize" current-page="currentPage">
+            <!--data-ng-repeat="teacup in teacups | paginate">-->
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 detailsicon panel-heading panel-title">
+                    <a data-ng-href="/#!/teacups/{{teacup._id}}/view"><strong>{{teacup.title}}</strong></a>
                 </div>
-                <div class="col-xs-9 col-sm-10 col-md-10 col-lg-10">
-                    <span class="pull-right">
-                        <button type="submit" class="btn btn-warning btn-xs" data-ng-model="teacup.subscribedusers" ng-hide="isUserSubscribed(teacup)" ng-click="subscribeuser(teacup)">Subscribe</button>
-                        <button type="submit" class="btn btn-success btn-xs" data-ng-model="teacup.subscribedusers" ng-show="isUserSubscribed(teacup)" ng-click="unsubscribeuser(teacup)">Unsubscribe</button>
-                    </span>
-                    <teacup-rating teacup='teacup'></teacup-rating>
-                    <span class="glyphicon glyphicon-calendar"></span><span> {{teacup.scheduleDate | date : 'longDate'}} {{teacup.scheduleDate | date: 'HH:mm'}}</span>
-                    <div ng-show="!teacup.speaker"><span class="glyphicon glyphicon-user"></span> --no speaker yet--</div>
-                    <div><span class="glyphicon glyphicon-user"></span> Referent: <a data-ng-href="/#!/users/{{teacup.speaker._id}}">{{teacup.speaker.name}}</a></div>
-                    <div data-ng-show="teacup.subscribedusers && teacup.subscribedusers.length">
-                        <span class="glyphicon glyphicon-check"></span> Subscriped users <span class="badge alert-info">{{teacup.subscribedusers.length}}</span>
+                <div class="panel-default">
+                    <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2">
+                        <teacup-userpicture class="pictureinlistlarge" ng-attr-userid="teacup.speaker._id"></teacup-userpicture>
+                        <!--<img src="/public/auth/assets/img/icons/favicon.ico" alt="user" width="75" height="75" class="pull-left">-->
                     </div>
-                    <div data-ng-show="!teacup.subscribedusers || !teacup.subscribedusers.length">
-                        <span class="glyphicon glyphicon-check"></span> No subscribed users
-                    </div>
-                    <div data-ng-show="teacup.comments && teacup.comments.length">
-                        <span class="glyphicon glyphicon-comment"></span> Comments <span class="badge alert-info">{{teacup.comments.length}}</span>
-                    </div>
-                    <div data-ng-show="!teacup.comments || !teacup.comments.length">
-                        <span class="glyphicon glyphicon-comment"></span> No comments
+                    <div class="col-xs-9 col-sm-10 col-md-10 col-lg-10">
+                        <span class="pull-right">
+                            <button type="submit" class="btn btn-warning btn-xs" data-ng-model="teacup.subscribedusers" ng-hide="isUserSubscribed(teacup)" ng-click="subscribeuser(teacup)">Subscribe</button>
+                            <button type="submit" class="btn btn-success btn-xs" data-ng-model="teacup.subscribedusers" ng-show="isUserSubscribed(teacup)" ng-click="unsubscribeuser(teacup)">Unsubscribe</button>
+                        </span>
+                        <teacup-rating teacup='teacup'></teacup-rating>
+                        <span class="glyphicon glyphicon-calendar"></span><span> {{teacup.scheduleDate | date : 'longDate'}} {{teacup.scheduleDate | date: 'HH:mm'}}</span>
+                        <div ng-show="!teacup.speaker"><span class="glyphicon glyphicon-user"></span> --no speaker yet--</div>
+                        <div><span class="glyphicon glyphicon-user"></span> Referent: <a data-ng-href="/#!/users/{{teacup.speaker._id}}">{{teacup.speaker.name}}</a></div>
+                        <div data-ng-show="teacup.subscribedusers && teacup.subscribedusers.length">
+                            <span class="glyphicon glyphicon-check"></span> Subscriped users <span class="badge alert-info">{{teacup.subscribedusers.length}}</span>
+                        </div>
+                        <div data-ng-show="!teacup.subscribedusers || !teacup.subscribedusers.length">
+                            <span class="glyphicon glyphicon-check"></span> No subscribed users
+                        </div>
+                        <div data-ng-show="teacup.comments && teacup.comments.length">
+                            <span class="glyphicon glyphicon-comment"></span> Comments <span class="badge alert-info">{{teacup.comments.length}}</span>
+                        </div>
+                        <div data-ng-show="!teacup.comments || !teacup.comments.length">
+                            <span class="glyphicon glyphicon-comment"></span> No comments
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <hr class="nopadding" />
-    </li>
-</ul>
+            <hr class="nopadding" />
+        </li>
+    </ul>
+    <dir-pagination-controls ng-show="teacups" class="col-xs-12 col-sm-12 col-md-12 col-lg-12" boundary-links="true"></dir-pagination-controls>
+</div>
