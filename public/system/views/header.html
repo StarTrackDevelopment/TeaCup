@@ -1,5 +1,5 @@
 <div class="page-header" data-ng-controller="HeaderController">
-    <div class="navbar-header pull-left">
+    <div class="navbar-header">
         <button type="button" data-ng-show="global.authenticated" class="dropdown-toggle navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Navigation</span>
             <span class="icon-bar"></span>
@@ -23,7 +23,7 @@
             <li data-ng-repeat="item in menus.main" ui-route="/{{item.link}}" ng-class="{active: $uiRoute}">
                 <a mean-token="item.link" ui-sref='{{item.link}}'>{{item.title}}</a>
             </li>
-        </ul>            
+        </ul>
         <ul class="pull-right navbar-nav nav" data-ng-show="global.authenticated">
             <li>
                 <a href="/logout">Signout</a>

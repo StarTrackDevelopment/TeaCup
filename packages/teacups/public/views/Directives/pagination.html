@@ -1,0 +1,28 @@
+<div class="text-center" ng-show="paginator.pageCount() > 1">
+    <ul class="pagination">
+        <li ng-click="paginator.firstPage()" ng-class="{'disabled': paginator.isFirstPage()}">
+            <a href="">&laquo;</a>
+        </li>
+        <li ng-click="paginator.perviousPage()" ng-class="{'disabled': paginator.isFirstPage()}" class="ng-binding">
+            <a href="">&#139;</a>
+        </li>
+        <!--<li ng-click="paginator.setPage(i)" ng-repeat="i in [] | forLoop:0:paginator.pageCount()" ng-class="paginator.page==i && 'active'">
+            <a>{{i+1}}</a>
+        </li>-->
+        <li ng-click="paginator.setPage(i)" ng-repeat="i in [] | forLoop:paginator.lowerLimit():paginator.pageCount() | limitTo:paginator.limitPerPage"
+            ng-class="{'active': paginator.page === i}">
+            <a> <i>{{i+1}}</i> </a>
+        </li>
+
+        <li ng-click="paginator.nextPage()" ng-hide="paginator.isLastPage()">
+            <a href="">...</a>
+        </li>
+
+        <li ng-click="paginator.nextPage()" ng-class="{'disabled': paginator.isLastPage()}" class="ng-binding">
+            <a href="">&#155;</a>
+        </li>
+        <li ng-click="paginator.lastPage()" ng-class="{'disabled': paginator.isLastPage()}">
+            <a href="">&raquo;</a>
+        </li>
+    </ul>
+</div>

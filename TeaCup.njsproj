@@ -25,6 +25,7 @@
     <Content Include="packages\teacups\public\assets\css\teacups.css" />
     <Content Include="packages\teacups\public\assets\img\logo.png" />
     <Content Include="packages\teacups\public\views\create.html" />
+    <Content Include="packages\teacups\public\views\Directives\pagination.html" />
     <Content Include="packages\teacups\public\views\Directives\star.html" />
     <Content Include="packages\teacups\public\views\Directives\teacup-addcomment.html" />
     <Content Include="packages\teacups\public\views\Directives\teacup-comments.html" />
@@ -318,7 +319,6 @@
     <Compile Include="test\karma\unit\controllers\headers.spec.js" />
     <Compile Include="test\karma\unit\controllers\index.spec.js" />
     <Compile Include="test\mocha\user\model.js" />
-    <Content Include="Uploads\avatar-tiny.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="packages" />
