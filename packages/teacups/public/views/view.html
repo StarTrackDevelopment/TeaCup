@@ -40,11 +40,12 @@
         </div>
         <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3 panel-default panel noborder" data-ng-model="teacup.subscribedusers.length" id="panelsubscribeduser">
             <span class="panel-title accordion">
+                <span class="glyphicon glyphicon-check customblue"></span>
                 <a data-ng-show="teacup.subscribedusers && teacup.subscribedusers.length"
                    data-toggle="collapse"
                    data-target="#collapsesubscribedusers"
                    href="" class="collapsed">
-                    <span class="glyphicon glyphicon-check customblue"></span>
+                    
                     <span class="panel-title"> Subscribed users </span>
                     <span class="badge alert-info">{{teacup.subscribedusers.length}}</span>
                 </a>
@@ -63,17 +64,17 @@
 
         <div class="col-xs-12 col-sm-8 col-md-12 col-lg-12 panel-default panel noborder" data-ng-model="teacup.comments" id="panelcomments">
             <div class="panel-title accordion">
+                <span class="glyphicon glyphicon-comment customblue"></span>
                 <a data-ng-show="teacup.comments && teacup.comments.length"
                    data-toggle="collapse"
                    data-target="#collapsecomments"
-                   href="" class="collapsed">
-                    <span class="glyphicon glyphicon-comment customblue"></span>
+                   href="" class="collapsed">                    
                     <span>Comments </span>
                     <span class="badge alert-info">{{teacup.comments.length}}</span>
                 </a>
-                <div data-ng-hide="!teacup.comments || teacup.comments.length">
+                <span data-ng-hide="!teacup.comments || teacup.comments.length">
                     <span>No available comments</span>
-                </div>
+                </span>
             </div>
             <div id="collapsecomments" class="panel-collapse collapse">
                 <div class="row">

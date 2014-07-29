@@ -1,4 +1,5 @@
 <section ng-controller="TeacupsController" data-ng-init="find()">
     <teacup-list></teacup-list>
-    <h1 data-ng-hide="!teacups || teacups.length">No teacups yet. <br> Why don't you <a href="/#!/teacups/create">Create One</a>?</h1>    
+    <paginator class="col-xs-12 col-sm-12 col-md-12 col-lg-12"></paginator>
+    <h1 data-ng-hide="!teacups || teacups.length">No teacups yet. <br> Why don't you <a href="/#!/teacups/create">Create One</a>?</h1>
 </section>

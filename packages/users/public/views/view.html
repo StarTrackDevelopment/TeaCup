@@ -16,12 +16,13 @@
                 <div>
                     <label class="control-label">Email</label>
                     <textarea data-ng-model="user.email" id="email" cols="1" rows="1" readonly placeholder="--not defined--" class="form-control">{{email}}</textarea>
-                </div>                
+                </div>
             </div>
             <div class="customcontent">
                 <a id="speaker-teacups" href="" ng-show="!teacups" ng-click="findteacups()">Show user teacups</a>
                 <a id="speaker-teacups" href="" ng-show="teacups" ng-click="resetteacups()">Hide user teacups</a>
-                <teacup-list></teacup-list>    
+                <teacup-list></teacup-list>
+                <paginator ng-show="teacups" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"></paginator> 
             </div>
         </div>
     </form>
