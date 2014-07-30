@@ -18,10 +18,23 @@
                     <textarea data-ng-model="user.email" id="email" cols="1" rows="1" readonly placeholder="--not defined--" class="form-control">{{email}}</textarea>
                 </div>
             </div>
-            <div class="customcontent">
+            <!--<div class="customcontent">
                 <a id="speaker-teacups" href="" ng-show="!teacups" ng-click="findteacups()">Show user teacups</a>
                 <a id="speaker-teacups" href="" ng-show="teacups" ng-click="resetteacups()">Hide user teacups</a>
                 <teacup-list></teacup-list>
+            </div>-->
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 list-group-item" id="panel1">
+                <span class="panel-title accordion" ng-click="findteacups()">
+                    <a data-toggle="collapse" data-target="#collapseOne"
+                       href="" class="collapsed">
+                        <span class="glyphicon glyphicon-list customblue"></span> User teacups
+                    </a>
+                </span>
+                <div id="collapseOne" class="panel-collapse collapse">
+                    <div class="panel-body panel-heading">
+                        <teacup-list></teacup-list>
+                    </div>
+                </div>
             </div>
         </div>
     </form>

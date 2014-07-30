@@ -367,3 +367,11 @@ ul.disc { list-style-type: disc;}
 .badge-inverse:hover {
   background-color: #1a1a1a;
 }
+
+div.list-vertical-divider {
+  width: 0;
+  height: 6em;
+  float: left;
+  border: 1px inset;
+  margin-top: 0.5em;
+}
