@@ -1,6 +1,6 @@
 <div ng-controller="CustomPaginationController" ng-init="pageSize=6;currentPage=1" class="container">
     <ul class="customlist nopadding">
-        <li class="col-xs-12 col-sm-12 col-md-6 col-lg-12" dir-paginate="teacup in teacups | filter:q | itemsPerPage: pageSize" current-page="currentPage">
+        <li class="col-xs-12 col-sm-12 col-md-6 col-lg-12 nopadding" dir-paginate="teacup in teacups | filter:q | itemsPerPage: pageSize" current-page="currentPage">
             <div class="row">
                 <div class="panel-heading visible-xs col-xs-2">
                     <teacup-userpicture class="pictureinlistmedium" ng-attr-userid="{{teacup.speaker._id}}"></teacup-userpicture>

@@ -1,6 +1,33 @@
 <section ng-controller="TeacupsController" data-ng-init="findOne('true')">
-    <div class="panel-default pull-left">
-        <teacup-userpicture class="pictureinview" ng-attr-userid="teacup.speaker._id"></teacup-userpicture>
+    <div class="media">
+        <br class="nopadding" />
+        <a data-ng-href="/#!/users/{{comment.createdby._id}}" class="pull-left">
+            <teacup-userpicture class="visible-xs pictureinlistlarge" ng-attr-userid="{{teacup.speaker._id}}"></teacup-userpicture>
+            <teacup-userpicture class="visible-sm visible-md visible-lg pictureinview" ng-attr-userid="{{teacup.speaker._id}}"></teacup-userpicture>
+        </a>
+        <div class="media-body">
+            <div class="media-heading">
+                <span class="h4">{{teacup.title}}</span>
+                <teacup-rating teacup='teacup'></teacup-rating>
+                <div>Referent:<a ng-show="teacup.speaker" data-ng-href="/#!/users/{{teacup.speaker._id}}">{{teacup.speaker.name}}</a></div>
+                <div>
+                    <span ng-show="!teacup.speaker">--unkown--</span>
+                    <span>
+                        {{teacup.scheduleDate | date : 'longDate'}}
+                        {{teacup.scheduleDate | date: 'HH:mm'}}
+                    </span>
+                </div>
+                <button type="submit" class="btn btn-warning btn-xs" data-ng-model="teacup.subscribedusers" ng-hide="isUserSubscribed()" ng-click="subscribeuser()">Subscribe</button>
+                <button type="submit" class="btn btn-success btn-xs" data-ng-model="teacup.subscribedusers" ng-show="isUserSubscribed()" ng-click="unsubscribeuser()">Unsubscribe</button>
+                <hr class="noborder" />
+            </div>
+        </div>
+        <hr class="nopadding" />
+    </div>
+
+    <!--<div class="panel-default pull-left">
+        <teacup-userpicture class="visible-xs pictureinlistlarge" ng-attr-userid="{{teacup.speaker._id}}"></teacup-userpicture>
+        <teacup-userpicture class="visible-sm visible-md visible-lg pictureinview" ng-attr-userid="{{teacup.speaker._id}}"></teacup-userpicture>
     </div>
     <div class="panel-default">
         <span class="h4">{{teacup.title}}</span>
@@ -19,13 +46,13 @@
                 </span>
             </div>
         </div>
-    </div>    
-    <div class="row noborder">
+    </div>
+    <div class="row col-xs-10">
         <button type="submit" class="btn btn-warning btn-xs" data-ng-model="teacup.subscribedusers" ng-hide="isUserSubscribed()" ng-click="subscribeuser()">Subscribe</button>
         <button type="submit" class="btn btn-success btn-xs" data-ng-model="teacup.subscribedusers" ng-show="isUserSubscribed()" ng-click="unsubscribeuser()">Unsubscribe</button>
-    </div>   
+        <hr class="noborder"/>
+    </div>-->
     <div class="row">
-        
         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-9 list-group-item" id="panel1">
             <span class="panel-title accordion">
                 <a data-toggle="collapse" data-target="#collapseOne"
@@ -35,7 +62,7 @@
             </span>
             <div id="collapseOne" class="panel-collapse collapse">
                 <div class="panel-body panel-heading">
-                    <teacup-toogledescription ng-attr-text="{{teacup.description}}" ng-attr-limit="1500"></teacup-toogledescription>
+                    <teacup-toogledescription class="text-justify" ng-attr-text="{{teacup.description}}" ng-attr-limit="1500"></teacup-toogledescription>
                 </div>
             </div>
         </div>
@@ -63,14 +90,14 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="col-xs-12 col-sm-8 col-md-12 col-lg-12 list-group-item" data-ng-model="teacup.comments" id="panelcomments">
             <div class="panel-title accordion">
                 <span class="glyphicon glyphicon-comment customblue"></span>
                 <a data-ng-show="teacup.comments && teacup.comments.length"
-                    data-toggle="collapse"
-                    data-target="#collapsecomments"
-                    href="" class="collapsed">
+                   data-toggle="collapse"
+                   data-target="#collapsecomments"
+                   href="" class="collapsed">
                     <span>Comments </span>
                     <span class="badge alert-info">{{teacup.comments.length}}</span>
                 </a>

@@ -1,27 +1,32 @@
 <section ng-controller="UsersController" data-ng-init="findOne()">
     <div class="panel-default pull-left">
-        <teacup-userpicture class="pictureinview" ng-attr-userid="{{user._id}}"></teacup-userpicture>
+        <teacup-userpicture class="visible-xs pictureinlistlarge" ng-attr-userid="{{user._id}}"></teacup-userpicture>
+        <teacup-userpicture class="visible-sm visible-md visible-lg pictureinview" ng-attr-userid="{{user._id}}"></teacup-userpicture>
     </div>
     <div class="panel-default">
+        
         <span data-ng-model="user.name" class="h4">{{user.name}}</span>
         <div data-ng-model="user.username"><span class="glyphicon glyphicon-user customblue"></span> {{user.username}}</div>
         <div data-ng-model="user.email"><span class="glyphicon glyphicon-envelope customblue"></span> {{user.email}}</div>
-    </div>    
+    </div>  
+        
     <!--<div class="customcontent">
-                    <a id="speaker-teacups" href="" ng-show="!teacups" ng-click="findteacups()">Show user teacups</a>
-                    <a id="speaker-teacups" href="" ng-show="teacups" ng-click="resetteacups()">Hide user teacups</a>
-                    <teacup-list></teacup-list>
-                </div>-->
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 list-group-item noborder" id="panel1">
-        <span class="panel-title accordion" ng-click="findteacups()">
-            <a data-toggle="collapse" data-target="#collapseOne"
-                href="" class="collapsed">
-                <span class="glyphicon glyphicon-list customblue"></span> User teacups
-            </a>
-        </span>
-        <div id="collapseOne" class="panel-collapse collapse">
-            <div class="panel-body panel-heading">
-                <teacup-list></teacup-list>
+            <a id="speaker-teacups" href="" ng-show="!teacups" ng-click="findteacups()">Show user teacups</a>
+            <a id="speaker-teacups" href="" ng-show="teacups" ng-click="resetteacups()">Hide user teacups</a>
+            <teacup-list></teacup-list>
+        </div>-->
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 list-group-item" id="panel1">
+            <span class="panel-title accordion" ng-click="findteacups()">
+                <a data-toggle="collapse" data-target="#collapseOne"
+                   href="" class="collapsed">
+                    <span class="glyphicon glyphicon-list customblue"></span> User teacups
+                </a>
+            </span>
+            <div id="collapseOne" class="panel-collapse collapse">
+                <div class="panel-body panel-heading">
+                    <teacup-list class="nopadding"></teacup-list>
+                </div>
             </div>
         </div>
     </div>
