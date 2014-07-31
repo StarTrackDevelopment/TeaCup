@@ -216,6 +216,10 @@ ul.disc { list-style-type: disc;}
     color: rgb(0, 149, 255);
 }
 
+.customred {
+    color: rgb(251, 143, 143);
+}
+
 .customrating {
     border: transparent;
     outline: transparent;

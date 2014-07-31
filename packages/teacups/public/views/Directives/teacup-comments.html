@@ -1,6 +1,31 @@
 <div ng-controller="CustomPaginationController" ng-init="pageSize=6;currentPage=1">
+    <div class="panel-body noborder">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 list-group-item" id="filters">
+            <span class="panel-title accordion">
+                <a data-toggle="collapse" data-target="#collapsefilters"
+                   href="" class="collapsed">
+                    <span class="glyphicon glyphicon-filter customred"></span> Filter
+                </a>
+            </span>
+            <div id="collapsefilters" class="panel-collapse collapse">
+                <div class="form-horizontal">
+                    <label class="col-md-1 col-lg-1 control-label"><span class="glyphicon glyphicon-star customyellow"></span> Rating</label>
+                    <div class="col-md-4 col-lg-4">
+                        <select size="1" class="form-control" ng-model="filterComment.rating">
+                            <option value="">--unfiltered--</option>
+                            <option value="1">1 Star</option>
+                            <option value="2">2 Stars</option>
+                            <option value="3">3 Stars</option>
+                            <option value="4">4 Stars</option>
+                            <option value="5">5 Stars</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <ul class="customlist">
-        <li class="col-xs-12 col-sm-12 col-md-6 col-lg-4" data-ng-model="comments" dir-paginate="comment in comments | filter:filterobject | itemsPerPage: pageSize" current-page="currentPage">
+        <li class="col-xs-12 col-sm-12 col-md-6 col-lg-4" data-ng-model="comments" dir-paginate="comment in comments | filter:filterComment | itemsPerPage: pageSize" current-page="currentPage">
             <div class="media">
                 <br class="nopadding" />
                 <a data-ng-href="/#!/users/{{comment.createdby._id}}" class="pull-left">

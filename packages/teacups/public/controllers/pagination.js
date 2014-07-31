@@ -7,6 +7,9 @@ angular.module('mean.teacups')
                 speaker: '',
                 title: ''
             };
+                $scope.filterComment = {
+                    rating: ''
+            };
             $scope.currentPage = 1;
             $scope.pageSize = 6;
     }

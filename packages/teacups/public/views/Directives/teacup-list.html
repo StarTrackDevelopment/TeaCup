@@ -4,21 +4,26 @@
             <span class="panel-title accordion">
                 <a data-toggle="collapse" data-target="#collapsefilters"
                    href="" class="collapsed">
-                    <span class="glyphicon glyphicon-filter customblue"></span> Filter
+                    <span class="glyphicon glyphicon-filter customred"></span> Filter
                 </a>
             </span>
             <div id="collapsefilters" class="panel-collapse collapse">
-                <div class="form-horizontal">                   
-                    <label class="col-md-1 col-lg-1 control-label">Referent</label>
-                    <div ng-init="findusers()" class="col-md-4 col-lg-4">
-                        <select size="1" class="form-control" ng-model="filterObject.speaker._id">
-                            <option value="">--unfiltered--</option>
-                            <option ng-repeat="user in users" value="{{user._id}}">{{user.name}}</option>
-                        </select>
+                <div class="form-horizontal">
+                    <div ng-init="findusers()">
+                        <span ng-show="users" class="col-md-2 col-lg-2 control-label"><span class="glyphicon glyphicon-user customgrey"></span> Referent</span>
+                        <div ng-show="users" class="col-md-4 col-lg-4">
+                            <select size="1" class="form-control" ng-model="filterObject.speaker._id">
+                                <option value="">--unfiltered--</option>
+                                <option ng-repeat="user in users" value="{{user._id}}">{{user.name}}</option>
+                            </select>
+                        </div>
                     </div>
-                    <label for="title" class="col-md-1 col-lg-1 control-label">Title</label>
-                    <div class="col-md-6 col-lg-4">
-                        <input type="text" data-ng-model="filterObject.title" id="title" class="form-control" placeholder="Enter title to filter">
+                    <div class="panel visible-sm noborder"></div>
+                    <div>                        
+                        <span class="col-md-1 col-lg-1 control-label"><span class="glyphicon glyphicon-tag customgrey"></span> Title</span>
+                        <div class="col-md-5 col-lg-5">
+                            <input type="text" data-ng-model="filterObject.title" id="title" class="form-control" placeholder="Enter title to filter">
+                        </div>
                     </div>
                 </div>
             </div>
