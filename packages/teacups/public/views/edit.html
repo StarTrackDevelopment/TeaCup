@@ -2,38 +2,38 @@
     <form name="editTeacup" class="form-horizontal"  ng-submit="update()">        
         <!--<div class="panel">  -->          
             <div class="form-group">
-                <label mean-token="'edit-title'" for="title" class="col-md-4 control-label">Title</label>
-                <div class="col-md-8">
+                <label mean-token="'edit-title'" for="title" class="col-md-2 control-label">Title</label>
+                <div class="col-md-10">
                     <input type="text" data-ng-model="teacup.title" id="title" class="form-control" placeholder="Title" required>
                 </div>
             </div>
             <div class="form-group">
-                <label mean-token="'edit-speaker'" class="col-md-4 control-label">Referent</label>
-                <div ng-init="findusers()" class="col-md-8">
+                <label mean-token="'edit-speaker'" class="col-md-2 control-label">Referent</label>
+                <div ng-init="findusers()" class="col-md-10">
                     <select size="1" class="form-control" data-ng-model="teacup.speaker" data-ng-options="a._id as a.name for a in users" required>
                         <option value="">--unkown speaker--</option>
                     </select>
                 </div>
             </div>
             <div class="form-group">
-                <label mean-token="'edit-scheduleDate'" for="scheduleDate" class="col-md-4 control-label">Date & Time</label>
-                <div class="col-md-8">
+                <label mean-token="'edit-scheduleDate'" for="scheduleDate" class="col-md-2 control-label">Date & Time</label>
+                <div class="col-md-10">
                     <input type="datetime-local" ng-model="teacup.scheduleDate" id="scheduleDate" name="input" value="{{teacup.scheduleDate | date:'yyyy-MM-ddTHH:mm:ss'}}" class="form-control" required>
                 </div>
             </div>
             <div class="form-group">
-                <label mean-token="'edit-description'" for="description" class="col-md-4 control-label">Description</label>
-                <div class="col-md-8">
+                <label mean-token="'edit-description'" for="description" class="col-md-2 control-label">Description</label>
+                <div class="col-md-10">
                     <textarea data-ng-model="teacup.description" id="description" cols="30" rows="10" placeholder="Description" class="form-control" required></textarea>
                 </div>
             </div>
-            <div class="form-group">
-                <div class="col-md-8 pull-right">
+            <div class="col-xs-12 nopadding">
+                <div class="pull-right">
                     <button mean-token="'edit-submit'" type="submit" class="btn btn-info">Submit</button>
                 </div>
             </div>
-            <div class="form-group">
-                <div class="col-md-8 pull-right">
+            <div class="col-xs-12 nopadding">
+                <div class="pull-right">
                     <span>created on {{teacup.created | date:'longDate'}}</span> by
                     <a data-ng-href="/#!/users/{{teacup.user._id}}">{{teacup.user.name}}</a>
                 </div>
