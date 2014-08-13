@@ -1,9 +1,15 @@
 <section ng-controller="TeacupsController" data-ng-init="findOne('true')">
     <div class="media">
         <br class="nopadding" />
-        <a data-ng-href="/#!/users/{{comment.createdby._id}}" class="pull-left">
-            <teacup-userpicture class="visible-xs pictureinlistlarge" ng-attr-userid="{{teacup.speaker._id}}"></teacup-userpicture>
-            <teacup-userpicture class="visible-sm visible-md visible-lg pictureinview" ng-attr-userid="{{teacup.speaker._id}}"></teacup-userpicture>
+        <a data-ng-href="/#!/users/{{teacup.speaker._id}}" class="pull-left">
+            <span ng-hide="teacup.speaker.pictureurl.length">
+                <teacup-userpicture class="visible-xs pictureinlistlarge" ng-attr-userid="{{teacup.speaker._id}}"></teacup-userpicture>
+                <teacup-userpicture class="visible-sm visible-md visible-lg pictureinview" ng-attr-userid="{{teacup.speaker._id}}"></teacup-userpicture>
+            </span>
+            <span ng-show="teacup.speaker.pictureurl.length > 0">
+                <img class="visible-xs pictureinlistlarge" ng-src="{{teacup.speaker.pictureurl}}" alt="userpicture">
+                <img class="visible-sm visible-md visible-lg pictureinview" ng-src="{{teacup.speaker.pictureurl}}" alt="userpicture">
+            </span>
         </a>
         <div class="media-body">
             <div class="media-heading">

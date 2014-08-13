@@ -37,6 +37,5 @@ angular.module('mean.system').controller('HeaderController', ['$scope', '$rootSc
                 }
             };
         });
-
     }
 ]);

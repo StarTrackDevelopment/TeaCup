@@ -1,8 +1,14 @@
 <ul class="customlist">
     <li class="col-xs-12 col-sm-12 col-md-12 col-lg-12" data-ng-model="subscribedusers" data-ng-repeat="user in subscribedusers">
         <div class="media">
+            <br class="nopadding" />            
             <a data-ng-href="/#!/users/{{user._id}}" class="pull-left">
-                <teacup-userpicture class="pictureinlistmedium" ng-attr-userid="user._id"></teacup-userpicture>
+                <span data-ng-model="subscribedusers" ng-hide="user.pictureurl.length > 0">
+                    <teacup-userpicture ng-hide="hasPicture(user)" class="pictureinlistmedium" ng-attr-userid="{{user._id}}"></teacup-userpicture>
+                </span>
+                <span data-ng-model="subscribedusers" ng-show="user.pictureurl.length > 0">
+                    <img class="pictureinlistmedium" ng-src="{{user.pictureurl}}" alt="userpicture">
+                </span>
             </a>
             <div class="media-body">
                 <h4>

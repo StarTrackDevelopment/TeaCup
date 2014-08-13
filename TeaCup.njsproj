@@ -22,6 +22,7 @@
     <Content Include="bower.json" />
     <Content Include="package.json" />
     <Content Include="packages\teacups\package.json" />
+    <Content Include="packages\teacups\public\assets\css\chart.css" />
     <Content Include="packages\teacups\public\assets\css\teacups.css" />
     <Content Include="packages\teacups\public\assets\img\logo.png" />
     <Content Include="packages\teacups\public\views\create.html" />
@@ -48,6 +49,10 @@
     <Content Include="public\auth\assets\img\icons\navbackgroundleft.png" />
     <Content Include="public\auth\assets\img\icons\navbackgroundright.png" />
     <Content Include="public\auth\assets\img\icons\teacuplogo.png" />
+    <Content Include="public\Uploads\53a81208174973c40e0e69fd" />
+    <Content Include="public\Uploads\53ad965fd1c63f604a3e7204" />
+    <Content Include="public\Uploads\53ea48e090270d000088cecf" />
+    <Content Include="public\Uploads\pic1.jpg" />
     <Content Include="README.md" />
     <Compile Include="Gruntfile.js" />
     <Compile Include="packages\teacups\app.js" />
@@ -67,6 +72,7 @@
     <Compile Include="packages\users\server\controllers\users.js" />
     <Compile Include="packages\users\server\routes\users.js" />
     <Compile Include="public\system\controllers\users.js" />
+    <Compile Include="public\system\lib\d3\d3.v3.min.js" />
     <Compile Include="public\system\services\users.js" />
     <Compile Include="server.js" />
     <Content Include="public\humans.txt" />
@@ -407,6 +413,7 @@
     <Folder Include="public\system\lib\bootstrap\js" />
     <Folder Include="public\system\lib\bootstrap\less" />
     <Folder Include="public\system\lib\bootstrap\test-infra" />
+    <Folder Include="public\system\lib\d3\" />
     <Folder Include="public\system\lib\jquery" />
     <Folder Include="public\system\lib\jquery\dist" />
     <Folder Include="public\system\lib\jquery\src" />
@@ -433,6 +440,7 @@
     <Folder Include="public\system\routes" />
     <Folder Include="public\system\services" />
     <Folder Include="public\system\views" />
+    <Folder Include="public\Uploads\" />
     <Folder Include="server" />
     <Folder Include="server\config" />
     <Folder Include="server\config\env" />
@@ -451,7 +459,6 @@
     <Folder Include="test\karma\unit\controllers" />
     <Folder Include="test\mocha" />
     <Folder Include="test\mocha\user" />
-    <Folder Include="Uploads\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />

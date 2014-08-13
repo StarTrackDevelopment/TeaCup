@@ -34,18 +34,18 @@
             dir-paginate="teacup in teacups | filter:filterObject | itemsPerPage: pageSize"
             current-page="currentPage">
             <div class="row">
-                <div class="panel-heading visible-xs col-xs-2">
-                    <teacup-userpicture class="pictureinlistmedium" ng-attr-userid="{{teacup.speaker._id}}"></teacup-userpicture>
-                    <!--<img src="/public/auth/assets/img/icons/favicon.ico" alt="user" width="75" height="75" class="pull-left">-->
-                </div>
-                <div class="col-xs-10 col-sm-12 col-md-12 col-lg-12 detailsicon panel-heading panel-title">
+                <div class="panel-heading visible-xs col-xs-3">
+                    <teacup-userpicture ng-hide="hasPicture(teacup.speaker)" class="pictureinlistlarge" ng-attr-userid="{{teacup.speaker._id}}"></teacup-userpicture>
+                    <a data-ng-href="/#!/users/{{teacup.speaker._id}}"><img ng-show="hasPicture(teacup.speaker)" class="pictureinlistlarge" ng-src="{{teacup.speaker.pictureurl}}" alt="commentpicture"></a>
+                </div>                
+                <div class="col-xs-9 col-sm-12 col-md-12 col-lg-12 detailsicon panel-heading panel-title">
                     <a data-ng-href="/#!/teacups/{{teacup._id}}/view"><strong>{{teacup.title}}</strong></a>
                 </div>
                 <div class="visible-xs row"></div>
                 <div class="panel-default">
                     <div class="visible-sm visible-md visible-lg col-xs-2 col-sm-2 col-md-2 col-lg-1">
-                        <teacup-userpicture class="pictureinlistlarge" ng-attr-userid="{{teacup.speaker._id}}"></teacup-userpicture>
-                        <!--<img src="/public/auth/assets/img/icons/favicon.ico" alt="user" width="75" height="75" class="pull-left">-->
+                        <teacup-userpicture ng-hide="hasPicture(teacup.speaker)" class="pictureinlistlarge" ng-attr-userid="{{teacup.speaker._id}}"></teacup-userpicture>
+                        <a data-ng-href="/#!/users/{{teacup.speaker._id}}"><img ng-show="hasPicture(teacup.speaker)" class="pictureinlistlarge" ng-src="{{teacup.speaker.pictureurl}}" alt="commentpicture"></a>
                     </div>
                     <div class="col-xs-12 col-sm-10 col-md-10 col-lg-4">
                         <span class="pull-right">

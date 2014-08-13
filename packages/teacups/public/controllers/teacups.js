@@ -9,7 +9,7 @@ angular.module('mean.teacups')
             if (!teacup || !teacup.user) return false;
             return $scope.global.isAdmin || teacup.user._id === $scope.global.user._id;
         };
-
+        
         $scope.isUserSubscribed = function (teacup) {
             var i;
             if (teacup) {

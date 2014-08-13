@@ -47,6 +47,10 @@ var UserSchema = new Schema({
         type: String,
         default: 'local'
     },
+    pictureurl: {
+        type: String,
+        default: ''
+    },
     salt: String,
     facebook: {},
     twitter: {},

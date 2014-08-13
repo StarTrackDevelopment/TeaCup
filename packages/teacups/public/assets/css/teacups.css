@@ -306,22 +306,30 @@ ul.disc { list-style-type: disc;}
 
 .pictureinlist {
     font-size: 20px;
+     width: 20px;
+    height: 20px;
     margin-right: 9px;
 }
 
 .pictureinview {
     font-size: 75px;
+    width: 75px;
+    height: 75px;
     margin-right: 9px;
 }
 
 .pictureinlistlarge {
     font-size: 60px;
+    width: 60px;
+    height: 60px;
     margin-right: 9px;
 }
 
 .pictureinlistmedium
 {
     font-size: 40px;
+    width: 40px;
+    height: 40px;
 }
 
 .badge {    

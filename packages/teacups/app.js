@@ -52,6 +52,7 @@ Teacups.register(function(app, auth, database) {
     */
 
     Teacups.aggregateAsset('css', 'teacups.css');
+    Teacups.aggregateAsset('css', 'chart.css');
 
     return Teacups;
 });

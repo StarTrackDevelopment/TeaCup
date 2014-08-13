@@ -24,12 +24,34 @@
             </div>
         </div>
     </div>
+    <!--<div class="panel-body noborder">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 list-group-item" id="filters">
+            <span class="panel-title accordion">
+                <a data-toggle="collapse" data-target="#collapsechart"
+                   href="" class="collapsed">
+                    <span class="glyphicon glyphicon-stats customyellow"></span> Stats
+                </a>
+            </span>
+            <div id="collapsechart" class="panel-collapse collapse">
+                <div class="form-horizontal">
+                    <div ng-init="init();">
+                        <bars-chart chart-data="myData"></bars-chart>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>-->
     <ul class="customlist">
         <li class="col-xs-12 col-sm-12 col-md-6 col-lg-4" data-ng-model="comments" dir-paginate="comment in comments | filter:filterComment | itemsPerPage: pageSize" current-page="currentPage">
             <div class="media">
                 <br class="nopadding" />
                 <a data-ng-href="/#!/users/{{comment.createdby._id}}" class="pull-left">
-                    <teacup-userpicture class="pictureinlistmedium" ng-attr-userid="{{comment.createdby._id}}"></teacup-userpicture>
+                    <span ng-hide="hasPicture(comment.createdby)">
+                        <teacup-userpicture class="pictureinlistmedium" ng-attr-userid="{{comment.createdby._id}}"></teacup-userpicture>
+                    </span>
+                    <span ng-show="hasPicture(comment.createdby)">
+                        <img class="pictureinlistmedium" ng-src="{{comment.createdby.pictureurl}}" alt="commentpicture">
+                    </span>
                 </a>
                 <div class="media-body">
                     <h4 class="media-heading">

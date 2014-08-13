@@ -9,6 +9,11 @@ angular.module('mean.users').controller('UsersController', ['$scope', '$statePar
             return $scope.global.isAdmin || teacup.user._id === $scope.global.user._id;
         };
 
+        $scope.hasPicture = function (user) {
+            if (!user) return false;
+            return user.pictureurl.length > 0;
+        };
+
         $scope.findOne = function() {
             Users.get({
                 userId: $stateParams.userId

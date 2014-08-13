@@ -7,10 +7,14 @@ angular.module('mean.teacups')
                 speaker: '',
                 title: ''
             };
-                $scope.filterComment = {
-                    rating: ''
+            $scope.filterComment = {
+                rating: ''
             };
             $scope.currentPage = 1;
             $scope.pageSize = 6;
+            $scope.hasPicture = function (user) {
+                if (!user) return false;
+                return user.pictureurl.length > 0;
+            };
     }
     ]);

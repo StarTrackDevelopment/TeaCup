@@ -1,10 +1,15 @@
 <section ng-controller="UsersController" data-ng-init="findOne()">
     <div class="panel-default pull-left">
-        <teacup-userpicture class="visible-xs pictureinlistlarge" ng-attr-userid="{{user._id}}"></teacup-userpicture>
-        <teacup-userpicture class="visible-sm visible-md visible-lg pictureinview" ng-attr-userid="{{user._id}}"></teacup-userpicture>
+        <span ng-hide="hasPicture(user)">
+            <teacup-userpicture class="visible-xs pictureinlistlarge" ng-attr-userid="{{user._id}}"></teacup-userpicture>
+            <teacup-userpicture class="visible-sm visible-md visible-lg pictureinview" ng-attr-userid="{{user._id}}"></teacup-userpicture>
+        </span>
+        <span ng-show="hasPicture(user)">
+            <a data-ng-href="/#!/users/{{userid}}"><img class="visible-xs pictureinlistlarge" ng-src="{{user.pictureurl}}" alt="picture"></a>
+            <a data-ng-href="/#!/users/{{userid}}"><img class="visible-sm visible-md visible-lg pictureinview" ng-src="{{user.pictureurl}}" alt="picture"></a>
+        </span>
     </div>
-    <div class="panel-default">
-        
+    <div class="panel-default">        
         <span data-ng-model="user.name" class="h4">{{user.name}}</span>
         <div data-ng-model="user.username"><span class="glyphicon glyphicon-user customblue"></span> {{user.username}}</div>
         <div data-ng-model="user.email"><span class="glyphicon glyphicon-envelope customblue"></span> {{user.email}}</div>
