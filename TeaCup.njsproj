@@ -61,6 +61,7 @@
     <Compile Include="packages\teacups\public\controllers\teacups.js" />
     <Compile Include="packages\teacups\public\routes\teacups.js" />
     <Compile Include="packages\teacups\public\services\dirPagination.js" />
+    <Compile Include="packages\teacups\public\services\barchart.js" />
     <Compile Include="packages\teacups\public\services\teacups.js" />
     <Compile Include="packages\teacups\server\controllers\teacups.js" />
     <Compile Include="packages\teacups\server\models\teacup.js" />

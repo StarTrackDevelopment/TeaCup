@@ -31,33 +31,6 @@
         <hr class="nopadding" />
     </div>
 
-    <!--<div class="panel-default pull-left">
-        <teacup-userpicture class="visible-xs pictureinlistlarge" ng-attr-userid="{{teacup.speaker._id}}"></teacup-userpicture>
-        <teacup-userpicture class="visible-sm visible-md visible-lg pictureinview" ng-attr-userid="{{teacup.speaker._id}}"></teacup-userpicture>
-    </div>
-    <div class="panel-default">
-        <span class="h4">{{teacup.title}}</span>
-        <div>
-            <teacup-rating teacup='teacup'></teacup-rating>
-        </div>
-    </div>
-    <div class="panel-default">
-        <div>
-            <div>Referent:<a ng-show="teacup.speaker" data-ng-href="/#!/users/{{teacup.speaker._id}}">{{teacup.speaker.name}}</a></div>
-            <div>
-                <span ng-show="!teacup.speaker">--unkown--</span>
-                <span>
-                    {{teacup.scheduleDate | date : 'longDate'}}
-                    {{teacup.scheduleDate | date: 'HH:mm'}}
-                </span>
-            </div>
-        </div>
-    </div>
-    <div class="row col-xs-10">
-        <button type="submit" class="btn btn-warning btn-xs" data-ng-model="teacup.subscribedusers" ng-hide="isUserSubscribed()" ng-click="subscribeuser()">Subscribe</button>
-        <button type="submit" class="btn btn-success btn-xs" data-ng-model="teacup.subscribedusers" ng-show="isUserSubscribed()" ng-click="unsubscribeuser()">Unsubscribe</button>
-        <hr class="noborder"/>
-    </div>-->
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-9 list-group-item" id="panel1">
             <span class="panel-title accordion">
@@ -97,7 +70,7 @@
             </div>
         </div>
 
-        <div class="col-xs-12 col-sm-8 col-md-12 col-lg-12 list-group-item" data-ng-model="teacup.comments" id="panelcomments">
+        <div class="col-xs-12 col-sm-8 col-md-12 col-lg-9 list-group-item" data-ng-model="teacup.comments" id="panelcomments">
             <div class="panel-title accordion">
                 <span class="glyphicon glyphicon-comment customblue"></span>
                 <a data-ng-show="teacup.comments && teacup.comments.length"
@@ -118,7 +91,7 @@
             </div>
         </div>
 
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 list-group-item" ng-show="isUserSubscribed()" data-ng-model="teacup.comments" id="paneladdcomment">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3 list-group-item" ng-show="isUserSubscribed()" data-ng-model="teacup.comments" id="paneladdcomment">
             <div class="panel-title accordion">
                 <a ng-show="isUserSubscribed()"
                    data-toggle="collapse"

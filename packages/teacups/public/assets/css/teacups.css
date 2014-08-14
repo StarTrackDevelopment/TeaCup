@@ -205,7 +205,8 @@ ul.square { list-style-type: square;}
 ul.disc { list-style-type: disc;}
 
 .customyellow {
-    color: rgb(184, 184, 31);
+    /*color: rgb(184, 184, 31);*/
+    color: #fcc200;
 }
 
 .customgrey {

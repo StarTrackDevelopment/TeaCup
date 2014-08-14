@@ -1,69 +1,90 @@
-<div ng-controller="CustomPaginationController" ng-init="pageSize=6;currentPage=1">
-    <div class="panel-body noborder">
+ <div ng-controller="CustomPaginationController" ng-init="pageSize=6;currentPage=1">
+    <div class="visible-xs panel-body noborder">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 list-group-item" id="filters">
             <span class="panel-title accordion">
                 <a data-toggle="collapse" data-target="#collapsefilters"
                    href="" class="collapsed">
-                    <span class="glyphicon glyphicon-filter customred"></span> Filter
+                    <span class="glyphicon glyphicon-filter" ng-class="{customred:filterComment.rating !== ''}"></span> Filter
                 </a>
             </span>
             <div id="collapsefilters" class="panel-collapse collapse">
                 <div class="form-horizontal">
-                    <label class="col-md-1 col-lg-1 control-label"><span class="glyphicon glyphicon-star customyellow"></span> Rating</label>
+                    <label class="col-md-2 col-lg-1 control-label"><span class="glyphicon glyphicon-star customyellow"></span> Rating</label>
                     <div class="col-md-4 col-lg-4">
-                        <select size="1" class="form-control" ng-model="filterComment.rating">
+                        <select size="1" class="form-control" data-ng-model="filterComment.rating">
                             <option value="">--unfiltered--</option>
-                            <option value="1">1 Star</option>
-                            <option value="2">2 Stars</option>
-                            <option value="3">3 Stars</option>
-                            <option value="4">4 Stars</option>
-                            <option value="5">5 Stars</option>
+                            <option value=1>1 Star</option>
+                            <option value=2>2 Stars</option>
+                            <option value=3>3 Stars</option>
+                            <option value=4>4 Stars</option>
+                            <option value=5>5 Stars</option>
                         </select>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="col-xs-12">
+        <div ng-show="comments.length"  class="visible-sm visible-md visible-lg col-xs-2 col-sm-2 col-md-1 col-lg-2">
+            <button class="col-xs-12 btn-link noborder nopadding text-right" ng-click="filterComment.rating=''">--All--</button>
+            <button class="col-xs-12 btn-link noborder nopadding text-right" ng-click="filterComment.rating=1">1 Star  </button>
+            <button class="col-xs-12 btn-link noborder nopadding text-right" ng-click="filterComment.rating=2">2 Stars </button>
+            <button class="col-xs-12 btn-link noborder nopadding text-right" ng-click="filterComment.rating=3">3 Stars </button>
+            <button class="col-xs-12 btn-link noborder nopadding text-right" ng-click="filterComment.rating=4">4 Stars </button>
+            <button class="col-xs-12 btn-link noborder nopadding text-right" ng-click="filterComment.rating=5">5 Stars </button>
+        </div>
+        <div ng-show="comments.length" data-ng-model="comments" class="visible-sm visible-md visible-lg col-xs-10 col-sm-10 col-md-6 col-lg-5 pulltoleft">
+            <div data-ng-model="comments" comment-chart ng-attr-acomments="{{comments}}" class="chart col-xs-12"></div>
+        </div>
+    </div>
     <!--<div class="panel-body noborder">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 list-group-item" id="filters">
-            <span class="panel-title accordion">
-                <a data-toggle="collapse" data-target="#collapsechart"
-                   href="" class="collapsed">
-                    <span class="glyphicon glyphicon-stats customyellow"></span> Stats
-                </a>
-            </span>
-            <div id="collapsechart" class="panel-collapse collapse">
-                <div class="form-horizontal">
-                    <div ng-init="init();">
-                        <bars-chart chart-data="myData"></bars-chart>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 list-group-item" id="filters">
+                <span class="panel-title accordion">
+                    <a data-toggle="collapse" data-target="#collapsechart"
+                       href="" class="collapsed">
+                        <span class="glyphicon glyphicon-stats customyellow"></span> Stats
+                    </a>
+                </span>
+                <div id="collapsechart" class="panel-collapse collapse">
+                    <div class="form-horizontal">
+                        <div ng-init="initdata()">
+                            <bars-chart chart-data="myData"></bars-chart>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>-->
-    <ul class="customlist">
-        <li class="col-xs-12 col-sm-12 col-md-6 col-lg-4" data-ng-model="comments" dir-paginate="comment in comments | filter:filterComment | itemsPerPage: pageSize" current-page="currentPage">
-            <div class="media">
-                <br class="nopadding" />
-                <a data-ng-href="/#!/users/{{comment.createdby._id}}" class="pull-left">
-                    <span ng-hide="hasPicture(comment.createdby)">
-                        <teacup-userpicture class="pictureinlistmedium" ng-attr-userid="{{comment.createdby._id}}"></teacup-userpicture>
-                    </span>
-                    <span ng-show="hasPicture(comment.createdby)">
-                        <img class="pictureinlistmedium" ng-src="{{comment.createdby.pictureurl}}" alt="commentpicture">
-                    </span>
-                </a>
-                <div class="media-body">
-                    <h4 class="media-heading">
-                        <rating ng-controller="CustomRatingController" ng-init="isReadOnly=true" ng-model="comment.rating" max="getMaxRate(comment.rating)" readonly="isReadOnly" on-hover="hoveringOver(value)" state-on="'glyphicon-star customyellow'" state-off="'glyphicon-star-empty customyellow'"></rating>
-                        <a data-ng-href="/#!/users/{{comment.createdby._id}}">{{comment.createdby.name}}</a>
-                        <small><i>{{comment.createdwhen | date: 'longDate'}} {{comment.createdwhen | date: 'HH:mm'}}</i></small>
-                    </h4>
-                    <p><teacup-toogledescription ng-attr-text="{{comment.comment}}" ng-attr-limit="100"></teacup-toogledescription></p>
-                </div>
-                <hr class="nopadding" />
-            </div>
-        </li>
-    </ul>
+        </div>-->
+
+     <div data-ng-model="filterComment.rating" class="col-xs-12">
+         <hr class="nopadding visible-sm visible-md visible-lg" />
+         <span class="h5 glyphicon glyphicon-filter" ng-class="{customred:filterComment.rating !== ''}"></span>                   
+         <span ng-show="filterComment.rating === ''" class="h4 badge alert-success">-none- </span>
+         <span ng-show="filterComment.rating !== ''" class="h4 badge alert-danger">{{filterComment.rating}} Star(s)</span>
+         <span class="h4 badge alert-info">{{(comments | filter:filterComment).length}}</span>                  
+     </div>
+     <ul class="customlist">         
+         <li class="col-xs-12 col-sm-12 col-md-6 col-lg-6" data-ng-model="comments" dir-paginate="comment in comments | filter:filterComment | itemsPerPage: pageSize" current-page="currentPage">
+             <div class="media">
+                 <br class="nopadding" />
+                 <a data-ng-href="/#!/users/{{comment.createdby._id}}" class="pull-left">
+                     <span ng-hide="hasPicture(comment.createdby)">
+                         <teacup-userpicture class="pictureinlistmedium" ng-attr-userid="{{comment.createdby._id}}"></teacup-userpicture>
+                     </span>
+                     <span ng-show="hasPicture(comment.createdby)">
+                         <img class="pictureinlistmedium" ng-src="{{comment.createdby.pictureurl}}" alt="commentpicture">
+                     </span>
+                 </a>
+                 <div class="media-body">
+                     <h4 class="media-heading">
+                         <rating ng-controller="CustomRatingController" ng-init="isReadOnly=true" ng-model="comment.rating" max="getMaxRate(comment.rating)" readonly="isReadOnly" on-hover="hoveringOver(value)" state-on="'glyphicon-star customyellow'" state-off="'glyphicon-star-empty customyellow'"></rating>
+                         <a data-ng-href="/#!/users/{{comment.createdby._id}}">{{comment.createdby.name}}</a>
+                         <small><i>{{comment.createdwhen | date: 'longDate'}} {{comment.createdwhen | date: 'HH:mm'}}</i></small>
+                     </h4>
+                     <p><teacup-toogledescription ng-attr-text="{{comment.comment}}" ng-attr-limit="100"></teacup-toogledescription></p>
+                 </div>
+                 <hr class="nopadding" />
+             </div>
+         </li>
+     </ul>
     <dir-pagination-controls class="col-xs-12 col-sm-12 col-md-12 col-lg-12" data-ng-model="comments" boundary-links="true"></dir-pagination-controls>
 </div>

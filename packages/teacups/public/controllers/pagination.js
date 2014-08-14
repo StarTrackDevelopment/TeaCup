@@ -15,6 +15,6 @@ angular.module('mean.teacups')
             $scope.hasPicture = function (user) {
                 if (!user) return false;
                 return user.pictureurl.length > 0;
-            };
+            };            
     }
     ]);

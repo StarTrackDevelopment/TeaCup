@@ -30,7 +30,7 @@
         </div>
     </div>    
     <ul ng-model="filterObject" class="customlist nopadding">
-        <li class="col-xs-12 col-sm-12 col-md-6 col-lg-12 nopadding"
+        <li class="col-xs-12 col-sm-12 col-md-12 col-lg-12 nopadding"
             dir-paginate="teacup in teacups | filter:filterObject | itemsPerPage: pageSize"
             current-page="currentPage">
             <div class="row">
@@ -43,11 +43,11 @@
                 </div>
                 <div class="visible-xs row"></div>
                 <div class="panel-default">
-                    <div class="visible-sm visible-md visible-lg col-xs-2 col-sm-2 col-md-2 col-lg-1">
-                        <teacup-userpicture ng-hide="hasPicture(teacup.speaker)" class="pictureinlistlarge" ng-attr-userid="{{teacup.speaker._id}}"></teacup-userpicture>
-                        <a data-ng-href="/#!/users/{{teacup.speaker._id}}"><img ng-show="hasPicture(teacup.speaker)" class="pictureinlistlarge" ng-src="{{teacup.speaker.pictureurl}}" alt="commentpicture"></a>
+                    <div class="visible-sm visible-md visible-lg col-xs-2 col-sm-2 col-md-1 col-lg-1">
+                        <teacup-userpicture ng-hide="hasPicture(teacup.speaker)" class="pictureinview" ng-attr-userid="{{teacup.speaker._id}}"></teacup-userpicture>
+                        <a data-ng-href="/#!/users/{{teacup.speaker._id}}"><img ng-show="hasPicture(teacup.speaker)" class="pictureinview" ng-src="{{teacup.speaker.pictureurl}}" alt="commentpicture"></a>
                     </div>
-                    <div class="col-xs-12 col-sm-10 col-md-10 col-lg-4">
+                    <div class="col-xs-12 col-sm-10 col-md-4 col-lg-4">
                         <span class="pull-right">
                             <button type="submit" class="btn btn-warning btn-xs" data-ng-model="teacup.subscribedusers" ng-hide="isUserSubscribed(teacup)" ng-click="subscribeuser(teacup)">Subscribe</button>
                             <button type="submit" class="btn btn-success btn-xs" data-ng-model="teacup.subscribedusers" ng-show="isUserSubscribed(teacup)" ng-click="unsubscribeuser(teacup)">Unsubscribe</button>
@@ -69,10 +69,10 @@
                             <span class="glyphicon glyphicon-comment"></span> No comments
                         </div>
                     </div>
-                    <div class="visible-lg">
+                    <div class="visible-md visible-lg">
                         <div class="list-vertical-divider"></div>
                     </div>
-                    <div class="visible-lg col-lg-6">
+                    <div class="visible-md visible-lg col-md-6 col-lg-6">
                         <teacup-toogledescription ng-attr-text="{{teacup.description}}" ng-attr-limit="300"></teacup-toogledescription>
                     </div>
                 </div>
