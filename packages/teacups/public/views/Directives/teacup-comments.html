@@ -24,19 +24,25 @@
             </div>
         </div>
     </div>
-    <div class="col-xs-12">
-        <div ng-show="comments.length"  class="visible-sm visible-md visible-lg col-xs-2 col-sm-2 col-md-1 col-lg-2">
-            <button class="col-xs-12 btn-link noborder nopadding text-right" ng-click="filterComment.rating=''">--All--</button>
-            <button class="col-xs-12 btn-link noborder nopadding text-right" ng-click="filterComment.rating=1">1 Star  </button>
-            <button class="col-xs-12 btn-link noborder nopadding text-right" ng-click="filterComment.rating=2">2 Stars </button>
-            <button class="col-xs-12 btn-link noborder nopadding text-right" ng-click="filterComment.rating=3">3 Stars </button>
-            <button class="col-xs-12 btn-link noborder nopadding text-right" ng-click="filterComment.rating=4">4 Stars </button>
-            <button class="col-xs-12 btn-link noborder nopadding text-right" ng-click="filterComment.rating=5">5 Stars </button>
-        </div>
-        <div ng-show="comments.length" data-ng-model="comments" class="visible-sm visible-md visible-lg col-xs-10 col-sm-10 col-md-6 col-lg-5 pulltoleft">
-            <div data-ng-model="comments" comment-chart ng-attr-acomments="{{comments}}" class="chart col-xs-12"></div>
-        </div>
-    </div>
+     <div ng-show="comments.length" class="col-xs-12">
+         <br class="visible-sm visible-md visible-lg nopadding" />
+         <div class="visible-sm visible-md visible-lg col-xs-2 col-sm-3 col-md-2 col-lg-2">
+             <button class="col-xs-12 btn-link noborder nopadding text-right" ng-click="filterComment.rating=''">--All--</button>
+         </div>
+         <div class="col-xs-12">
+             <div class="visible-sm visible-md visible-lg col-xs-2 col-sm-3 col-md-2 col-lg-2">
+                 <button class="col-xs-12 btn-link noborder nopadding text-right" ng-click="filterComment.rating=5">5 Stars </button>
+                 <button class="col-xs-12 btn-link noborder nopadding text-right" ng-click="filterComment.rating=4">4 Stars </button>
+                 <button class="col-xs-12 btn-link noborder nopadding text-right" ng-click="filterComment.rating=3">3 Stars </button>
+                 <button class="col-xs-12 btn-link noborder nopadding text-right" ng-click="filterComment.rating=2">2 Stars </button>
+                 <button class="col-xs-12 btn-link noborder nopadding text-right" ng-click="filterComment.rating=1">1 Star  </button>                 
+             </div>
+             <div data-ng-model="comments" class="visible-sm visible-md visible-lg col-xs-10 col-sm-9 col-md-5 col-lg-5 pulltoleft">
+                 <!--<div data-ng-model="comments.length" comment-chart ng-attr-comments="{{comments}}" class="chart col-xs-12"></div>-->
+                 <comment-chart data-ng-model="comments.length" ng-attr-comments="{{comments}}" class="chart"></comment-chart>
+             </div>
+         </div>
+     </div>
     <!--<div class="panel-body noborder">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 list-group-item" id="filters">
                 <span class="panel-title accordion">
@@ -55,12 +61,12 @@
             </div>
         </div>-->
 
-     <div data-ng-model="filterComment.rating" class="col-xs-12">
-         <hr class="nopadding visible-sm visible-md visible-lg" />
+     <div data-ng-model="filterComment.rating" class="col-xs-12">         
          <span class="h5 glyphicon glyphicon-filter" ng-class="{customred:filterComment.rating !== ''}"></span>                   
          <span ng-show="filterComment.rating === ''" class="h4 badge alert-success">-none- </span>
          <span ng-show="filterComment.rating !== ''" class="h4 badge alert-danger">{{filterComment.rating}} Star(s)</span>
-         <span class="h4 badge alert-info">{{(comments | filter:filterComment).length}}</span>                  
+         <span class="h4 badge alert-info">{{(comments | filter:filterComment).length}}</span>
+         <hr class="nopadding visible-sm visible-md visible-lg" />
      </div>
      <ul class="customlist">         
          <li class="col-xs-12 col-sm-12 col-md-6 col-lg-6" data-ng-model="comments" dir-paginate="comment in comments | filter:filterComment | itemsPerPage: pageSize" current-page="currentPage">

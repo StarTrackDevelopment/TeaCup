@@ -55,8 +55,8 @@
                    href="" class="collapsed">
 
                     <span class="panel-title"> Subscribed users </span>
-                    <span class="badge alert-info">{{teacup.subscribedusers.length}}</span>
-                </a>
+                        <span class="badge alert-info">{{teacup.subscribedusers.length}}</span>
+        </a>
             </span>
             <span data-ng-hide="!teacup.subscribedusers || teacup.subscribedusers.length" class="panel-title">
                 No subscribed users
@@ -91,15 +91,18 @@
             </div>
         </div>
 
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3 list-group-item" ng-show="isUserSubscribed()" data-ng-model="teacup.comments" id="paneladdcomment">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3 list-group-item" data-ng-model="teacup.comments" id="paneladdcomment">
             <div class="panel-title accordion">
+                <span class="glyphicon glyphicon-pencil customblue"></span>
                 <a ng-show="isUserSubscribed()"
                    data-toggle="collapse"
                    data-target="#collapseaddcomment"
-                   href="" class="collapsed">
-                    <span class="glyphicon glyphicon-pencil customblue"></span>
+                   href="" class="collapsed">                    
                     <span>Add comment</span>
                 </a>
+                <span data-ng-hide="isUserSubscribed()">
+                    <span>Subscribe first to comment</span>
+                </span>
             </div>
             <div id="collapseaddcomment" class="panel-collapse collapse">
                 <div class="panel">

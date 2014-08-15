@@ -18,11 +18,11 @@
   /*padding: 1px;*/
   margin: 6px;
   color: black;
-  box-shadow: 2px 2px 2px #666;
+  box-shadow: 2px 2px 2px #666;  
 }
 
 .pulltoleft {
-    margin-left: -2.5em;
+    margin-left: -2.2em;
 }
 
 .grid .tick {
@@ -32,3 +32,18 @@
 .grid path {
       stroke-width: 0;
 }
+
+/*
+g.axis line, g.axis path {
+    fill:none;
+    stroke:royalblue;
+    shape-rendering:crispEdges;
+}
+g.axis text{
+    fill:royalblue;
+    font-family:sans-serif;
+}
+g.axis path {
+    stroke-width:2;
+    stroke:seagreen;
+}*/
