@@ -7,7 +7,8 @@
             <span class="icon-bar"></span>
         </button>
         <!--<a class="navbar-brand" ui-sref="home" mean-token="'site-title'">Home</a>-->
-        <a class="navbar-brand glyphicon glyphicon-home" ui-sref="home" mean-token="'site-title'"></a>
+        <a ng-hide="global.authenticated" class="navbar-brand glyphicon glyphicon-home" ui-sref="home" mean-token="'site-title'"></a>
+        <a ng-show="global.authenticated" class="navbar-brand glyphicon glyphicon-home" ui-sref="homeuser" mean-token="'site-title'"></a>
         <div class="visible-xs navbar-header pull-right">
             <span data-ng-hide="global.authenticated">
                 <a class="navbar-brand" ui-sref='auth.register'>Register</a>

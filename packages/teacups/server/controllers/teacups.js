@@ -112,7 +112,10 @@ exports.all = function(req, res) {
     if (req.query.speaker) {
         query.where('speaker').equals(req.query.speaker);
     }
-    query.sort('-created');
+    if (req.query.nextteacups) {
+        query.where('scheduleDate').gt(Date.now());
+    }
+    query.sort({scheduleDate:'asc'});
     query.populate('user speaker')
         .populate('subscribedusers')
         .populate('comments.createdby');

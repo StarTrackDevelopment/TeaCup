@@ -36,8 +36,8 @@ angular.module('mean.users').config(['$stateProvider',
                 url: '/users/:userId',
                 templateUrl: 'users/views/view.html',
                 resolve: {
-                    loggedin: checkLoggedin
-                }
+                    loggedin: function() { return true; } //checkLoggedin
+    }
             });
     }
 ]);

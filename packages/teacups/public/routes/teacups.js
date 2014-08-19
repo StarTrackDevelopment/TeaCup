@@ -29,7 +29,7 @@ angular.module('mean.teacups').config(['$stateProvider',
                 url: '/teacups',
                 templateUrl: 'teacups/views/list.html',
                 resolve: {
-                    loggedin: checkLoggedin
+                    loggedin: function () { return true; }//checkLoggedin
                 }
             })
             .state('create teacup', {
@@ -50,7 +50,7 @@ angular.module('mean.teacups').config(['$stateProvider',
                 url: '/teacups/:teacupId/view',
                 templateUrl: 'teacups/views/view.html',
                 resolve: {
-                    loggedin: checkLoggedin
+                    loggedin: function() { return true; }//checkLoggedin
                 }
             });
     }

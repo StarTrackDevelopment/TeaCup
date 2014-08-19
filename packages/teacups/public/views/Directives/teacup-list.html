@@ -48,7 +48,7 @@
                         <a data-ng-href="/#!/users/{{teacup.speaker._id}}"><img ng-show="hasPicture(teacup.speaker)" class="pictureinview" ng-src="{{teacup.speaker.pictureurl}}" alt="commentpicture"></a>
                     </div>
                     <div class="col-xs-12 col-sm-10 col-md-4 col-lg-4">
-                        <span class="pull-right">
+                        <span ng-show="global.authenticated" class="pull-right">
                             <button type="submit" class="btn btn-warning btn-xs" data-ng-model="teacup.subscribedusers" ng-hide="isUserSubscribed(teacup)" ng-click="subscribeuser(teacup)">Subscribe</button>
                             <button type="submit" class="btn btn-success btn-xs" data-ng-model="teacup.subscribedusers" ng-show="isUserSubscribed(teacup)" ng-click="unsubscribeuser(teacup)">Unsubscribe</button>
                         </span>

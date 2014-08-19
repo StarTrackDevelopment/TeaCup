@@ -49,6 +49,7 @@
     <Content Include="public\auth\assets\img\icons\navbackgroundleft.png" />
     <Content Include="public\auth\assets\img\icons\navbackgroundright.png" />
     <Content Include="public\auth\assets\img\icons\teacuplogo.png" />
+    <Content Include="public\system\views\userhome.html" />
     <Content Include="public\Uploads\53a81208174973c40e0e69fd" />
     <Content Include="public\Uploads\53ad965fd1c63f604a3e7204" />
     <Content Include="public\Uploads\53ea48e090270d000088cecf" />

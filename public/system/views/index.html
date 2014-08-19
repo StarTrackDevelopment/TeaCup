@@ -1,3 +1,60 @@
-<section data-ng-controller="IndexController">
-    <h1 mean-token="'home-default'">This is the home view</h1>
+<section data-ng-controller="IndexController" ng-init="findnextteacups()">
+    <div ng-model="global.user" ng-hide="global.authenticated">
+        <div class="col-xs-12 panel nopadding">
+            <div class="visible-sm visible-md visible-lg col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                <img class="pictureinview" ng-src="/public/Uploads/teacup.png" alt="teacuppicture">
+            </div>
+            <div class="visible-xs col-xs-2">
+                <img class="pictureinlistmedium" ng-src="/public/Uploads/teacup.png" alt="teacuppicture">
+            </div>
+            <div class="visible-sm visible-md visible-lg h2 col-xs-10 col-sm-10 col-md-10 col-lg-10">Teacups</div>
+            <div class="visible-xs h4 col-xs-10 col-sm-10 col-md-10 col-lg-10">Teacups</div>
+        </div>
+        <div class="h3 visible-sm visible-md visible-lg col-xs-12 text-justify">
+            <div>
+                Join our TeaCup community and learn new technologies,
+                share your knowledge with the colleagues and meet the best specialists.
+            </div>
+        </div>
+        <div class="visible-xs text-justify col-xs-12">
+            Join our TeaCup community and learn new technologies,
+            share your knowledge with the colleagues and meet the best specialists.
+        </div>
+        <div class="col-xs-12 panel">
+            <div class="visible-sm visible-md visible-lg">
+                <div class="h4">If you do not have a login <a ui-sref='auth.register'>Register</a> first please</div>
+                <div class="h4">Do you already have a login? <a ui-sref='auth.login'>Login</a></div>
+                <div class="alert-warning">
+                    Only logged in users can
+                    <div class="badge alert-danger">subscribe</div>
+                    or
+                    <div class="badge alert-danger">create</div>
+                    teacup meetings
+                </div>
+                <!--<div class="badge alert-danger">Only logged in users can subscribe or create teacup meetings</div>-->
+            </div>
+            <div class="visible-xs alert-warning">
+                Only logged in users can 
+                <div class="badge alert-danger">subscribe</div>
+                or
+                <div class="badge alert-danger">create</div>
+                teacup meetings
+            </div>
+        </div>
+    </div>
+    <div ng-show="!global.authenticated">
+        <div class="col-xs-12 panel nopadding">
+            <div class="visible-sm visible-md visible-lg col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                <img class="pictureinview" ng-src="/public/Uploads/meeting.jpg" alt="meetingpicture">
+            </div>
+            <div class="visible-xs col-xs-2">
+                <img class="pictureinlistmedium" ng-src="/public/Uploads/meeting.jpg" alt="meetingpicture">
+            </div>
+            <div class="visible-sm visible-md visible-lg h2 col-xs-10 col-sm-10 col-md-10 col-lg-10">Next meetings <span class="badge alert-info">{{teacups.length}}</span></div>
+            <div class="visible-xs h4 col-xs-10 col-sm-10 col-md-10 col-lg-10">Next meetings <span class="badge alert-info">{{teacups.length}}</span></div>
+        </div>
+        <teacup-list></teacup-list>
+        <paginator class="col-xs-12 col-sm-12 col-md-12 col-lg-12"></paginator>
+        <h2 data-ng-hide="!teacups || teacups.length">No teacups found</h2>
+    </div>
 </section>

@@ -22,9 +22,11 @@
                         {{teacup.scheduleDate | date : 'longDate'}}
                         {{teacup.scheduleDate | date: 'HH:mm'}}
                     </span>
-                </div>
-                <button type="submit" class="btn btn-warning btn-xs" data-ng-model="teacup.subscribedusers" ng-hide="isUserSubscribed()" ng-click="subscribeuser()">Subscribe</button>
-                <button type="submit" class="btn btn-success btn-xs" data-ng-model="teacup.subscribedusers" ng-show="isUserSubscribed()" ng-click="unsubscribeuser()">Unsubscribe</button>
+                </div>     
+                <span ng-show="global.authenticated">
+                    <button type="submit" class="btn btn-warning btn-xs" data-ng-model="teacup.subscribedusers" ng-show="!isUserSubscribed()" ng-click="subscribeuser()">Subscribe</button>
+                    <button type="submit" class="btn btn-success btn-xs" data-ng-model="teacup.subscribedusers" ng-show="isUserSubscribed()" ng-click="unsubscribeuser()">Unsubscribe</button>                    
+                </span>
                 <hr class="noborder" />
             </div>
         </div>

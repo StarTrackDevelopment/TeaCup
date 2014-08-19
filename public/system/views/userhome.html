@@ -1,0 +1,38 @@
+﻿<section data-ng-controller="IndexController" ng-init="findnextteacups()">    
+    <div class="media">
+        <br class="nopadding" />
+        <a data-ng-href="/#!/users/{{global.user._id}}" class="pull-left">
+            <span ng-hide="global.user.pictureurl.length">
+                <teacup-userpicture class="visible-xs pictureinlistlarge" ng-attr-userid="{{global.user._id}}"></teacup-userpicture>
+                <teacup-userpicture class="visible-sm visible-md visible-lg pictureinview" ng-attr-userid="{{global.user._id}}"></teacup-userpicture>
+            </span>
+            <span ng-show="global.user.pictureurl.length > 0">
+                <img class="visible-xs pictureinlistlarge" ng-src="{{global.user.pictureurl}}" alt="userpicture">
+                <img class="visible-sm visible-md visible-lg pictureinview" ng-src="{{global.user.pictureurl}}" alt="userpicture">
+            </span>
+        </a>
+        <div class="media-body">
+            <div class="media-heading">
+                <span class="visible-sm visible-md visible-lg h2">Welcome {{global.user.name}}!</span>
+                <span class="visible-xs visible-lg h4">Welcome {{global.user.name}}!</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12">
+        <hr />
+    </div>
+
+    <div class="col-xs-12 panel nopadding">
+        <div class="visible-sm visible-md visible-lg col-xs-2 col-sm-2 col-md-2 col-lg-2">
+            <img class="pictureinview" ng-src="/public/Uploads/meeting.jpg" alt="meetingpicture">
+        </div>
+        <div class="visible-xs col-xs-2">
+            <img class="pictureinlistmedium" ng-src="/public/Uploads/meeting.jpg" alt="meetingpicture">
+        </div>
+        <div class="visible-sm visible-md visible-lg h2 col-xs-10 col-sm-10 col-md-10 col-lg-10">Next meetings <span class="badge alert-info">{{teacups.length}}</span></div>
+        <div class="visible-xs h4 col-xs-10 col-sm-10 col-md-10 col-lg-10">Next meetings <span class="badge alert-info">{{teacups.length}}</span></div>
+    </div>
+    <teacup-list></teacup-list>
+    <paginator class="col-xs-12 col-sm-12 col-md-12 col-lg-12"></paginator>
+    <h2 data-ng-hide="!teacups || teacups.length">No teacups found</h2>
+</section>
