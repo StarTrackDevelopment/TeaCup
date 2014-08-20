@@ -1,4 +1,4 @@
-﻿<section data-ng-controller="IndexController" ng-init="findnextteacups()">    
+﻿<section data-ng-controller="IndexController" ng-init="init(true)">    
     <div class="media">
         <br class="nopadding" />
         <a data-ng-href="/#!/users/{{global.user._id}}" class="pull-left">
@@ -13,25 +13,135 @@
         </a>
         <div class="media-body">
             <div class="media-heading">
-                <span class="visible-sm visible-md visible-lg h2">Welcome {{global.user.name}}!</span>
-                <span class="visible-xs visible-lg h4">Welcome {{global.user.name}}!</span>
+                <span class="visible-sm visible-md visible-lg h3">Welcome {{global.user.name}}!</span>
+                <span class="visible-xs h4">Welcome {{global.user.name}}!</span>
             </div>
         </div>
-    </div>
-    <div class="col-xs-12">
-        <hr />
-    </div>
+    </div>    
+    <div class="col-xs-12"><br /></div>
 
-    <div class="col-xs-12 panel nopadding">
+    <div class="col-xs-12 panel-footer nopadding">
         <div class="visible-sm visible-md visible-lg col-xs-2 col-sm-2 col-md-2 col-lg-2">
-            <img class="pictureinview" ng-src="/public/Uploads/meeting.jpg" alt="meetingpicture">
+            <img class="pictureinlistlarge" ng-src="/public/Uploads/meeting.jpg" alt="meetingpicture">
         </div>
         <div class="visible-xs col-xs-2">
             <img class="pictureinlistmedium" ng-src="/public/Uploads/meeting.jpg" alt="meetingpicture">
         </div>
-        <div class="visible-sm visible-md visible-lg h2 col-xs-10 col-sm-10 col-md-10 col-lg-10">Next meetings <span class="badge alert-info">{{teacups.length}}</span></div>
+        <div ng-show="nextmeetingasspeaker">
+            <div class="visible-sm visible-md visible-lg h3 col-xs-10 col-sm-10 col-md-10 col-lg-10">Next meeting to hold</div>
+            <div class="visible-xs h4 col-xs-10 col-sm-10 col-md-10 col-lg-10">Next meeting to hold</div>
+        </div>
+        <div ng-hide="nextmeetingasspeaker">
+            <div class="visible-sm visible-md visible-lg h3 col-xs-10 col-sm-10 col-md-10 col-lg-10">No meetings to hold</div>
+            <div class="visible-xs h4 col-xs-10 col-sm-10 col-md-10 col-lg-10">No meetings to hold</div>
+        </div>
+    </div>
+    
+    <div ng-show="nextmeetingasspeaker" class="col-xs-12 nopadding">
+        <div class="detailsicon panel-heading panel-title">
+            <a data-ng-href="/#!/teacups/{{nextmeetingasspeaker._id}}/view"><strong>{{nextmeetingasspeaker.title}}</strong></a>
+        </div>
+        <div class="panel-default">
+            <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+                <span class="glyphicon glyphicon-calendar"></span><span> {{nextmeetingasspeaker.scheduleDate | date : 'longDate'}} {{nextmeetingasspeaker.scheduleDate | date: 'HH:mm'}}</span>
+                <div data-ng-show="nextmeetingasspeaker.subscribedusers && nextmeetingasspeaker.subscribedusers.length">
+                    <span class="glyphicon glyphicon-check"></span> Subscriped users <span class="badge alert-info">{{nextmeetingasspeaker.subscribedusers.length}}</span>
+                </div>
+                <div data-ng-show="!nextmeetingasspeaker.subscribedusers || !nextmeetingasspeaker.subscribedusers.length">
+                    <span class="glyphicon glyphicon-check"></span> No subscribed users
+                </div>
+                <div data-ng-show="nextmeetingasspeaker.comments && nextmeetingasspeaker.comments.length">
+                    <span class="glyphicon glyphicon-comment"></span> Comments <span class="badge alert-info">{{nextmeetingasspeaker.comments.length}}</span>
+                </div>
+                <div data-ng-show="!nextmeetingasspeaker.comments || !nextmeetingasspeaker.comments.length">
+                    <span class="glyphicon glyphicon-comment"></span> No comments
+                </div>
+            </div>
+            <div class="visible-md visible-lg">
+                <div class="list-vertical-divider"></div>
+            </div>
+            <div class="visible-md visible-lg col-md-6 col-lg-6">
+                <teacup-toogledescription ng-attr-text="{{nextmeetingasspeaker.description}}" ng-attr-limit="300"></teacup-toogledescription>
+            </div>
+        </div>
+        <div class="col-xs-12"><br /></div>
+    </div>
+
+    
+    <div class="col-xs-12 panel-footer nopadding">
+        <div class="visible-sm visible-md visible-lg col-xs-2 col-sm-2 col-md-2 col-lg-2">
+            <img class="pictureinlistlarge" ng-src="/public/Uploads/meeting.jpg" alt="meetingpicture">
+        </div>
+        <div class="visible-xs col-xs-2">
+            <img class="pictureinlistmedium" ng-src="/public/Uploads/meeting.jpg" alt="meetingpicture">
+        </div>
+        <div ng-show="nextsubscribedmeeting">
+            <div class="visible-sm visible-md visible-lg h3 col-xs-10 col-sm-10 col-md-10 col-lg-10">Next subscribed meeting</div>
+            <div class="visible-xs h4 col-xs-10 col-sm-10 col-md-10 col-lg-10">Next subscribed meeting</div>
+        </div>
+        <div ng-hide="nextsubscribedmeeting">
+            <div class="visible-sm visible-md visible-lg h3 col-xs-10 col-sm-10 col-md-10 col-lg-10">No subscribed meetings</div>
+            <div class="visible-xs h4 col-xs-10 col-sm-10 col-md-10 col-lg-10">No subscribed meetings</div>
+        </div>
+    </div>
+
+    <div ng-show="nextsubscribedmeeting" class="col-xs-12 nopadding">
+        <div class="panel-heading visible-xs col-xs-3">
+            <teacup-userpicture ng-hide="hasPicture(nextsubscribedmeeting.speaker)" class="pictureinlistlarge" ng-attr-userid="{{nextsubscribedmeeting.speaker._id}}"></teacup-userpicture>
+            <a data-ng-href="/#!/users/{{nextsubscribedmeeting.speaker._id}}"><img ng-show="hasPicture(nextsubscribedmeeting.speaker)" class="pictureinlistlarge" ng-src="{{nextsubscribedmeeting.speaker.pictureurl}}" alt="commentpicture"></a>
+        </div>
+        <div class="col-xs-9 col-sm-12 col-md-12 col-lg-12 detailsicon panel-heading panel-title">
+            <a data-ng-href="/#!/teacups/{{nextsubscribedmeeting._id}}/view"><strong>{{nextsubscribedmeeting.title}}</strong></a>
+        </div>
+        <div class="visible-xs row"></div>
+        <div class="panel-default">
+            <div class="visible-sm visible-md visible-lg col-xs-2 col-sm-2 col-md-1 col-lg-1">
+                <teacup-userpicture ng-hide="hasPicture(nextsubscribedmeeting.speaker)" class="pictureinview" ng-attr-userid="{{nextsubscribedmeeting.speaker._id}}"></teacup-userpicture>
+                <a data-ng-href="/#!/users/{{nextsubscribedmeeting.speaker._id}}"><img ng-show="hasPicture(nextsubscribedmeeting.speaker)" class="pictureinview" ng-src="{{nextsubscribedmeeting.speaker.pictureurl}}" alt="commentpicture"></a>
+            </div>
+            <div class="col-xs-12 col-sm-10 col-md-4 col-lg-4">
+                <span ng-show="global.authenticated" class="pull-right">
+                    <button type="submit" class="btn btn-warning btn-xs" data-ng-model="nextsubscribedmeeting.subscribedusers" ng-hide="isUserSubscribed(nextsubscribedmeeting)" ng-click="subscribeuser(nextsubscribedmeeting)">Subscribe</button>
+                    <button type="submit" class="btn btn-success btn-xs" data-ng-model="nextsubscribedmeeting.subscribedusers" ng-show="isUserSubscribed(nextsubscribedmeeting)" ng-click="unsubscribeuser(nextsubscribedmeeting)">Unsubscribe</button>
+                </span>
+                <teacup-rating teacup='nextsubscribedmeeting'></teacup-rating>
+                <span class="glyphicon glyphicon-calendar"></span><span> {{nextsubscribedmeeting.scheduleDate | date : 'longDate'}} {{nextsubscribedmeeting.scheduleDate | date: 'HH:mm'}}</span>
+                <div ng-show="!nextsubscribedmeeting.speaker"><span class="glyphicon glyphicon-user"></span> --no speaker yet--</div>
+                <div><span class="glyphicon glyphicon-user"></span> Referent: <a data-ng-href="/#!/users/{{nextsubscribedmeeting.speaker._id}}">{{nextsubscribedmeeting.speaker.name}}</a></div>
+                <div data-ng-show="nextsubscribedmeeting.subscribedusers && nextsubscribedmeeting.subscribedusers.length">
+                    <span class="glyphicon glyphicon-check"></span> Subscriped users <span class="badge alert-info">{{nextsubscribedmeeting.subscribedusers.length}}</span>
+                </div>
+                <div data-ng-show="!nextsubscribedmeeting.subscribedusers || !nextsubscribedmeeting.subscribedusers.length">
+                    <span class="glyphicon glyphicon-check"></span> No subscribed users
+                </div>
+                <div data-ng-show="nextsubscribedmeeting.comments && nextsubscribedmeeting.comments.length">
+                    <span class="glyphicon glyphicon-comment"></span> Comments <span class="badge alert-info">{{nextsubscribedmeeting.comments.length}}</span>
+                </div>
+                <div data-ng-show="!nextsubscribedmeeting.comments || !nextsubscribedmeeting.comments.length">
+                    <span class="glyphicon glyphicon-comment"></span> No comments
+                </div>
+            </div>
+            <div class="visible-md visible-lg">
+                <div class="list-vertical-divider"></div>
+            </div>
+            <div class="visible-md visible-lg col-md-6 col-lg-6">
+                <teacup-toogledescription ng-attr-text="{{nextsubscribedmeeting.description}}" ng-attr-limit="300"></teacup-toogledescription>
+            </div>
+        </div>
+        <div class="col-xs-12"><br /></div>
+    </div>    
+
+    <div class="col-xs-12 panel-footer nopadding">
+        <div class="visible-sm visible-md visible-lg col-xs-2 col-sm-2 col-md-2 col-lg-2">
+            <img class="pictureinlistlarge" ng-src="/public/Uploads/meeting.jpg" alt="meetingpicture">
+        </div>
+        <div class="visible-xs col-xs-2">
+            <img class="pictureinlistmedium" ng-src="/public/Uploads/meeting.jpg" alt="meetingpicture">
+        </div>
+        <div class="visible-sm visible-md visible-lg h3 col-xs-10 col-sm-10 col-md-10 col-lg-10">Next meetings <span class="badge alert-info">{{teacups.length}}</span></div>
         <div class="visible-xs h4 col-xs-10 col-sm-10 col-md-10 col-lg-10">Next meetings <span class="badge alert-info">{{teacups.length}}</span></div>
     </div>
+    <div class="col-xs-12"><br /></div>
     <teacup-list></teacup-list>
     <paginator class="col-xs-12 col-sm-12 col-md-12 col-lg-12"></paginator>
     <h2 data-ng-hide="!teacups || teacups.length">No teacups found</h2>

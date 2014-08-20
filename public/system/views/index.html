@@ -1,6 +1,6 @@
-<section data-ng-controller="IndexController" ng-init="findnextteacups()">
+<section data-ng-controller="IndexController" ng-init="init(false)">
     <div ng-model="global.user" ng-hide="global.authenticated">
-        <div class="col-xs-12 panel nopadding">
+        <div class="col-xs-12 panel-footer nopadding">
             <div class="visible-sm visible-md visible-lg col-xs-2 col-sm-2 col-md-2 col-lg-2">
                 <img class="pictureinview" ng-src="/public/Uploads/teacup.png" alt="teacuppicture">
             </div>
@@ -8,8 +8,9 @@
                 <img class="pictureinlistmedium" ng-src="/public/Uploads/teacup.png" alt="teacuppicture">
             </div>
             <div class="visible-sm visible-md visible-lg h2 col-xs-10 col-sm-10 col-md-10 col-lg-10">Teacups</div>
-            <div class="visible-xs h4 col-xs-10 col-sm-10 col-md-10 col-lg-10">Teacups</div>
+            <div class="visible-xs h4 col-xs-10 col-sm-10 col-md-10 col-lg-10">Teacups</div>            
         </div>
+        <div class="col-xs-12"><br /></div>
         <div class="h3 visible-sm visible-md visible-lg col-xs-12 text-justify">
             <div>
                 Join our TeaCup community and learn new technologies,
@@ -34,7 +35,7 @@
                 <!--<div class="badge alert-danger">Only logged in users can subscribe or create teacup meetings</div>-->
             </div>
             <div class="visible-xs alert-warning">
-                Only logged in users can 
+                Only logged in users can
                 <div class="badge alert-danger">subscribe</div>
                 or
                 <div class="badge alert-danger">create</div>
@@ -43,7 +44,7 @@
         </div>
     </div>
     <div ng-show="!global.authenticated">
-        <div class="col-xs-12 panel nopadding">
+        <div class="col-xs-12 panel-footer nopadding">
             <div class="visible-sm visible-md visible-lg col-xs-2 col-sm-2 col-md-2 col-lg-2">
                 <img class="pictureinview" ng-src="/public/Uploads/meeting.jpg" alt="meetingpicture">
             </div>
@@ -53,6 +54,7 @@
             <div class="visible-sm visible-md visible-lg h2 col-xs-10 col-sm-10 col-md-10 col-lg-10">Next meetings <span class="badge alert-info">{{teacups.length}}</span></div>
             <div class="visible-xs h4 col-xs-10 col-sm-10 col-md-10 col-lg-10">Next meetings <span class="badge alert-info">{{teacups.length}}</span></div>
         </div>
+        <div class="col-xs-12"><br /></div>
         <teacup-list></teacup-list>
         <paginator class="col-xs-12 col-sm-12 col-md-12 col-lg-12"></paginator>
         <h2 data-ng-hide="!teacups || teacups.length">No teacups found</h2>
