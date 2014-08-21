@@ -1,5 +1,5 @@
 <div ng-controller="CustomPaginationController" ng-init="pageSize=6;currentPage=1;" class="container-fluid">
-    <div class="row">
+    <div data-ng-hide="!teacups || !teacups.length" class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 list-group-item" id="filters">
             <span class="panel-title accordion">
                 <a data-toggle="collapse" data-target="#collapsefilters"
@@ -19,7 +19,7 @@
                         </div>
                     </div>
                     <div class="panel visible-sm noborder"></div>
-                    <div>                        
+                    <div>
                         <span class="col-md-1 col-lg-1 control-label"><span class="glyphicon glyphicon-tag customgrey"></span> Title</span>
                         <div class="col-md-5 col-lg-5">
                             <input type="text" data-ng-model="filterObject.title" id="title" class="form-control" placeholder="Enter title to filter">
