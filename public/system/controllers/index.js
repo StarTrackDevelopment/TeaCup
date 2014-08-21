@@ -6,6 +6,8 @@ angular.module('mean.system').controller('IndexController', ['$scope', 'Global',
         $scope.teacups = '';
         $scope.nextmeetingasspeaker = '';
         $scope.nextsubscribedmeeting = '';
+        $scope.speakerteacupscount = '';
+        $scope.subscribedteacupscount = '';
 
         $scope.init = function (calculateuserinfo) {
             Teacups.query({
@@ -29,9 +31,11 @@ angular.module('mean.system').controller('IndexController', ['$scope', 'Global',
                     teacup.updated = [];
                 }
                 teacup.updated.push(new Date().getTime());
-                teacup.$update();
-                ateacup.subscribedusers.push($scope.global.user);
-                $scope.calculateuserinfo();
+                teacup.$update({}, function() {
+                    ateacup.subscribedusers.push($scope.global.user);
+                    $scope.calculateuserinfo();
+                    $scope.getuserteacupscount(false, true);
+                });
             });            
         };
 
@@ -42,7 +46,6 @@ angular.module('mean.system').controller('IndexController', ['$scope', 'Global',
                 teacupId: paramid,
                 populate: 'false'
             }, function (teacup) {
-
                 for (var i in teacup.subscribedusers) {
                     if (teacup.subscribedusers[i]._id === $scope.global.user._id) {
                         teacup.subscribedusers.splice(i, 1);
@@ -53,14 +56,15 @@ angular.module('mean.system').controller('IndexController', ['$scope', 'Global',
                     teacup.updated = [];
                 }
                 teacup.updated.push(new Date().getTime());
-                teacup.$update();                
-
-                for (i in ateacup.subscribedusers) {
-                    if (ateacup.subscribedusers[i]._id === $scope.global.user._id) {
-                        ateacup.subscribedusers.splice(i, 1);
+                teacup.$update({}, function() {
+                    for (var index in ateacup.subscribedusers) {
+                        if (ateacup.subscribedusers[index]._id === $scope.global.user._id) {
+                            ateacup.subscribedusers.splice(index, 1);
+                        }
                     }
-                }
-                $scope.calculateuserinfo();
+                    $scope.calculateuserinfo();
+                    $scope.getuserteacupscount(false, true);
+                });
             });            
         };
 
@@ -105,5 +109,23 @@ angular.module('mean.system').controller('IndexController', ['$scope', 'Global',
                 }
             }
             return null;
+        };
+
+        $scope.getuserteacupscount = function (speaker, subscribeduser) {
+            var filter = {};
+            filter.count = true;
+            if (speaker) {
+                filter.speaker = $scope.global.user._id;
+            }
+            if (subscribeduser) {
+                filter.subscribeduser = $scope.global.user._id;
+            }
+            Teacups.get(filter, function (res) {
+                if (speaker) {
+                    $scope.speakerteacupscount = res.count;
+                } else if (subscribeduser) {
+                    $scope.subscribedteacupscount = res.count;
+                }
+            });
         };
     }]);

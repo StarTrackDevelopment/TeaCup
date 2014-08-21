@@ -1,8 +1,8 @@
-﻿<section data-ng-controller="IndexController" ng-init="init(true)">    
+﻿<section data-ng-controller="IndexController" ng-init="init(true);getuserteacupscount(true,false);getuserteacupscount(false,true);">
     <div class="media">
         <br class="nopadding" />
         <a data-ng-href="/#!/users/{{global.user._id}}" class="pull-left">
-            <span ng-hide="global.user.pictureurl.length"> 
+            <span ng-hide="global.user.pictureurl.length">
                 <teacup-userpicture class="visible-xs pictureinlistlarge" ng-attr-userid="{{global.user._id}}"></teacup-userpicture>
                 <teacup-userpicture class="visible-sm visible-md visible-lg pictureinview" ng-attr-userid="{{global.user._id}}"></teacup-userpicture>
             </span>
@@ -12,12 +12,16 @@
             </span>
         </a>
         <div class="media-body">
-            <div class="media-heading">
-                <span class="visible-sm visible-md visible-lg h3">Welcome {{global.user.name}}!</span>
-                <span class="visible-xs h4">Welcome {{global.user.name}}!</span>
+            <div class="visible-xs media-heading">
+                <div><strong>Meetings made: <span data-ng-model="speakerteacupscount" class="badge alert-info">{{speakerteacupscount}}</span></strong></div>
+                <div><strong>Subscribed meetings: <span data-ng-model="speakerteacupscount" class="badge alert-info">{{speakerteacupscount}}</span></strong></div>
+            </div>
+            <div class="visible-sm visible-md visible-lg media-heading">
+                <div class="h4">Meetings made: <span data-ng-model="speakerteacupscount" class="badge alert-info">{{speakerteacupscount}}</span></div>
+                <div class="h4">Subscribed meetings: <span data-ng-model="subscribedteacupscount" class="badge alert-info">{{subscribedteacupscount}}</span></div>
             </div>
         </div>
-    </div>    
+    </div>
     <div class="col-xs-12"><br /></div>
 
     <div class="col-xs-12 panel-footer nopadding">
@@ -36,7 +40,7 @@
             <div class="visible-xs h4 col-xs-10 col-sm-10 col-md-10 col-lg-10">No meetings to hold</div>
         </div>
     </div>
-    
+
     <div ng-show="nextmeetingasspeaker" class="col-xs-12 nopadding">
         <div class="detailsicon panel-heading panel-title">
             <a data-ng-href="/#!/teacups/{{nextmeetingasspeaker._id}}/view"><strong>{{nextmeetingasspeaker.title}}</strong></a>
@@ -67,7 +71,7 @@
         <div class="col-xs-12"><br /></div>
     </div>
 
-    
+
     <div class="col-xs-12 panel-footer nopadding">
         <div class="visible-sm visible-md visible-lg col-xs-2 col-sm-2 col-md-2 col-lg-2">
             <img class="pictureinlistlarge" ng-src="/public/Uploads/meeting.jpg" alt="meetingpicture">
@@ -129,7 +133,7 @@
             </div>
         </div>
         <div class="col-xs-12"><br /></div>
-    </div>    
+    </div>
 
     <div class="col-xs-12 panel-footer nopadding">
         <div class="visible-sm visible-md visible-lg col-xs-2 col-sm-2 col-md-2 col-lg-2">

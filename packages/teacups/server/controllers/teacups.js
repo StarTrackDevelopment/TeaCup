@@ -107,25 +107,44 @@ exports.show = function(req, res) {
 /**
  * List of Teacups
  */
-exports.all = function(req, res) {
-    var query = Teacup.find();
-    if (req.query.speaker) {
-        query.where('speaker').equals(req.query.speaker);
-    }
-    if (req.query.nextteacups) {
-        query.where('scheduleDate').gt(Date.now());
-    }
-    query.sort({scheduleDate:'asc'});
-    query.populate('user speaker')
-        .populate('subscribedusers')
-        .populate('comments.createdby');
-    query.exec(function (err, teacups) {
-        if (err) {
-            res.render('error', {
-                status: 500
-            });
-        } else {
-            res.jsonp(teacups);
+exports.all = function (req, res) {
+    if (!req.query.count) {
+        var query = Teacup.find();
+        if (req.query.speaker) {
+            query.where('speaker').equals(req.query.speaker);
         }
-    });
+        if (req.query.nextteacups) {
+            query.where('scheduleDate').gt(Date.now());
+        }
+        query.sort({ scheduleDate: 'asc' });
+        query.populate('user speaker')
+            .populate('subscribedusers')
+            .populate('comments.createdby');
+        query.exec(function(err, teacups) {
+            if (err) {
+                res.render('error', {
+                    status: 500
+                });
+            } else {
+                res.jsonp(teacups);
+            }
+        });
+    } else {
+        var filter = {};
+        if (req.query.speaker) {            
+            filter.speaker = req.query.speaker;
+        }
+        if (req.query.subscribeduser) {
+            filter.subscribedusers = req.query.subscribeduser;
+        }
+        Teacup.count(filter, function (err, count) {
+            if (err) {
+                res.render('error', {
+                    status: 500
+                });
+            } else {
+                res.jsonp({ count: count });
+            }         
+        });
+    }
 };
