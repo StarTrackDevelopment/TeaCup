@@ -57,6 +57,7 @@
     <Content Include="README.md" />
     <Compile Include="Gruntfile.js" />
     <Compile Include="packages\teacups\app.js" />
+    <Compile Include="packages\teacups\public\controllers\d3.v3.min.js" />
     <Compile Include="packages\teacups\public\controllers\pagination.js" />
     <Compile Include="packages\teacups\public\controllers\rating.js" />
     <Compile Include="packages\teacups\public\controllers\teacups.js" />
@@ -74,7 +75,6 @@
     <Compile Include="packages\users\server\controllers\users.js" />
     <Compile Include="packages\users\server\routes\users.js" />
     <Compile Include="public\system\controllers\users.js" />
-    <Compile Include="public\system\lib\d3\d3.v3.min.js" />
     <Compile Include="public\system\services\users.js" />
     <Compile Include="server.js" />
     <Content Include="public\humans.txt" />
@@ -415,7 +415,6 @@
     <Folder Include="public\system\lib\bootstrap\js" />
     <Folder Include="public\system\lib\bootstrap\less" />
     <Folder Include="public\system\lib\bootstrap\test-infra" />
-    <Folder Include="public\system\lib\d3\" />
     <Folder Include="public\system\lib\jquery" />
     <Folder Include="public\system\lib\jquery\dist" />
     <Folder Include="public\system\lib\jquery\src" />

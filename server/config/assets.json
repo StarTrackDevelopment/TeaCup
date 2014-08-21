@@ -5,9 +5,8 @@
         ]
     },
     "js": {
-        "public/build/js/dist.min.js": [
-            "public/system/lib/d3/d3.v3.min.js",
-            "public/system/lib/angular/angular.js",
+        "public/build/js/dist.min.js": [            
+            "public/system/lib/angular/angular.js",                     
             "public/system/lib/angular-mocks/angular-mocks.js",
             "public/system/lib/angular-cookies/angular-cookies.js",
             "public/system/lib/angular-resource/angular-resource.js",
@@ -15,7 +14,7 @@
             "public/system/lib/jquery/dist/jquery.min.js",
             "public/system/lib/bootstrap/dist/js/bootstrap.js",
             "public/system/lib/angular-bootstrap/ui-bootstrap.js",
-            "public/system/lib/angular-bootstrap/ui-bootstrap-tpls.js",
+            "public/system/lib/angular-bootstrap/ui-bootstrap-tpls.js",            
             "public/init.js",
             "public/*/*.js",
             "public/*/{controllers,routes,services}/*.js"
