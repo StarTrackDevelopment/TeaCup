@@ -155,7 +155,7 @@ function handleRateRequests(req, res) {
                 var comments = teacups[i].comments;
                 var k = comments.length;
                 while (k--) {
-                    sum += comments[i].rating;
+                    sum += comments[k].rating;
                     count++;
                 }                
             }

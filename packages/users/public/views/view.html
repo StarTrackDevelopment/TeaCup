@@ -1,4 +1,5 @@
 <section ng-controller="UsersController" data-ng-init="findOne()">
+    <br />
     <div class="panel-default pull-left">
         <span ng-hide="hasPicture(user)">
             <teacup-userpicture class="visible-xs pictureinlistlarge" ng-attr-userid="{{user._id}}"></teacup-userpicture>
@@ -14,8 +15,24 @@
         <div data-ng-model="user.username"><span class="glyphicon glyphicon-user customblue"></span> {{user.username}}</div>
         <div data-ng-model="user.email"><span class="glyphicon glyphicon-envelope customblue"></span> {{user.email}}</div>
     </div>  
-        
-    <!--<div class="customcontent">
+    
+    <br />
+    
+    <div data-ng-controller="IndexController" ng-init="getspeakerteacupscount();getsubscribedteacupscount();getuserrate();">
+        <div class="visible-xs media-heading">
+            <user-rating class="h4" rate='{{userrating}}' count='{{userratingcount}}'></user-rating>
+            <div>Meetings made: <span data-ng-model="speakerteacupscount" class="badge alert-info">{{speakerteacupscount}}</span></div>
+            <div>Subscribed meetings: <span data-ng-model="subscribedteacupscount" class="badge alert-info">{{subscribedteacupscount}}</span></div>
+        </div>
+        <div class="visible-sm visible-md visible-lg media-heading">
+            <user-rating class="h4" rate='{{userrating}}' count='{{userratingcount}}'></user-rating>
+            <div>Meetings made: <span data-ng-model="speakerteacupscount" class="badge alert-info">{{speakerteacupscount}}</span></div>
+            <div>Subscribed meetings: <span data-ng-model="subscribedteacupscount" class="badge alert-info">{{subscribedteacupscount}}</span></div>
+        </div>
+    </div>
+    <br />
+
+<!--<div class="customcontent">
             <a id="speaker-teacups" href="" ng-show="!teacups" ng-click="findteacups()">Show user teacups</a>
             <a id="speaker-teacups" href="" ng-show="teacups" ng-click="resetteacups()">Hide user teacups</a>
             <teacup-list></teacup-list>
@@ -24,7 +41,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 list-group-item" id="panel1">
             <span class="panel-title accordion" ng-click="findteacups()">
                 <a data-toggle="collapse" data-target="#collapseOne"
-                   href="" class="collapsed">
+                    href="" class="collapsed">
                     <span class="glyphicon glyphicon-list customblue"></span> User teacups
                 </a>
             </span>
@@ -35,4 +52,4 @@
             </div>
         </div>
     </div>
-</section>
+</div>
