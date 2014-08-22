@@ -34,6 +34,7 @@
     <Content Include="packages\teacups\public\views\Directives\teacup-rating.html" />
     <Content Include="packages\teacups\public\views\Directives\teacup-subscribedusers.html" />
     <Content Include="packages\teacups\public\views\Directives\teacup-toogledescription.html" />
+    <Content Include="packages\teacups\public\views\Directives\user-rating.html" />
     <Content Include="packages\teacups\public\views\edit.html" />
     <Content Include="packages\teacups\public\views\list.html" />
     <Content Include="packages\teacups\public\views\view.html" />

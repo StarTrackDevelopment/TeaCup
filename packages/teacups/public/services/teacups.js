@@ -127,6 +127,56 @@ angular.module('mean.teacups')
         };
     });
 
+angular.module('mean.teacups')
+    .directive('userRating', function () {
+        return {
+            restrict: 'E',
+            //replace: false,
+            scope: {
+                rate: '@rate',
+                count: '@count'
+            },
+            controller: function ($scope, $location, $anchorScroll) {
+                $scope.htmlTooltip = 'n.a.';
+                $scope.count = 0;
+                $scope.rate = 0;
+                $scope.calculateratings = function() {
+                    if (!$scope.count)
+                        return;
+                    if (!$scope.rate)
+                        return;
+                    var fullpart = Math.floor($scope.rate);
+                    $scope.ratings = [];
+                    for (var index = 1; index <= 5; index++) {
+                        var partvalue = 0;
+                        if (fullpart >= index) {
+                            partvalue = 100;
+                        }
+                        else if (index === fullpart + 1) {
+                            partvalue = ($scope.rate - fullpart) * 100;
+                        }
+                        $scope.ratings.push(partvalue);
+                    }
+                    $scope.htmlTooltip = $scope.$eval($scope.rate).toFixed(2);
+                };
+            },
+            link: function (scope, elem, attrs) {
+                attrs.$observe('rate', function (value) {
+                    if (!value) return;
+                    //scope.rate = scope.$eval(value);
+                    scope.rate = value;
+                    scope.calculateratings();
+                });
+                attrs.$observe('count', function (value) {
+                    if (!value) return;
+                    //scope.count = scope.$eval(value);
+                    scope.count = value;
+                    scope.calculateratings();
+                });                
+            },
+            templateUrl: '/teacups/views/Directives/user-rating.html'
+        };
+    });
 
 angular.module('mean.teacups')
 .directive('teacupToogledescription', function () {

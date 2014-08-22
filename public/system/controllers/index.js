@@ -8,6 +8,8 @@ angular.module('mean.system').controller('IndexController', ['$scope', 'Global',
         $scope.nextsubscribedmeeting = '';
         $scope.speakerteacupscount = '';
         $scope.subscribedteacupscount = '';
+        $scope.userrating = '';
+        $scope.userratingcount = '';
 
         $scope.init = function (calculateuserinfo) {
             Teacups.query({
@@ -34,7 +36,7 @@ angular.module('mean.system').controller('IndexController', ['$scope', 'Global',
                 teacup.$update({}, function() {
                     ateacup.subscribedusers.push($scope.global.user);
                     $scope.calculateuserinfo();
-                    $scope.getuserteacupscount(false, true);
+                    $scope.getsubscribedteacupscount();
                 });
             });            
         };
@@ -63,7 +65,7 @@ angular.module('mean.system').controller('IndexController', ['$scope', 'Global',
                         }
                     }
                     $scope.calculateuserinfo();
-                    $scope.getuserteacupscount(false, true);
+                    $scope.getsubscribedteacupscount();
                 });
             });            
         };
@@ -111,21 +113,31 @@ angular.module('mean.system').controller('IndexController', ['$scope', 'Global',
             return null;
         };
 
-        $scope.getuserteacupscount = function (speaker, subscribeduser) {
+        $scope.getspeakerteacupscount = function () {
             var filter = {};
             filter.count = true;
-            if (speaker) {
-                filter.speaker = $scope.global.user._id;
-            }
-            if (subscribeduser) {
-                filter.subscribeduser = $scope.global.user._id;
-            }
+            filter.speaker = $scope.global.user._id;
             Teacups.get(filter, function (res) {
-                if (speaker) {
-                    $scope.speakerteacupscount = res.count;
-                } else if (subscribeduser) {
-                    $scope.subscribedteacupscount = res.count;
-                }
+                $scope.speakerteacupscount = res.count;
+            });
+        };
+
+        $scope.getsubscribedteacupscount = function () {
+            var filter = {};
+            filter.count = true;
+            filter.subscribeduser = $scope.global.user._id;
+            Teacups.get(filter, function (res) {
+                $scope.subscribedteacupscount = res.count;
+            });
+        };
+
+        $scope.getuserrate = function () {
+            var filter = {};
+            filter.rate = true;
+            filter.user = $scope.global.user._id;
+            Teacups.get(filter, function (res) {
+                $scope.userrating = res.rating;
+                $scope.userratingcount = res.count;
             });
         };
     }]);

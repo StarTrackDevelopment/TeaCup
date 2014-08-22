@@ -107,44 +107,92 @@ exports.show = function(req, res) {
 /**
  * List of Teacups
  */
-exports.all = function (req, res) {
-    if (!req.query.count) {
-        var query = Teacup.find();
-        if (req.query.speaker) {
-            query.where('speaker').equals(req.query.speaker);
-        }
-        if (req.query.nextteacups) {
-            query.where('scheduleDate').gt(Date.now());
-        }
-        query.sort({ scheduleDate: 'asc' });
-        query.populate('user speaker')
-            .populate('subscribedusers')
-            .populate('comments.createdby');
-        query.exec(function(err, teacups) {
-            if (err) {
-                res.render('error', {
-                    status: 500
-                });
-            } else {
-                res.jsonp(teacups);
-            }
-        });
-    } else {
-        var filter = {};
-        if (req.query.speaker) {            
-            filter.speaker = req.query.speaker;
-        }
-        if (req.query.subscribeduser) {
-            filter.subscribedusers = req.query.subscribeduser;
-        }
-        Teacup.count(filter, function (err, count) {
-            if (err) {
-                res.render('error', {
-                    status: 500
-                });
-            } else {
-                res.jsonp({ count: count });
-            }         
-        });
+
+function handleCountRequests(req, res) {
+    var filter = {};
+    if (req.query.speaker) {
+        filter.speaker = req.query.speaker;
     }
+    if (req.query.subscribeduser) {
+        filter.subscribedusers = req.query.subscribeduser;
+    }
+    Teacup.count(filter, function(err, count) {
+        if (err) {
+            res.render('error', {
+                status: 500
+            });
+        } else {
+            res.jsonp({ count: count });
+        }
+    });
+}
+
+function handleRateRequests(req, res) {
+    if (!req.query.user) {
+        res.render('error', {
+            status: 500
+        });
+        return;
+    }
+    var filter = {};
+    filter.speaker = req.query.user;
+    var query = Teacup.find();
+    if (req.query.user) {
+        query.where('speaker').equals(req.query.user);
+    }
+    query.select('comments');
+    query.exec(function(err, teacups) {
+        if (err) {
+            res.render('error', {
+                status: 500
+            });
+        } else {
+            var result = {};            
+            var sum = 0;
+            var count = 0;
+            var i = teacups.length;
+            while (i--) {
+                var comments = teacups[i].comments;
+                var k = comments.length;
+                while (k--) {
+                    sum += comments[i].rating;
+                    count++;
+                }                
+            }
+            result.count = count;
+            result.rating = sum / count;
+            res.jsonp(result);
+        }
+    });
+}
+
+exports.all = function (req, res) {
+    if (req.query.count) {
+        handleCountRequests(req, res);
+        return;
+    }
+    if (req.query.rate) {
+        handleRateRequests(req, res);
+        return;
+    }
+    var query = Teacup.find();
+    if (req.query.speaker) {
+        query.where('speaker').equals(req.query.speaker);
+    }
+    if (req.query.nextteacups) {
+        query.where('scheduleDate').gt(Date.now());
+    }
+    query.sort({ scheduleDate: 'asc' });
+    query.populate('user speaker')
+        .populate('subscribedusers')
+        .populate('comments.createdby');
+    query.exec(function(err, teacups) {
+        if (err) {
+            res.render('error', {
+                status: 500
+            });
+        } else {
+            res.jsonp(teacups);
+        }
+    });
 };

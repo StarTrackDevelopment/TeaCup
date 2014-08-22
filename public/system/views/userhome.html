@@ -1,4 +1,4 @@
-﻿<section data-ng-controller="IndexController" ng-init="init(true);getuserteacupscount(true,false);getuserteacupscount(false,true);">
+﻿<section data-ng-controller="IndexController" ng-init="init(true);getspeakerteacupscount();getsubscribedteacupscount();getuserrate();">
     <div class="media">
         <br class="nopadding" />
         <a data-ng-href="/#!/users/{{global.user._id}}" class="pull-left">
@@ -13,10 +13,12 @@
         </a>
         <div class="media-body">
             <div class="visible-xs media-heading">
+                <user-rating rate='{{userrating}}' count='{{userratingcount}}'></user-rating>
                 <div><strong>Meetings made: <span data-ng-model="speakerteacupscount" class="badge alert-info">{{speakerteacupscount}}</span></strong></div>
                 <div><strong>Subscribed meetings: <span data-ng-model="speakerteacupscount" class="badge alert-info">{{speakerteacupscount}}</span></strong></div>
             </div>
             <div class="visible-sm visible-md visible-lg media-heading">
+                <user-rating class="h4" rate='{{userrating}}' count='{{userratingcount}}'></user-rating>
                 <div class="h4">Meetings made: <span data-ng-model="speakerteacupscount" class="badge alert-info">{{speakerteacupscount}}</span></div>
                 <div class="h4">Subscribed meetings: <span data-ng-model="subscribedteacupscount" class="badge alert-info">{{subscribedteacupscount}}</span></div>
             </div>
