@@ -119,7 +119,7 @@ angular.module('mean.system').controller('IndexController', ['$scope', '$statePa
             if (globaluser) {
                 filter.speaker = $scope.global.user._id;
             } else {
-                filter.speaker = $stateParams.userId;;
+                filter.speaker = $stateParams.userId;
             }
 
             Teacups.get(filter, function (res) {
@@ -133,7 +133,7 @@ angular.module('mean.system').controller('IndexController', ['$scope', '$statePa
             if (globaluser) {
                 filter.subscribeduser = $scope.global.user._id;
             } else {
-                filter.subscribeduser = $stateParams.userId;;
+                filter.subscribeduser = $stateParams.userId;
             }
             Teacups.get(filter, function (res) {
                 $scope.subscribedteacupscount = res.count;
@@ -146,7 +146,7 @@ angular.module('mean.system').controller('IndexController', ['$scope', '$statePa
             if (globaluser) {
                 filter.user = $scope.global.user._id;
             } else {
-                filter.user = $stateParams.userId;;
+                filter.user = $stateParams.userId;
             }
             Teacups.get(filter, function(res) {
                 $scope.userrating = res.rating;
