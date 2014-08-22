@@ -2,7 +2,7 @@
     <a href="" tooltip-html-unsafe="{{htmlTooltip}}" data-ng-repeat="i in ratings track by $index">
         <star ng-attr-starpercent="ratings[$index]"></star>
     </a>
-    <span ng-show="rate"><small><i>({{htmlTooltip}})</i></small></span>
+    <span ng-show="count"><small><i>({{htmlTooltip}})</i></small></span>
     <span ng-show="count">
         <span class="badge alert-info">{{count}}</span>
     </span>

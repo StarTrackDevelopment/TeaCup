@@ -4,6 +4,7 @@
         <star ng-attr-starpercent="teacuprating[$index]"></star>
     </a>
     <span ng-show="teacup.comments.length">
+        <span><small><i>({{htmlTooltip}})</i></small></span>
         <span class="badge alert-info">{{teacup.comments.length}}</span>
     </span>
     <span ng-show="!teacup.comments.length">Not rated</span>
