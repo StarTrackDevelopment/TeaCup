@@ -29,7 +29,21 @@ angular.module('mean.teacups').config(['$stateProvider',
                 url: '/teacups',
                 templateUrl: 'teacups/views/list.html',
                 resolve: {
-                    loggedin: function () { return true; }//checkLoggedin
+                    loggedin: checkLoggedin
+                }
+            })
+            .state('speaker teacups', {
+                url: '/teacups/speaker',
+                templateUrl: 'teacups/views/speakerlist.html',
+                resolve: {
+                    loggedin: checkLoggedin
+                }
+            })
+            .state('subscribed teacups', {
+                url: '/teacups/subscribed',
+                templateUrl: 'teacups/views/subscribedlist.html',
+                resolve: {
+                    loggedin: checkLoggedin
                 }
             })
             .state('create teacup', {
@@ -50,7 +64,7 @@ angular.module('mean.teacups').config(['$stateProvider',
                 url: '/teacups/:teacupId/view',
                 templateUrl: 'teacups/views/view.html',
                 resolve: {
-                    loggedin: function() { return true; }//checkLoggedin
+                    loggedin: checkLoggedin
                 }
             });
     }

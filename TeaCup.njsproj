@@ -37,6 +37,8 @@
     <Content Include="packages\teacups\public\views\Directives\user-rating.html" />
     <Content Include="packages\teacups\public\views\edit.html" />
     <Content Include="packages\teacups\public\views\list.html" />
+    <Content Include="packages\teacups\public\views\speakerlist.html" />
+    <Content Include="packages\teacups\public\views\subscribedlist.html" />
     <Content Include="packages\teacups\public\views\view.html" />
     <Content Include="packages\teacups\README.md" />
     <Content Include="packages\teacups\server\views\index.html" />

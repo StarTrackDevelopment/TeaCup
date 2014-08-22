@@ -164,6 +164,22 @@ angular.module('mean.teacups')
             });
         };
 
+        $scope.findspeakerteacups = function () {
+            Teacups.query({
+                speaker: $scope.global.user._id
+            }, function (teacups) {
+                $scope.teacups = teacups;
+            });
+        };
+
+        $scope.findsubscribedteacups = function () {
+            Teacups.query({
+                subscribeduser: $scope.global.user._id
+            }, function (teacups) {
+                $scope.teacups = teacups;
+            });
+        };
+
         $scope.findOne = function(populate) {
             Teacups.get({
                 teacupId: $stateParams.teacupId,

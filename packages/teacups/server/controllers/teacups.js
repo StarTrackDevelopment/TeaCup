@@ -179,6 +179,9 @@ exports.all = function (req, res) {
     if (req.query.speaker) {
         query.where('speaker').equals(req.query.speaker);
     }
+    if (req.query.subscribeduser) {
+        query.where('subscribedusers').equals(req.query.subscribeduser);
+    }
     if (req.query.nextteacups) {
         query.where('scheduleDate').gt(Date.now());
     }

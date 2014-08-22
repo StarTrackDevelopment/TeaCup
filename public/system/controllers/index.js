@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean.system').controller('IndexController', ['$scope', 'Global', 'Teacups', 'Users',
-    function ($scope, Global, Teacups, Users) {
+angular.module('mean.system').controller('IndexController', ['$scope', '$stateParams', 'Global', 'Teacups', 'Users',
+    function ($scope, $stateParams, Global, Teacups, Users) {
         $scope.global = Global;
         $scope.teacups = '';
         $scope.nextmeetingasspeaker = '';
@@ -113,29 +113,42 @@ angular.module('mean.system').controller('IndexController', ['$scope', 'Global',
             return null;
         };
 
-        $scope.getspeakerteacupscount = function () {
+        $scope.getspeakerteacupscount = function (globaluser) {
             var filter = {};
             filter.count = true;
-            filter.speaker = $scope.global.user._id;
+            if (globaluser) {
+                filter.speaker = $scope.global.user._id;
+            } else {
+                filter.speaker = $stateParams.userId;;
+            }
+
             Teacups.get(filter, function (res) {
                 $scope.speakerteacupscount = res.count;
             });
         };
 
-        $scope.getsubscribedteacupscount = function () {
+        $scope.getsubscribedteacupscount = function (globaluser) {
             var filter = {};
             filter.count = true;
-            filter.subscribeduser = $scope.global.user._id;
+            if (globaluser) {
+                filter.subscribeduser = $scope.global.user._id;
+            } else {
+                filter.subscribeduser = $stateParams.userId;;
+            }
             Teacups.get(filter, function (res) {
                 $scope.subscribedteacupscount = res.count;
             });
         };
 
-        $scope.getuserrate = function () {
+        $scope.getuserrate = function (globaluser) {
             var filter = {};
             filter.rate = true;
-            filter.user = $scope.global.user._id;
-            Teacups.get(filter, function (res) {
+            if (globaluser) {
+                filter.user = $scope.global.user._id;
+            } else {
+                filter.user = $stateParams.userId;;
+            }
+            Teacups.get(filter, function(res) {
                 $scope.userrating = res.rating;
                 $scope.userratingcount = res.count;
             });

@@ -6,8 +6,8 @@
             <teacup-userpicture class="visible-sm visible-md visible-lg pictureinview" ng-attr-userid="{{user._id}}"></teacup-userpicture>
         </span>
         <span ng-show="hasPicture(user)">
-            <a data-ng-href="/#!/users/{{userid}}"><img class="visible-xs pictureinlistlarge" ng-src="{{user.pictureurl}}" alt="picture"></a>
-            <a data-ng-href="/#!/users/{{userid}}"><img class="visible-sm visible-md visible-lg pictureinview" ng-src="{{user.pictureurl}}" alt="picture"></a>
+            <img class="visible-xs pictureinlistlarge" ng-src="{{user.pictureurl}}" alt="picture">
+            <img class="visible-sm visible-md visible-lg pictureinview" ng-src="{{user.pictureurl}}" alt="picture">
         </span>
     </div>
     <div class="panel-default">        
@@ -15,24 +15,24 @@
         <div data-ng-model="user.username"><span class="glyphicon glyphicon-user customblue"></span> {{user.username}}</div>
         <div data-ng-model="user.email"><span class="glyphicon glyphicon-envelope customblue"></span> {{user.email}}</div>
     </div>  
-    
+
     <br />
-    
-    <div data-ng-controller="IndexController" ng-init="getspeakerteacupscount();getsubscribedteacupscount();getuserrate();">
+
+    <div data-ng-controller="IndexController" ng-init="getspeakerteacupscount(false);getsubscribedteacupscount(false);getuserrate(false);">
         <div class="visible-xs media-heading">
-            <user-rating class="h4" rate='{{userrating}}' count='{{userratingcount}}'></user-rating>
-            <div>Meetings made: <span data-ng-model="speakerteacupscount" class="badge alert-info">{{speakerteacupscount}}</span></div>
-            <div>Subscribed meetings: <span data-ng-model="subscribedteacupscount" class="badge alert-info">{{subscribedteacupscount}}</span></div>
+            <user-rating rate='{{userrating}}' count='{{userratingcount}}'></user-rating>
+            <div>Teacups <span data-ng-model="speakerteacupscount" class="badge alert-info">{{speakerteacupscount}}</span></div>
+            <div>Subscribed to <span data-ng-model="subscribedteacupscount" class="badge alert-info">{{subscribedteacupscount}}</span></div>
         </div>
         <div class="visible-sm visible-md visible-lg media-heading">
             <user-rating class="h4" rate='{{userrating}}' count='{{userratingcount}}'></user-rating>
-            <div>Meetings made: <span data-ng-model="speakerteacupscount" class="badge alert-info">{{speakerteacupscount}}</span></div>
-            <div>Subscribed meetings: <span data-ng-model="subscribedteacupscount" class="badge alert-info">{{subscribedteacupscount}}</span></div>
+            <div>Teacups <span data-ng-model="speakerteacupscount" class="badge alert-info">{{speakerteacupscount}}</span></div>
+            <div>Subscribed to <span data-ng-model="subscribedteacupscount" class="badge alert-info">{{subscribedteacupscount}}</span></div>
         </div>
     </div>
     <br />
 
-<!--<div class="customcontent">
+    <!--<div class="customcontent">
             <a id="speaker-teacups" href="" ng-show="!teacups" ng-click="findteacups()">Show user teacups</a>
             <a id="speaker-teacups" href="" ng-show="teacups" ng-click="resetteacups()">Hide user teacups</a>
             <teacup-list></teacup-list>
@@ -52,4 +52,4 @@
             </div>
         </div>
     </div>
-</div>
+</section>
