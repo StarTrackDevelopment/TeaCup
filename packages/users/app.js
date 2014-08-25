@@ -14,5 +14,6 @@ var Users = new Module('users');
 Users.register(function (app, auth, database) {
     //We enable routing. By default the Package Object is passed to the routes
     Users.routes(app, auth, database);
+    Users.angularDependencies(['angular-loading-bar']);
     return Users;
 });

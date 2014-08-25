@@ -16,7 +16,7 @@ MeanUpload.register(function(app, auth, database) {
         absolute: true
     });
 
-    MeanUpload.angularDependencies(['angularFileUpload']);
+    MeanUpload.angularDependencies(['angularFileUpload', 'angular-loading-bar']);
 
     return MeanUpload;
 });

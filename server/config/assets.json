@@ -1,7 +1,8 @@
 {
     "css": {
         "public/build/css/dist.min.css": [
-            "public/**/assets/css/*.css"
+            "public/**/assets/css/*.css",
+            "public/system/lib/angular-loading-bar/loading-bar.min.css"
         ]
     },
     "js": {
@@ -16,7 +17,8 @@
             "public/system/lib/angular-bootstrap/ui-bootstrap.js",
             "public/system/lib/angular-bootstrap/ui-bootstrap-tpls.js",
             "public/system/lib/angular-file-upload/angular-file-upload-shim.min.js", 
-            "public/system/lib/angular-file-upload/angular-file-upload.min.js",          
+            "public/system/lib/angular-file-upload/angular-file-upload.min.js",
+            "public/system/lib/angular-loading-bar/loading-bar.min.js",
             "public/init.js",
             "public/*/*.js",
             "public/*/{controllers,routes,services}/*.js"
