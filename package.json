@@ -1,5 +1,5 @@
 {
-  "name": "mean",
+  "name": "teacup",
   "description": "MEAN.io: A fullstack javascript platformed powerd by MongoDB, ExpressJS, AngularJS, NodeJS.",
   "version": "0.3.4",
   "private": false,
@@ -26,10 +26,10 @@
       "mail": "drew@steelbisondev.com"
     }
   ],
-  "mean": "0.3.3",
+  "mean": "0.3.4",
   "repository": {
     "type": "git",
-    "url": "https://github.com/linnovate/mean.git"
+    "url": "https://github.com/StarTrackDevelopment/TeaCup.git"        
   },
   "engines": {
     "node": "0.10.x",
