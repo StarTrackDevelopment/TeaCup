@@ -1,16 +1,17 @@
 ﻿<section data-ng-controller="IndexController" ng-init="init(true);getspeakerteacupscount(true);getsubscribedteacupscount(true);getuserrate(true);">
     <div class="media">
         <br class="nopadding" />
-        <a data-ng-href="/#!/users/{{global.user._id}}" class="pull-left">
+        <a data-ng-model="global.user.pictureurl" data-ng-href="/#!/users/{{global.user._id}}" class="pull-left">
             <span ng-hide="global.user.pictureurl.length">
                 <teacup-userpicture class="visible-xs pictureinlistlarge" ng-attr-userid="{{global.user._id}}"></teacup-userpicture>
                 <teacup-userpicture class="visible-sm visible-md visible-lg pictureinview" ng-attr-userid="{{global.user._id}}"></teacup-userpicture>
             </span>
             <span ng-show="global.user.pictureurl.length > 0">
-                <img class="visible-xs pictureinlistlarge" ng-src="{{global.user.pictureurl}}" alt="userpicture">
-                <img class="visible-sm visible-md visible-lg pictureinview" ng-src="{{global.user.pictureurl}}" alt="userpicture">
+                <img data-ng-model="global.user.pictureurl" class="visible-xs pictureinlistlarge" ng-src="{{global.user.pictureurl}}" alt="userpicture">
+                <img data-ng-model="global.user.pictureurl" class="visible-sm visible-md visible-lg pictureinview" ng-src="{{global.user.pictureurl}}" alt="userpicture">
             </span>
         </a>
+        
         <div class="media-body">
             <div class="visible-xs media-heading">
                 <user-rating rate='{{userrating}}' count='{{userratingcount}}'></user-rating>
@@ -22,7 +23,12 @@
                 <div><a mean-token="speaker teacups" ui-sref="speaker teacups">My Teacups <span data-ng-model="speakerteacupscount" class="badge alert-info">{{speakerteacupscount}}</span></a></div>
                 <div><a mean-token="subscribed teacups" ui-sref="subscribed teacups">Subscribed to <span data-ng-model="subscribedteacupscount" class="badge alert-info">{{subscribedteacupscount}}</span></a></div>
             </div>
-        </div>
+        </div>        
+    </div>
+    <div class="media-body" data-ng-controller="MeanUploadController">
+        <!--<div ng-hide="global.user.pictureurl">Add Photo</div>
+        <div ng-show="global.user.pictureurl">Change Photo</div>-->
+        <mean-upload file-dest="'./public/Uploads/'" upload-callback="userUploadFinished(files)" upload-file-callback="uploadFileCallback(file)"></mean-upload>
     </div>
     <div class="col-xs-12"><br /></div>
 
@@ -92,18 +98,18 @@
     </div>
 
     <div ng-show="nextsubscribedmeeting" class="col-xs-12 nopadding">
-        <div class="panel-heading visible-xs col-xs-3">
-            <teacup-userpicture ng-hide="hasPicture(nextsubscribedmeeting.speaker)" class="pictureinlistlarge" ng-attr-userid="{{nextsubscribedmeeting.speaker._id}}"></teacup-userpicture>
-            <a data-ng-href="/#!/users/{{nextsubscribedmeeting.speaker._id}}"><img ng-show="hasPicture(nextsubscribedmeeting.speaker)" class="pictureinlistlarge" ng-src="{{nextsubscribedmeeting.speaker.pictureurl}}" alt="commentpicture"></a>
+        <div data-ng-model="global.user.pictureurl"  class="panel-heading visible-xs col-xs-3">
+            <teacup-userpicture data-ng-model="global.user.pictureurl" ng-hide="hasPicture(nextsubscribedmeeting.speaker)" class="pictureinlistlarge" ng-attr-userid="{{nextsubscribedmeeting.speaker._id}}"></teacup-userpicture>
+            <a data-ng-href="/#!/users/{{nextsubscribedmeeting.speaker._id}}"><img data-ng-model="global.user.pictureurl" ng-show="hasPicture(nextsubscribedmeeting.speaker)" class="pictureinlistlarge" ng-src="{{nextsubscribedmeeting.speaker.pictureurl}}" alt="commentpicture"></a>
         </div>
         <div class="col-xs-9 col-sm-12 col-md-12 col-lg-12 detailsicon panel-heading panel-title">
             <a data-ng-href="/#!/teacups/{{nextsubscribedmeeting._id}}/view"><strong>{{nextsubscribedmeeting.title}}</strong></a>
         </div>
         <div class="visible-xs row"></div>
         <div class="panel-default">
-            <div class="visible-sm visible-md visible-lg col-xs-2 col-sm-2 col-md-1 col-lg-1">
-                <teacup-userpicture ng-hide="hasPicture(nextsubscribedmeeting.speaker)" class="pictureinview" ng-attr-userid="{{nextsubscribedmeeting.speaker._id}}"></teacup-userpicture>
-                <a data-ng-href="/#!/users/{{nextsubscribedmeeting.speaker._id}}"><img ng-show="hasPicture(nextsubscribedmeeting.speaker)" class="pictureinview" ng-src="{{nextsubscribedmeeting.speaker.pictureurl}}" alt="commentpicture"></a>
+            <div data-ng-model="global.user.pictureurl"  class="visible-sm visible-md visible-lg col-xs-2 col-sm-2 col-md-1 col-lg-1">
+                <teacup-userpicture data-ng-model="global.user.pictureurl"  ng-hide="hasPicture(nextsubscribedmeeting.speaker)" class="pictureinview" ng-attr-userid="{{nextsubscribedmeeting.speaker._id}}"></teacup-userpicture>
+                <a data-ng-href="/#!/users/{{nextsubscribedmeeting.speaker._id}}"><img data-ng-model="global.user.pictureurl" ng-show="hasPicture(nextsubscribedmeeting.speaker)" class="pictureinview" ng-src="{{nextsubscribedmeeting.speaker.pictureurl}}" alt="commentpicture"></a>
             </div>
             <div class="col-xs-12 col-sm-10 col-md-4 col-lg-4">
                 <span ng-show="global.authenticated" class="pull-right">
@@ -148,7 +154,7 @@
         <div class="visible-xs h4 col-xs-10 col-sm-10 col-md-10 col-lg-10">Next meetings <span class="badge alert-info">{{teacups.length}}</span></div>
     </div>
     <div class="col-xs-12"><br /></div>
-    <teacup-list></teacup-list>
+    <teacup-list data-ng-model="global.user.pictureurl"></teacup-list>
     <paginator class="col-xs-12 col-sm-12 col-md-12 col-lg-12"></paginator>
     <!--<h4 data-ng-hide="!teacups || teacups.length">No teacups found</h4>-->
 </section>

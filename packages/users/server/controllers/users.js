@@ -4,8 +4,8 @@
      * Module dependencies.
      */
 var mongoose = require('mongoose'),
-    User = mongoose.model('User');
-    //_ = require('lodash');
+    User = mongoose.model('User'),
+    _ = require('lodash');
 
 
 exports.user = function (req, res, next, id) {
@@ -29,6 +29,23 @@ exports.all = function (req, res) {
             });
         } else {
             res.jsonp(users);
+        }
+    });
+};
+
+exports.update = function (req, res) {
+    var user = req.user;
+
+    user = _.extend(user, req.body);
+
+    user.save(function (err) {
+        if (err) {
+            return res.send('users/signup', {
+                errors: err.errors,
+                user: user
+            });
+        } else {
+            res.jsonp(user);
         }
     });
 };

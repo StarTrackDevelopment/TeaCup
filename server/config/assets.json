@@ -14,7 +14,9 @@
             "public/system/lib/jquery/dist/jquery.min.js",
             "public/system/lib/bootstrap/dist/js/bootstrap.js",
             "public/system/lib/angular-bootstrap/ui-bootstrap.js",
-            "public/system/lib/angular-bootstrap/ui-bootstrap-tpls.js",            
+            "public/system/lib/angular-bootstrap/ui-bootstrap-tpls.js",
+            "public/system/lib/angular-file-upload/angular-file-upload-shim.min.js", 
+            "public/system/lib/angular-file-upload/angular-file-upload.min.js",          
             "public/init.js",
             "public/*/*.js",
             "public/*/{controllers,routes,services}/*.js"

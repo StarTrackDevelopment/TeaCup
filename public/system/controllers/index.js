@@ -36,7 +36,7 @@ angular.module('mean.system').controller('IndexController', ['$scope', '$statePa
                 teacup.$update({}, function() {
                     ateacup.subscribedusers.push($scope.global.user);
                     $scope.calculateuserinfo();
-                    $scope.getsubscribedteacupscount();
+                    $scope.getsubscribedteacupscount(true);
                 });
             });            
         };
@@ -65,7 +65,7 @@ angular.module('mean.system').controller('IndexController', ['$scope', '$statePa
                         }
                     }
                     $scope.calculateuserinfo();
-                    $scope.getsubscribedteacupscount();
+                    $scope.getsubscribedteacupscount(true);
                 });
             });            
         };

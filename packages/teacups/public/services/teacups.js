@@ -17,6 +17,12 @@ angular.module('mean.teacups')
         return {
             restrict: 'E',
             replace: true,
+            /*require: '?ngModel',
+            link: function (scope, element, attrs, controller) {
+                scope.$watch(controller.$viewValue, function() {
+                    console.log("Changed to " + controller.$viewValue);
+                });
+            },*/
             templateUrl: '/teacups/views/Directives/teacup-list.html'
         };
     });

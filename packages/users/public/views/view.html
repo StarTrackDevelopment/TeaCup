@@ -6,8 +6,10 @@
             <teacup-userpicture class="visible-sm visible-md visible-lg pictureinview" ng-attr-userid="{{user._id}}"></teacup-userpicture>
         </span>
         <span ng-show="hasPicture(user)">
-            <img class="visible-xs pictureinlistlarge" ng-src="{{user.pictureurl}}" alt="picture">
-            <img class="visible-sm visible-md visible-lg pictureinview" ng-src="{{user.pictureurl}}" alt="picture">
+            <a data-ng-href="{{user.pictureurl}}">
+                <img class="visible-xs pictureinlistlarge" ng-src="{{user.pictureurl}}" alt="picture">
+                <img class="visible-sm visible-md visible-lg pictureinview" ng-src="{{user.pictureurl}}" alt="picture">
+            </a>
         </span>
     </div>
     <div class="panel-default">        

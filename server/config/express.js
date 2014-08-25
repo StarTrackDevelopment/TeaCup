@@ -67,7 +67,11 @@ module.exports = function(app, passport, db) {
 
     // Request body parsing middleware should be above methodOverride
     app.use(expressValidator());
-    app.use(bodyParser());
+    //app.use(bodyParser());
+    app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded({
+        extended: true
+    }));
     app.use(methodOverride());
 
     // Import your asset file
@@ -88,6 +92,8 @@ module.exports = function(app, passport, db) {
     // Express/Mongo session storage
     app.use(session({
         secret: config.sessionSecret,
+        saveUninitialized: true,
+        resave: true,
         store: new mongoStore({
             db: db.connection.db,
             collection: config.sessionCollection
