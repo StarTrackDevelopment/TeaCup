@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean.system').controller('IndexController', ['$scope', '$stateParams', 'Global', 'Teacups', 'Users',
-    function ($scope, $stateParams, Global, Teacups, Users) {
+angular.module('mean.system').controller('IndexController', ['$scope', '$location', '$stateParams', 'Global', 'Teacups', 'Users',
+    function ($scope, $location, $stateParams, Global, Teacups, Users) {
         $scope.global = Global;
         $scope.teacups = '';
         $scope.nextmeetingasspeaker = '';
@@ -12,6 +12,10 @@ angular.module('mean.system').controller('IndexController', ['$scope', '$statePa
         $scope.userratingcount = '';
 
         $scope.init = function (calculateuserinfo) {
+            if ($scope.global.authenticated) {
+                $location.path('/userhome');
+                return;
+            }
             Teacups.query({
                 nextteacups: true
                 }, function (teacups) {
