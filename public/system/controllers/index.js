@@ -12,8 +12,12 @@ angular.module('mean.system').controller('IndexController', ['$scope', '$locatio
         $scope.userratingcount = '';
 
         $scope.init = function (calculateuserinfo) {
-            if ($scope.global.authenticated) {
+            if (!calculateuserinfo && $scope.global.authenticated) {
                 $location.path('/userhome');
+                return;
+            }
+            if (calculateuserinfo && !$scope.global.authenticated) {
+                $location.path('/');
                 return;
             }
             Teacups.query({
