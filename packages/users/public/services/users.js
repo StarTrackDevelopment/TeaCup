@@ -10,4 +10,11 @@ angular.module('mean.users').factory('Users', ['$resource',
         	}
         });
     }
-]);
+])
+.directive('userList', function () {
+    return {
+        restrict: 'E',
+        replace: true,
+        templateUrl: '/users/views/Directives/user-list.html'
+    };
+});

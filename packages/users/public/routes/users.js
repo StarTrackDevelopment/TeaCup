@@ -27,7 +27,7 @@ angular.module('mean.users').config(['$stateProvider',
         $stateProvider
             .state('all users', {
                 url: '/users',
-                templateUrl: 'teacups/views/list.html',
+                templateUrl: 'users/views/list.html',
                 resolve: {
                     loggedin: checkLoggedin
                 }

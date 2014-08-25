@@ -12,6 +12,9 @@ angular.module('mean.teacups')
         $scope.filterComment = {
             rating: ''
         };
+        $scope.filterUser = {
+            _id: ''
+        };
         $scope.currentPage = 1;
         $scope.pageSize = 6;
         $scope.hasPicture = function (user) {

@@ -55,9 +55,11 @@
     <Content Include="packages\users\package.json" />
     <Content Include="packages\users\public\assets\css\users.css" />
     <Content Include="packages\users\public\assets\img\logo.png" />
+    <Content Include="packages\users\public\views\Directives\user-list.html" />
     <Content Include="packages\users\public\views\view.html" />
     <Content Include="packages\users\README.md" />
     <Content Include="packages\users\server\views\index.html" />
+    <Content Include="packages\users\public\views\list.html" />
     <Content Include="public\auth\assets\img\icons\navbackground.png" />
     <Content Include="public\auth\assets\img\icons\navbackgroundleft.png" />
     <Content Include="public\auth\assets\img\icons\navbackgroundright.png" />
@@ -424,6 +426,7 @@
     <Folder Include="packages\users\public\routes\" />
     <Folder Include="packages\users\public\services\" />
     <Folder Include="packages\users\public\views\" />
+    <Folder Include="packages\users\public\views\Directives\" />
     <Folder Include="packages\users\server\" />
     <Folder Include="packages\users\server\controllers\" />
     <Folder Include="packages\users\server\models\" />

@@ -1,0 +1,51 @@
+﻿<div ng-controller="CustomPaginationController" ng-init="pageSize=6;currentPage=1;" class="container-fluid">
+    <div data-ng-hide="!users || !users.length" class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 list-group-item" id="filters">
+            <span class="panel-title accordion">
+                <a data-toggle="collapse" data-target="#collapsefilters" href="" class="collapsed">
+                    <span class="glyphicon glyphicon-filter customred"></span> Filter
+                </a>
+            </span>
+            <div id="collapsefilters" class="panel-collapse collapse">
+                <div class="form-horizontal">
+                    <div>
+                        <span ng-show="users" class="col-md-2 col-lg-2 control-label"><span class="glyphicon glyphicon-user customgrey"></span> Name</span>
+                        <div ng-show="users" class="col-md-4 col-lg-4">
+                            <select size="1" class="form-control" ng-model="filterUser._id">
+                                <option value="">--unfiltered--</option>
+                                <option ng-repeat="user in users" value="{{user._id}}">{{user.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ul ng-model="filterUser" class="customlist nopadding">
+        <li class="col-xs-12 col-sm-12 col-md-6 col-lg-6 nopadding"
+            dir-paginate="user in users | filter:filterUser | itemsPerPage: pageSize" current-page="currentPage">
+            <br />
+            <div class="row">
+                <div class="panel-default pull-left">
+                    <span ng-hide="hasPicture(user)">
+                        <teacup-userpicture class="visible-xs pictureinlistlarge" ng-attr-userid="{{user._id}}"></teacup-userpicture>
+                        <teacup-userpicture class="visible-sm visible-md visible-lg pictureinview" ng-attr-userid="{{user._id}}"></teacup-userpicture>
+                    </span>
+                    <span ng-show="hasPicture(user)">
+                        <a data-ng-href="{{user.pictureurl}}">
+                            <img class="visible-xs pictureinlistlarge" ng-src="{{user.pictureurl}}" alt="picture">
+                            <img class="visible-sm visible-md visible-lg pictureinview" ng-src="{{user.pictureurl}}" alt="picture">
+                        </a>
+                    </span>
+                </div>
+                <div class="panel-default">
+                    <span data-ng-model="user.name" class="h4">{{user.name}}</span>
+                    <div data-ng-model="user.username"><span class="glyphicon glyphicon-user customblue"></span> {{user.username}}</div>
+                    <div data-ng-model="user.email"><span class="glyphicon glyphicon-envelope customblue"></span> {{user.email}}</div>
+                </div>
+            </div>
+            <hr class="nopadding" />
+        </li>
+    </ul>
+    <dir-pagination-controls ng-show="users" class="col-xs-12 col-sm-12 col-md-12 col-lg-12" boundary-links="true"></dir-pagination-controls>
+</div>
