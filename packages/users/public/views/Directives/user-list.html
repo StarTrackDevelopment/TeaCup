@@ -3,18 +3,25 @@
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 list-group-item" id="filters">
             <span class="panel-title accordion">
                 <a data-toggle="collapse" data-target="#collapsefilters" href="" class="collapsed">
-                    <span class="glyphicon glyphicon-filter customred"></span> Filter
+                    <span data-ng-model="filterUser" class="glyphicon glyphicon-filter" ng-class="{ 'customred' : filterUser.name }"></span> Filter
                 </a>
             </span>
             <div id="collapsefilters" class="panel-collapse collapse">
                 <div class="form-horizontal">
-                    <div>
-                        <span ng-show="users" class="col-md-2 col-lg-2 control-label"><span class="glyphicon glyphicon-user customgrey"></span> Name</span>
-                        <div ng-show="users" class="col-md-4 col-lg-4">
-                            <select size="1" class="form-control" ng-model="filterUser._id">
-                                <option value="">--unfiltered--</option>
-                                <option ng-repeat="user in users" value="{{user._id}}">{{user.name}}</option>
-                            </select>
+                    <div ng-show="users">
+                        <!--<span ng-show="users" class="col-md-2 col-lg-2 control-label"><span class="glyphicon glyphicon-user customgrey"></span> Name</span>
+                        <div class="col-md-4 col-lg-4">
+                        <select size="1" class="form-control" ng-model="filterUser._id">
+                            <option value="">--unfiltered--</option>
+                            <option ng-repeat="user in users" value="{{user._id}}">{{user.name}}</option>
+                        </select>
+                    </div>-->
+                        <div ng-show="users">
+                            <span ng-show="users" class="col-md-2 col-lg-2 control-label"><span class="glyphicon glyphicon-tag"
+                                  ng-class=" { 'customred': filterUser.name, 'customgrey': !filterUser.name}"></span> Name</span>
+                            <div class="col-md-5 col-lg-5">
+                                <input type="text" data-ng-model="filterUser.name" id="Name" class="form-control" placeholder="Enter name">
+                            </div>
                         </div>
                     </div>
                 </div>

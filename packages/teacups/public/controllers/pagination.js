@@ -13,7 +13,8 @@ angular.module('mean.teacups')
             rating: ''
         };
         $scope.filterUser = {
-            _id: ''
+            //_id: '',
+            name: ''
         };
         $scope.currentPage = 1;
         $scope.pageSize = 6;
