@@ -1,39 +1,35 @@
 <section ng-controller="TeacupsController">
+    <br class="visible-md visible-lg" />
     <form class="form-horizontal" role="form" data-ng-submit="create()">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h2 class="panel-title">Create teacup</h2>
+        <div class="form-group">
+            <label mean-token="'create-title'" class="control-label col-md-2">Title</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" data-ng-model="title" id="title" placeholder="Title" required>
             </div>
-            <div class="panel-body">
-                <div class="row">
-                    <label mean-token="'create-title'" class="control-label col-lg-1 col-md-4 col-sm-4">Title</label>
-                    <div class="col-lg-11 col-md-8 col-sm-8">
-                        <input type="text" class="form-control" data-ng-model="title" id="title" placeholder="Title" required>
-                    </div>
-                </div>
-                <div class="row">
-                    <label mean-token="'create-speaker'" class="control-label col-lg-1 col-md-4 col-sm-4">Referent</label>
-                    <div ng-init="findusers()" class="col-lg-5 col-md-8 col-sm-8">
-                        <select size="1" class="form-control" data-ng-model="speaker" data-ng-options="a._id as a.name for a in users" required>
-                            <option value="">--select speaker--</option>
-                        </select>
-                    </div>
-                    <label mean-token="'create-scheduleDate'" class="control-label col-lg-1 col-md-4 col-sm-4">Date&Time</label>
-                    <div class="col-lg-5 col-md-8 col-sm-8">
-                        <input type="datetime-local" class="form-control" data-ng-model="scheduleDate" id="scheduleDate" required>
-                    </div>
-                </div>
-                <div class="row">
-                    <label mean-token="'create-description'" for="description" class="control-label col-lg-1 col-md-4 col-sm-4">Description</label>
-                    <div class="col-lg-11 col-md-8 col-sm-8">
-                        <textarea data-ng-model="description" id="description" cols="30" rows="10" placeholder="Description" class="form-control" required></textarea>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="control-label col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <button type="submit" class="btn btn-info">Submit</button>
-                    </div>
-                </div>
+        </div>
+        <div class="form-group">
+            <label mean-token="'create-speaker'" class="control-label col-md-2">Referent</label>
+            <div ng-init="findusers()" class="col-md-9">
+                <select size="1" class="form-control" data-ng-model="speaker" data-ng-options="a._id as a.name for a in users" required>
+                    <option value="">--select speaker--</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label mean-token="'create-scheduleDate'" class="control-label col-md-2">Date&Time</label>
+            <div class="col-md-9">
+                <input type="datetime-local" class="form-control" data-ng-model="scheduleDate" id="scheduleDate" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label mean-token="'create-description'" for="description" class="control-label col-md-2">Description</label>
+            <div class="col-md-9">
+                <textarea data-ng-model="description" id="description" cols="30" rows="10" placeholder="Description" class="form-control" required></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="control-label col-md-11 col-xs-12">
+                <button type="submit" class="btn btn-info">Submit</button>
             </div>
         </div>
     </form>
