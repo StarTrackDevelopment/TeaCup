@@ -51,6 +51,12 @@ angular.module('mean.users').controller('UsersController', ['$scope', '$statePar
             return false;
         };
 
+        $scope.isFullyBooked = function (teacup) {
+            if (!teacup || !teacup.room)
+                return false;
+            return ((teacup.room.capacity - teacup.subscribedusers.length) <= 0);
+        };
+
         $scope.subscribeuser = function (ateacup) {
             var paramid;
             paramid = ateacup._id;

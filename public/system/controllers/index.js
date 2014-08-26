@@ -95,6 +95,12 @@ angular.module('mean.system').controller('IndexController', ['$scope', '$locatio
             return false;
         };
 
+        $scope.isFullyBooked = function(teacup) {
+            if (!teacup || !teacup.room)
+                return false;
+            return ((teacup.room.capacity - teacup.subscribedusers.length) <= 0);
+        };
+
         $scope.calculateuserinfo = function () {
             $scope.nextmeetingasspeaker = '';
             $scope.nextsubscribedmeeting = '';

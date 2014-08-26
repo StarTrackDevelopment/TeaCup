@@ -40,7 +40,7 @@
             <div class="row">
                 <div class="panel-heading visible-xs col-xs-3">
                     <teacup-userpicture ng-hide="hasPicture(teacup.speaker)" class="pictureinlistlarge" ng-attr-userid="{{teacup.speaker._id}}"></teacup-userpicture>
-                    <a data-ng-href="/#!/users/{{teacup.speaker._id}}"><img ng-show="hasPicture(teacup.speaker)" class="pictureinlistlarge" ng-src="{{teacup.speaker.pictureurl}}" alt="commentpicture"></a>
+                    <a data-ng-href="/#!/users/{{teacup.speaker._id}}"><img ng-model="teacup.speaker.pictureurl" ng-show="hasPicture(teacup.speaker)" class="pictureinlistlarge" ng-src="{{teacup.speaker.pictureurl}}" alt="commentpicture"></a>
                 </div>                
                 <div class="col-xs-9 col-sm-12 col-md-12 col-lg-12 detailsicon panel-heading panel-title">
                     <a data-ng-href="/#!/teacups/{{teacup._id}}/view"><strong>{{teacup.title}}</strong></a>
@@ -49,20 +49,21 @@
                 <div class="panel-default">
                     <div class="visible-sm visible-md visible-lg col-xs-2 col-sm-2 col-md-1 col-lg-1">
                         <teacup-userpicture ng-hide="hasPicture(teacup.speaker)" class="pictureinview" ng-attr-userid="{{teacup.speaker._id}}"></teacup-userpicture>
-                        <a data-ng-href="/#!/users/{{teacup.speaker._id}}"><img data-ng-model="global.user.pictureurl" ng-show="hasPicture(teacup.speaker)" class="pictureinview" ng-src="{{teacup.speaker.pictureurl}}" alt="commentpicture"></a>
+                        <a data-ng-href="/#!/users/{{teacup.speaker._id}}"><img ng-model="teacup.speaker.pictureurl" ng-show="hasPicture(teacup.speaker)" class="pictureinview" ng-src="{{teacup.speaker.pictureurl}}" alt="commentpicture"></a>
                     </div>
                     <div class="col-xs-12 col-sm-10 col-md-4 col-lg-4">
                         <span ng-show="global.authenticated && global.user._id !== teacup.speaker._id" class="pull-right">
-                            <button type="submit" class="btn btn-warning btn-xs" data-ng-model="teacup.subscribedusers" ng-hide="isUserSubscribed(teacup)" ng-click="subscribeuser(teacup)">Subscribe</button>
+                            <button type="submit" class="btn btn-warning btn-xs" data-ng-model="teacup.subscribedusers" ng-hide="isUserSubscribed(teacup) || isFullyBooked(teacup)" ng-click="subscribeuser(teacup)">Subscribe</button>
                             <button type="submit" class="btn btn-success btn-xs" data-ng-model="teacup.subscribedusers" ng-show="isUserSubscribed(teacup)" ng-click="unsubscribeuser(teacup)">Unsubscribe</button>
                         </span>
                         <teacup-rating teacup='teacup'></teacup-rating>
                         <span class="glyphicon glyphicon-calendar"></span><span> {{teacup.scheduleDate | date : 'longDate'}} {{teacup.scheduleDate | date: 'HH:mm'}}</span>
                         <div ng-show="!teacup.speaker"><span class="glyphicon glyphicon-user"></span> --no speaker yet--</div>
                         <div><span class="glyphicon glyphicon-user"></span> Referent: <a data-ng-href="/#!/users/{{teacup.speaker._id}}">{{teacup.speaker.name}}</a></div>
-                        <div ng-show="!teacup.room"><span class="glyphicon glyphicon-tag"></span> --no room yet--</div>
+                        <div ng-show="!teacup.room" class="customred"><span class="glyphicon glyphicon-tag"></span> --no room--</div>
                         <div ng-show="teacup.room"><span class="glyphicon glyphicon-tag"></span> Room: <a data-ng-href="/#!/rooms/{{teacup.room._id}}/view">{{teacup.room.name}}</a></div>
-                        <div ng-show="teacup.room"><span class="glyphicon glyphicon-info-sign"></span> Free places <span data-ng-model="teacup.subscribedusers.length" class="badge alert-danger">{{teacup.room.capacity - teacup.subscribedusers.length}}</span></div>
+                        <div ng-show="teacup.room && !isFullyBooked(teacup)"><span class="glyphicon glyphicon-info-sign"></span> Free places <span data-ng-model="teacup.subscribedusers.length" class="badge alert-danger">{{teacup.room.capacity - teacup.subscribedusers.length}}</span></div>
+                        <div ng-show="teacup.room && isFullyBooked(teacup)"><span class="glyphicon glyphicon-info-sign customred"></span> <span class="alert-danger">Fully booked</span></div>
                         <div data-ng-show="teacup.subscribedusers && teacup.subscribedusers.length">
                             <span class="glyphicon glyphicon-check"></span> Subscriped users <span class="badge alert-info">{{teacup.subscribedusers.length}}</span>
                         </div>

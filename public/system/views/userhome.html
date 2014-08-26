@@ -56,9 +56,10 @@
         <div class="panel-default">
             <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
                 <span class="glyphicon glyphicon-calendar"></span><span> {{nextmeetingasspeaker.scheduleDate | date : 'longDate'}} {{nextmeetingasspeaker.scheduleDate | date: 'HH:mm'}}</span>
-                <div ng-show="!nextmeetingasspeaker.room"><span class="glyphicon glyphicon-tag"></span> --no room yet--</div>
+                <div ng-show="!nextmeetingasspeaker.room" class="customred"><span class="glyphicon glyphicon-tag"></span> --no room--</div>
                 <div ng-show="nextmeetingasspeaker.room"><span class="glyphicon glyphicon-tag"></span> Room: <a data-ng-href="#!/rooms/{{nextmeetingasspeaker.room._id}}/view">{{nextmeetingasspeaker.room.name}}</a></div>
-                <div ng-show="nextmeetingasspeaker.room"><span class="glyphicon glyphicon-info-sign"></span> Free places <span data-ng-model="nextmeetingasspeaker.subscribedusers.length" class="badge alert-danger">{{nextmeetingasspeaker.room.capacity - nextmeetingasspeaker.subscribedusers.length}}</span></div>
+                <div ng-show="nextmeetingasspeaker.room && !isFullyBooked(nextmeetingasspeaker)"><span class="glyphicon glyphicon-info-sign"></span> Free places <span data-ng-model="nextmeetingasspeaker.subscribedusers.length" class="badge alert-danger">{{nextmeetingasspeaker.room.capacity - nextmeetingasspeaker.subscribedusers.length}}</span></div>
+                <div ng-show="nextmeetingasspeaker.room && isFullyBooked(nextmeetingasspeaker)"><span class="glyphicon glyphicon-info-sign customred"></span> <span class="alert-danger">Fully booked</span></div>
                 <div data-ng-show="nextmeetingasspeaker.subscribedusers && nextmeetingasspeaker.subscribedusers.length">
                     <span class="glyphicon glyphicon-check"></span> Subscriped users <span class="badge alert-info">{{nextmeetingasspeaker.subscribedusers.length}}</span>
                 </div>
@@ -116,16 +117,17 @@
             </div>
             <div class="col-xs-12 col-sm-10 col-md-4 col-lg-4">
                 <span ng-show="global.authenticated" class="pull-right">
-                    <button type="submit" class="btn btn-warning btn-xs" data-ng-model="nextsubscribedmeeting.subscribedusers" ng-hide="isUserSubscribed(nextsubscribedmeeting)" ng-click="subscribeuser(nextsubscribedmeeting)">Subscribe</button>
+                    <button type="submit" class="btn btn-warning btn-xs" data-ng-model="nextsubscribedmeeting.subscribedusers" ng-hide="isUserSubscribed(nextsubscribedmeeting) || isFullyBooked(nextsubscribedmeeting)" ng-click="subscribeuser(nextsubscribedmeeting)">Subscribe</button>
                     <button type="submit" class="btn btn-success btn-xs" data-ng-model="nextsubscribedmeeting.subscribedusers" ng-show="isUserSubscribed(nextsubscribedmeeting)" ng-click="unsubscribeuser(nextsubscribedmeeting)">Unsubscribe</button>
                 </span>
                 <teacup-rating teacup='nextsubscribedmeeting'></teacup-rating>
                 <span class="glyphicon glyphicon-calendar"></span><span> {{nextsubscribedmeeting.scheduleDate | date : 'longDate'}} {{nextsubscribedmeeting.scheduleDate | date: 'HH:mm'}}</span>
                 <div ng-show="!nextsubscribedmeeting.speaker"><span class="glyphicon glyphicon-user"></span> --no speaker yet--</div>
                 <div><span class="glyphicon glyphicon-user"></span> Referent: <a data-ng-href="/#!/users/{{nextsubscribedmeeting.speaker._id}}">{{nextsubscribedmeeting.speaker.name}}</a></div>
-                <div ng-show="!nextsubscribedmeeting.room"><span class="glyphicon glyphicon-tag"></span> --no room yet--</div>
+                <div ng-show="!nextsubscribedmeeting.room" class="customred"><span class="glyphicon glyphicon-tag"></span> --no room--</div>
                 <div ng-show="nextsubscribedmeeting.room"><span class="glyphicon glyphicon-tag"></span> Room: <a data-ng-href="/#!/rooms/{{nextsubscribedmeeting.room._id}}/view">{{nextsubscribedmeeting.room.name}}</a></div>
-                <div ng-show="nextsubscribedmeeting.room"><span class="glyphicon glyphicon-info-sign"></span> Free places <span data-ng-model="nextsubscribedmeeting.subscribedusers.length" class="badge alert-danger">{{nextsubscribedmeeting.room.capacity - nextsubscribedmeeting.subscribedusers.length}}</span></div>
+                <div ng-show="nextsubscribedmeeting.room && !isFullyBooked(nextsubscribedmeeting)"><span class="glyphicon glyphicon-info-sign"></span> Free places <span data-ng-model="nextsubscribedmeeting.subscribedusers.length" class="badge alert-danger">{{nextsubscribedmeeting.room.capacity - nextsubscribedmeeting.subscribedusers.length}}</span></div>
+                <div ng-show="nextsubscribedmeeting.room && isFullyBooked(nextsubscribedmeeting)"><span class="glyphicon glyphicon-info-sign customred"></span> <span class="alert-danger">Fully booked</span></div>
                 <div data-ng-show="nextsubscribedmeeting.subscribedusers && nextsubscribedmeeting.subscribedusers.length">
                     <span class="glyphicon glyphicon-check"></span> Subscriped users <span class="badge alert-info">{{nextsubscribedmeeting.subscribedusers.length}}</span>
                 </div>

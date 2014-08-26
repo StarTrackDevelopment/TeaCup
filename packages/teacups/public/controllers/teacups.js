@@ -30,6 +30,18 @@ angular.module('mean.teacups')
             return false;
         };
 
+        $scope.isFullyBooked = function (teacup) {
+            if (teacup) {
+                if (!teacup.room)
+                    return false;
+                return ((teacup.room.capacity - teacup.subscribedusers.length) <= 0);
+            } else {
+                if (!$scope.teacup || !$scope.teacup.room)
+                    return false;
+                return (($scope.teacup.room.capacity - $scope.teacup.subscribedusers.length) <= 0);
+            }
+        };
+
         $scope.create = function() {
             var teacup = new Teacups({
                 title: this.title,

@@ -22,6 +22,9 @@ angular.module('mean.mean-upload').controller('MeanUploadController', ['$scope',
             user.pictureurl = '/public/Uploads/' + file.name;
             user.$update(function () {
                 $scope.global.user.pictureurl = user.pictureurl;
+                if ($scope.$parent && $scope.$parent.init) {
+                    $scope.$parent.init(true);
+                }
             });
         });
     };
