@@ -22,7 +22,7 @@ exports.show = function (req, res) {
 };
 
 exports.all = function (req, res) {
-    User.find().sort('-username').exec(function (err, users) {
+    User.find().sort({ name: 'asc' }).exec(function (err, users) {
         if (err) {
             res.render('error', {
                 status: 500

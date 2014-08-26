@@ -16,6 +16,10 @@ angular.module('mean.teacups')
             //_id: '',
             name: ''
         };
+        $scope.filterRoom = {
+            _id: '',
+            name: ''
+        };
         $scope.currentPage = 1;
         $scope.pageSize = 6;
         $scope.hasPicture = function (user) {

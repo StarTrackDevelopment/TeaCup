@@ -1,0 +1,106 @@
+<section ng-controller="RoomsController" data-ng-init="findOne()">
+    <br />    
+    <div class="panel-default">
+        <span data-ng-model="room.name" class="h3">{{room.name}}</span>
+        <div data-ng-model="room.office">Office: {{room.office}}</div>
+        <div>Capacity: <span data-ng-model="room.capacity" class="badge alert-info">{{room.capacity}}</span></div>
+    </div>    
+    
+    <br/>
+    <div class="col-xs-12 panel-footer nopadding">
+        <div class="col-xs-2">
+            <img class="pictureinlistmedium" ng-src="/public/Uploads/hardware.jpg" alt="hardwarepicture">
+        </div>
+        <div>            
+            <div class="h4 col-xs-10 col-sm-10 col-md-10 col-lg-10">Hardware</div>
+        </div>
+    </div>
+    <div class="col-xs-12"><br /></div>
+
+    <div class="col-xs-12">
+        <span class="col-xs-12 col-sm-3">Projector</span>
+        <div data-ng-model="room.instrumentation" class="col-xs-12 col-sm-9 btn-group" id="btn-toggle-projector">
+            <span class="btn btn-sm"
+                    ng-class="{'btn-success': room.instrumentation.projector, 'btn-default': !room.instrumentation.projector}"
+                    id="projector-yes">
+                Yes
+            </span>
+            <span class="btn btn-sm"
+                    ng-class="{'btn-default': room.instrumentation.projector, 'btn-danger': !room.instrumentation.projector}"
+                    id="projector-no">
+                No
+            </span>
+        </div>
+    </div>
+
+    <div class="col-xs-12">
+        <span class="col-xs-12 col-sm-3 control-label">Television</span>
+        <div data-ng-model="room.instrumentation.tv" class="col-xs-12 col-sm-9 btn-group" id="btn-toggle-tv">
+            <label class="btn btn-sm"
+                    ng-class="{'btn-success': room.instrumentation.tv, 'btn-default': !room.instrumentation.tv}"
+                    id="tv-yes">
+                Yes
+            </label>
+            <label class="btn btn-sm"
+                    ng-class="{'btn-default': room.instrumentation.tv, 'btn-danger': !room.instrumentation.tv}"
+                    id="tv-no">
+                No
+            </label>
+        </div>
+    </div>
+
+    <div class="col-xs-12">
+        <span class="col-xs-12 col-sm-3">Docking station</span>
+        <div data-ng-model="room.instrumentation.dockingStation" class="col-xs-12 col-sm-9 btn-group" id="btn-toggle-dockingStation">
+            <label class="btn btn-sm"
+                    ng-class="{'btn-success': room.instrumentation.dockingStation, 'btn-default': !room.instrumentation.dockingStation}"
+                    id="dockingStation-yes">
+                Yes
+            </label>
+            <label class="btn btn-sm"
+                    ng-class="{'btn-default': room.instrumentation.dockingStation, 'btn-danger': !room.instrumentation.dockingStation}"
+                    id="dockingStation-no">
+                No
+            </label>
+        </div>
+    </div>
+
+    <div class="col-xs-12">
+        <span class="col-xs-12 col-sm-3">Network</span>
+        <div data-ng-model="room.instrumentation.network" class="col-xs-12 col-sm-9 btn-group" id="btn-toggle-network">
+            <label class="btn btn-sm"
+                    ng-class="{'btn-success': room.instrumentation.network, 'btn-default': !room.instrumentation.network}"
+                    id="network-yes">
+                Yes
+            </label>
+            <label class="btn btn-sm"
+                    ng-class="{'btn-default': room.instrumentation.network, 'btn-danger': !room.instrumentation.network}"
+                    id="network-no">
+                No
+            </label>
+        </div>
+    </div>
+
+    <div class="col-xs-12">
+        <span class="col-xs-12 col-sm-3">Video meeting</span>
+        <div data-ng-model="room.instrumentation.videoMeeting" class="col-xs-12 col-sm-9 btn-group" id="btn-toggle-videoMeeting">
+            <label class="btn btn-sm"
+                    ng-class="{'btn-success': room.instrumentation.videoMeeting, 'btn-default': !room.instrumentation.videoMeeting}"
+                    id="videoMeeting-yes">
+                Yes
+            </label>
+            <label class="btn btn-sm"
+                    ng-class="{'btn-default': room.instrumentation.videoMeeting, 'btn-danger': !room.instrumentation.videoMeeting}"
+                    id="videoMeeting-no">
+                No
+            </label>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 panel-heading">
+        <span data-ng-if="hasAuthorization(room)" class="pull-right">
+            <a class="btn btn-info btn-sm" data-ng-href="/#!/rooms/{{room._id}}/edit">Edit</a>
+            <button class="btn btn-danger btn-sm" data-ng-click="remove(room);">Remove</button>
+        </span>
+    </div>
+</section>

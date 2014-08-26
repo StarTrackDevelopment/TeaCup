@@ -20,7 +20,45 @@ module.exports = function(app) {
                 defaultMenu: defaultMenu
             });
 
-            res.jsonp(items);
-        });
+            var sorteditems = [];
+            var itemstoremove = [];
+
+            items.forEach(function (itm, index) {
+                if (itm.link.search('teacup') !== -1) {
+                    sorteditems[sorteditems.length] = itm;
+                    itemstoremove[itemstoremove.length] = index;
+                }
+            });
+
+
+            items.forEach(function (itm, index) {
+                if (itm.link.search('user') !== -1) {
+                    sorteditems[sorteditems.length] = itm;
+                    itemstoremove[itemstoremove.length] = index;
+                }
+            });
+
+            items.forEach(function (itm, index) {
+                if (itm.link.search('room') !== -1) {
+                    sorteditems[sorteditems.length] = itm;
+                    itemstoremove[itemstoremove.length] = index;
+                }
+            });
+
+            itemstoremove.sort();
+            itemstoremove.reverse();
+            itemstoremove.forEach(function (itmindex) {
+                items.splice(itmindex, 1);
+            });
+
+            itemstoremove = [];
+
+            items.forEach(function (itm) {
+                sorteditems[sorteditems.length] = itm;
+            });
+
+            //res.jsonp(items);
+            res.jsonp(sorteditems);
+            });
 
 };

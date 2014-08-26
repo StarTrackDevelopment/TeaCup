@@ -1,0 +1,116 @@
+<section ng-controller="RoomsController" ng-init="findOne()">
+    <form name="editRoom" class="form-horizontal"  ng-submit="update()">
+        <br class="visible-md visible-lg" />       
+        <div class="form-group">
+            <label mean-token="'edit-name'" for="name" class="col-md-2 control-label">Name</label>
+            <div class="col-md-9">
+                <input type="text" data-ng-model="room.name" id="name" class="form-control" placeholder="Name" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label mean-token="'edit-office'" for="office" class="col-md-2 control-label">Name</label>
+            <div class="col-md-9">
+                <input type="text" data-ng-model="room.office" id="office" class="form-control" placeholder="Office" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label mean-token="'edit-capacity'" for="capacity" class="col-md-2 control-label">Capacity</label>
+            <div class="col-md-9">
+                <input type="number" data-ng-model="room.capacity" id="capacity" name="input" class="form-control" required>
+            </div>
+        </div>
+        <div class="form-group panel-footer">
+            <label mean-token="'edit-instrumentation'" for="btn-toggle-projector" class="col-md-2 control-label">Hardware</label>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-12">
+                <label mean-token="'edit-instrumentation-projector'" for="btn-toggle-projector" class="col-xs-12 col-sm-3 control-label">Projector</label>
+                <div data-ng-model="room.instrumentation.projector" class="col-xs-12 col-sm-9 btn-group" id="btn-toggle-projector" ng-click="room.instrumentation.projector = !room.instrumentation.projector">
+                    <label class="btn btn-sm control-label"
+                           ng-class="{'btn-success': room.instrumentation.projector, 'btn-default': !room.instrumentation.projector}"
+                           id="projector-yes">
+                        Yes
+                    </label>
+                    <label class="btn btn-sm control-label"
+                           ng-class="{'btn-default': room.instrumentation.projector, 'btn-danger': !room.instrumentation.projector}"
+                           id="projector-no">
+                        No
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-12">
+                <label mean-token="'edit-instrumentation-tv'" for="btn-toggle-tv" class="col-xs-12 col-sm-3 control-label">Television</label>
+                <div data-ng-model="room.instrumentation.tv" class="col-xs-12 col-sm-9 btn-group" id="btn-toggle-tv" ng-click="room.instrumentation.tv = !room.instrumentation.tv">
+                    <label class="btn btn-sm control-label"
+                           ng-class="{'btn-success': room.instrumentation.tv, 'btn-default': !room.instrumentation.tv}"
+                           id="tv-yes">
+                        Yes
+                    </label>
+                    <label class="btn btn-sm control-label"
+                           ng-class="{'btn-default': room.instrumentation.tv, 'btn-danger': !room.instrumentation.tv}"
+                           id="tv-no">
+                        No
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-12">
+                <label mean-token="'edit-instrumentation-dockingStation'" for="btn-toggle-dockingStation" class="col-xs-12 col-sm-3 control-label">Docking station</label>
+                <div data-ng-model="room.instrumentation.dockingStation" class="col-xs-12 col-sm-9 btn-group" id="btn-toggle-dockingStation" ng-click="room.instrumentation.dockingStation = !room.instrumentation.dockingStation">
+                    <label class="btn btn-sm control-label"
+                           ng-class="{'btn-success': room.instrumentation.dockingStation, 'btn-default': !room.instrumentation.dockingStation}"
+                           id="dockingStation-yes">
+                        Yes
+                    </label>
+                    <label class="btn btn-sm control-label"
+                           ng-class="{'btn-default': room.instrumentation.dockingStation, 'btn-danger': !room.instrumentation.dockingStation}"
+                           id="dockingStation-no">
+                        No
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-12">
+                <label mean-token="'edit-instrumentation-network'" for="btn-toggle-network" class="col-xs-12 col-sm-3 control-label">Network</label>
+                <div data-ng-model="room.instrumentation.network" class="col-xs-12 col-sm-9 btn-group" id="btn-toggle-network" ng-click="room.instrumentation.network = !room.instrumentation.network">
+                    <label class="btn btn-sm control-label"
+                           ng-class="{'btn-success': room.instrumentation.network, 'btn-default': !room.instrumentation.network}"
+                           id="network-yes">
+                        Yes
+                    </label>
+                    <label class="btn btn-sm control-label"
+                           ng-class="{'btn-default': room.instrumentation.network, 'btn-danger': !room.instrumentation.network}"
+                           id="network-no">
+                        No
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-12">
+                <label mean-token="'edit-instrumentation-videoMeeting'" for="btn-toggle-videoMeeting" class="col-xs-12 col-sm-3 control-label">Video meeting</label>
+                <div data-ng-model="room.instrumentation.videoMeeting" class="col-xs-12 col-sm-9 btn-group" id="btn-toggle-videoMeeting" ng-click="room.instrumentation.videoMeeting = !room.instrumentation.videoMeeting">
+                    <label class="btn btn-sm control-label"
+                           ng-class="{'btn-success': room.instrumentation.videoMeeting, 'btn-default': !room.instrumentation.videoMeeting}"
+                           id="videoMeeting-yes">
+                        Yes
+                    </label>
+                    <label class="btn btn-sm control-label"
+                           ng-class="{'btn-default': room.instrumentation.videoMeeting, 'btn-danger': !room.instrumentation.videoMeeting}"
+                           id="videoMeeting-no">
+                        No
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-11 nopadding">
+            <div class="pull-right">
+                <button mean-token="'edit-submit'" type="submit" class="btn btn-info">Submit</button>
+            </div>
+        </div>
+    </form>
+</section>

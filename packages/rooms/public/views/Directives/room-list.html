@@ -1,0 +1,149 @@
+<div ng-controller="CustomPaginationController" ng-init="pageSize=6;currentPage=1;" class="container-fluid">
+    <div data-ng-hide="!rooms || !rooms.length" class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 list-group-item" id="filters">
+            <span class="panel-title accordion">
+                <a data-toggle="collapse" data-target="#collapsefilters" href="" class="collapsed">
+                    <span data-ng-model="filterRoom" class="glyphicon glyphicon-filter" ng-class="{ 'customred' : filterRoom.name || filterRoom._id}"></span> Filter
+                </a>
+            </span>
+            <div id="collapsefilters" class="panel-collapse collapse">
+                <div class="form-horizontal">
+                    <div ng-show="rooms">                        
+                        <div ng-show="rooms">
+                            <span ng-show="rooms" class="col-md-2 col-lg-2 control-label">
+                                <span class="glyphicon glyphicon-tag"
+                                      ng-class=" { 'customred': filterRoom.name, 'customgrey': !filterRoom.name}"></span> Name
+                            </span>
+                            <div class="col-md-9 col-lg-9">
+                                <input type="text" data-ng-model="filterRoom.name" id="Name" class="form-control" placeholder="Enter name">
+                            </div>
+                        </div>
+                        <div class="col-xs-12"><br /></div>
+                        <span ng-show="rooms" class="col-md-2 col-lg-2 control-label">
+                            <span class="glyphicon glyphicon-tag"
+                                  ng-class=" { 'customred': filterRoom._id, 'customgrey': !filterRoom._id}"></span> Office
+                        </span>
+                        <div class="col-md-9 col-lg-9">
+                            <select size="1" class="form-control" ng-model="filterRoom._id">
+                                <option value="">--unfiltered--</option>
+                                <option ng-repeat="room in rooms" value="{{room._id}}">{{room.office}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ul ng-model="filterRoom" class="customlist nopadding">
+        <li class="col-xs-12 col-sm-12 col-md-12 col-lg-12 nopadding"
+            dir-paginate="room in rooms | filter:filterRoom | itemsPerPage: pageSize" current-page="currentPage">
+            <br />
+            <div class="row">
+                <div class="panel-default">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+                        <a data-ng-href="/#!/rooms/{{room._id}}/view">
+                            <span data-ng-model="room.name" class="h4"><strong>{{room.name}}</strong></span>
+                        </a>
+                        <div data-ng-model="room.office"><strong>Office</strong>: {{room.office}}</div>
+                        <div><strong>Capacity</strong>: <span data-ng-model="room.capacity" class="badge alert-info">{{room.capacity}}</span></div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 list-group-item noborder" id="panel1">
+                        <div class="panel-body">
+                            <span class="panel-title accordion">
+                                <a data-toggle="collapse" data-target="#collapseOne"
+                                   href="" class="collapsed">
+                                    <span class="glyphicon glyphicon-info-sign customblue"></span> Hardware
+                                </a>
+                            </span>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse">
+                            <div class="panel-body panel-heading">
+                                <div class="col-xs-12">
+                                    <span class="col-xs-12 col-sm-3">Projector</span>
+                                    <div data-ng-model="room.instrumentation" class="col-xs-12 col-sm-9 btn-group" id="btn-toggle-projector">
+                                        <span class="btn btn-sm"
+                                              ng-class="{'btn-success': room.instrumentation.projector, 'btn-default': !room.instrumentation.projector}"
+                                              id="projector-yes">
+                                            Yes
+                                        </span>
+                                        <span class="btn btn-sm"
+                                              ng-class="{'btn-default': room.instrumentation.projector, 'btn-danger': !room.instrumentation.projector}"
+                                              id="projector-no">
+                                            No
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12">
+                                    <span class="col-xs-12 col-sm-3 control-label">Television</span>
+                                    <div data-ng-model="room.instrumentation.tv" class="col-xs-12 col-sm-9 btn-group" id="btn-toggle-tv">
+                                        <label class="btn btn-sm"
+                                               ng-class="{'btn-success': room.instrumentation.tv, 'btn-default': !room.instrumentation.tv}"
+                                               id="tv-yes">
+                                            Yes
+                                        </label>
+                                        <label class="btn btn-sm"
+                                               ng-class="{'btn-default': room.instrumentation.tv, 'btn-danger': !room.instrumentation.tv}"
+                                               id="tv-no">
+                                            No
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12">
+                                    <span class="col-xs-12 col-sm-3">Docking station</span>
+                                    <div data-ng-model="room.instrumentation.dockingStation" class="col-xs-12 col-sm-9 btn-group" id="btn-toggle-dockingStation">
+                                        <label class="btn btn-sm"
+                                               ng-class="{'btn-success': room.instrumentation.dockingStation, 'btn-default': !room.instrumentation.dockingStation}"
+                                               id="dockingStation-yes">
+                                            Yes
+                                        </label>
+                                        <label class="btn btn-sm"
+                                               ng-class="{'btn-default': room.instrumentation.dockingStation, 'btn-danger': !room.instrumentation.dockingStation}"
+                                               id="dockingStation-no">
+                                            No
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12">
+                                    <span class="col-xs-12 col-sm-3">Network</span>
+                                    <div data-ng-model="room.instrumentation.network" class="col-xs-12 col-sm-9 btn-group" id="btn-toggle-network">
+                                        <label class="btn btn-sm"
+                                               ng-class="{'btn-success': room.instrumentation.network, 'btn-default': !room.instrumentation.network}"
+                                               id="network-yes">
+                                            Yes
+                                        </label>
+                                        <label class="btn btn-sm"
+                                               ng-class="{'btn-default': room.instrumentation.network, 'btn-danger': !room.instrumentation.network}"
+                                               id="network-no">
+                                            No
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12">
+                                    <span class="col-xs-12 col-sm-3">Video meeting</span>
+                                    <div data-ng-model="room.instrumentation.videoMeeting" class="col-xs-12 col-sm-9 btn-group" id="btn-toggle-videoMeeting">
+                                        <label class="btn btn-sm"
+                                               ng-class="{'btn-success': room.instrumentation.videoMeeting, 'btn-default': !room.instrumentation.videoMeeting}"
+                                               id="videoMeeting-yes">
+                                            Yes
+                                        </label>
+                                        <label class="btn btn-sm"
+                                               ng-class="{'btn-default': room.instrumentation.videoMeeting, 'btn-danger': !room.instrumentation.videoMeeting}"
+                                               id="videoMeeting-no">
+                                            No
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr />
+        </li>
+    </ul>
+    <dir-pagination-controls ng-show="rooms" class="col-xs-12 col-sm-12 col-md-12 col-lg-12" boundary-links="true"></dir-pagination-controls>
+</div>

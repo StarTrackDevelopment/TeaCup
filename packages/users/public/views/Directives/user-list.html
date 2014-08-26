@@ -33,20 +33,20 @@
             dir-paginate="user in users | filter:filterUser | itemsPerPage: pageSize" current-page="currentPage">
             <br />
             <div class="row">
-                <div class="panel-default pull-left">
+                <div class="panel-heading pull-left">
                     <span ng-hide="hasPicture(user)">
                         <teacup-userpicture class="visible-xs pictureinlistlarge" ng-attr-userid="{{user._id}}"></teacup-userpicture>
                         <teacup-userpicture class="visible-sm visible-md visible-lg pictureinview" ng-attr-userid="{{user._id}}"></teacup-userpicture>
                     </span>
                     <span ng-show="hasPicture(user)">
-                        <a data-ng-href="{{user.pictureurl}}">
+                        <a data-ng-href="#!/users/{{user._id}}">
                             <img class="visible-xs pictureinlistlarge" ng-src="{{user.pictureurl}}" alt="picture">
                             <img class="visible-sm visible-md visible-lg pictureinview" ng-src="{{user.pictureurl}}" alt="picture">
                         </a>
                     </span>
                 </div>
-                <div class="panel-default">
-                    <span data-ng-model="user.name" class="h4">{{user.name}}</span>
+                <div class="panel-heading">
+                    <span data-ng-model="user.name" class="h4"><a data-ng-href="#!/users/{{user._id}}">{{user.name}}</a></span>
                     <div data-ng-model="user.username"><span class="glyphicon glyphicon-user customblue"></span> {{user.username}}</div>
                     <div data-ng-model="user.email"><span class="glyphicon glyphicon-envelope customblue"></span> {{user.email}}</div>
                 </div>
