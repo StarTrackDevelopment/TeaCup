@@ -32,7 +32,11 @@ var TeacupSchema = new Schema({
     speaker: {
         type: Schema.ObjectId,
         ref: 'User'
-    },    
+    },
+    room: {
+        type: Schema.ObjectId,
+        ref: 'Room'
+    },
     subscribedusers: [{
         type: Schema.ObjectId,
         ref: 'User'        
@@ -73,7 +77,7 @@ TeacupSchema.path('title').validate(function(title) {
  * Statics
  */
 TeacupSchema.statics.load = function (id, populate, cb) {
-    var populateobjects = (populate !== null && populate === 'true' ? 'user speaker' : 'user');
+    var populateobjects = (populate !== null && populate === 'true' ? 'user speaker room' : 'user');
     this.findOne({
         _id: id
     })

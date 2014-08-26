@@ -60,6 +60,9 @@
                         <span class="glyphicon glyphicon-calendar"></span><span> {{teacup.scheduleDate | date : 'longDate'}} {{teacup.scheduleDate | date: 'HH:mm'}}</span>
                         <div ng-show="!teacup.speaker"><span class="glyphicon glyphicon-user"></span> --no speaker yet--</div>
                         <div><span class="glyphicon glyphicon-user"></span> Referent: <a data-ng-href="/#!/users/{{teacup.speaker._id}}">{{teacup.speaker.name}}</a></div>
+                        <div ng-show="!teacup.room"><span class="glyphicon glyphicon-tag"></span> --no room yet--</div>
+                        <div ng-show="teacup.room"><span class="glyphicon glyphicon-tag"></span> Room: <a data-ng-href="/#!/rooms/{{teacup.room._id}}/view">{{teacup.room.name}}</a></div>
+                        <div ng-show="teacup.room"><span class="glyphicon glyphicon-info-sign"></span> Free places <span data-ng-model="teacup.subscribedusers.length" class="badge alert-danger">{{teacup.room.capacity - teacup.subscribedusers.length}}</span></div>
                         <div data-ng-show="teacup.subscribedusers && teacup.subscribedusers.length">
                             <span class="glyphicon glyphicon-check"></span> Subscriped users <span class="badge alert-info">{{teacup.subscribedusers.length}}</span>
                         </div>

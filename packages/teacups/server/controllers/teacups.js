@@ -186,7 +186,7 @@ exports.all = function (req, res) {
         query.where('scheduleDate').gt(Date.now());
     }
     query.sort({ scheduleDate: 'asc' });
-    query.populate('user speaker')
+    query.populate('user speaker room')
         .populate('subscribedusers')
         .populate('comments.createdby');
     query.exec(function(err, teacups) {

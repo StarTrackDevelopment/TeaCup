@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('mean.teacups')
-.controller('TeacupsController', ['$scope', '$stateParams', '$location', '$http', 'Global', 'Teacups', 'Users',
-    function ($scope, $stateParams, $location, $http, Global, Teacups, Users) {
+.controller('TeacupsController', ['$scope', '$stateParams', '$location', '$http', 'Global', 'Teacups', 'Users', 'Rooms',
+    function ($scope, $stateParams, $location, $http, Global, Teacups, Users, Rooms) {
         $scope.global = Global;
 
         $scope.hasAuthorization = function(teacup) {
@@ -35,6 +35,7 @@ angular.module('mean.teacups')
                 title: this.title,
                 description: this.description,
                 speaker: this.speaker,
+                room: this.room,
                 scheduleDate: this.scheduleDate
             });
             teacup.$save(function(response) {
@@ -44,6 +45,7 @@ angular.module('mean.teacups')
             this.title = '';
             this.description = '';
             this.speaker = '';
+            this.room = '';
             this.scheduleDate = Date.now;
         };
 
@@ -192,6 +194,12 @@ angular.module('mean.teacups')
         $scope.findusers = function() {
             Users.query(function(users) {
                 $scope.users = users;
+            });
+        };
+
+        $scope.findrooms = function () {
+            Rooms.query(function (rooms) {
+                $scope.rooms = rooms;
             });
         };
 
