@@ -23,9 +23,10 @@ var express = require('express'),
     util = require('./util'),
     assetmanager = require('assetmanager'),
     fs = require('fs'),
-    Grid = require('gridfs-stream');
+    Grid = require('gridfs-stream'),
+    Lockit = require('lockit');
 
-module.exports = function(app, passport, db) {
+module.exports = function(app, db) {
 
     var gfs = new Grid(db.connection.db, db.mongo);
 
@@ -102,11 +103,7 @@ module.exports = function(app, passport, db) {
 
     // Dynamic helpers
     app.use(helpers(config.app.name));
-
-    // Use passport session
-    app.use(passport.initialize());
-    app.use(passport.session());
-
+    
     //mean middleware from modules before routes
     app.use(mean.chainware.before);
 
@@ -159,6 +156,17 @@ module.exports = function(app, passport, db) {
 
     app.use('/public', express.static(config.root + '/public'));
 
+    var lockit = new Lockit(config.lockit);
+    
+    app.use(lockit.router);
+    
+    // you now have all the routes like /login, /signup, etc.
+    // and you can listen on events. For example 'signup'
+    lockit.on('signup', function (user, res) {
+        console.log('a new user signed up');
+        res.send('Welcome!');   // set signup.handleResponse to 'false' for this to work
+    });
+    
     mean.events.on('modulesFound', function() {
 
         for (var name in mean.modules) {
@@ -170,7 +178,7 @@ module.exports = function(app, passport, db) {
             // used and shared by routes as further middlewares and is not a
             // route by itself
             util.walk(appPath + '/server/routes', 'middlewares', function(path) {
-                require(path)(app, passport);
+                require(path)(app);
             });
         }
 
