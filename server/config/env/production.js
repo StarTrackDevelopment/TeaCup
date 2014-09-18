@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-    db: 'mongodb://localhost/mean-prod',
+    db: 'mongodb://admin:admin@ds033419.mongolab.com:33419/CloudFoundry_6pitp88d_pnpkjrnf',
     app: {
         name: 'STARTRACK - Teacups'
     },
