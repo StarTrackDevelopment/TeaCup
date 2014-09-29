@@ -40,7 +40,7 @@
             <div class="row">
                 <div class="panel-heading visible-xs col-xs-3">
                     <teacup-userpicture ng-hide="hasPicture(teacup.speaker)" class="pictureinlistlarge" ng-attr-userid="{{teacup.speaker._id}}"></teacup-userpicture>
-                    <a data-ng-href="/#!/users/{{teacup.speaker._id}}"><img ng-model="teacup.speaker.pictureurl" ng-show="hasPicture(teacup.speaker)" class="pictureinlistlarge" ng-src="{{teacup.speaker.pictureurl}}" alt="commentpicture"></a>
+                    <a data-ng-href="/#!/users/{{teacup.speaker._id}}"><img ng-model="teacup.speaker.pictureurl" ng-show="hasPicture(teacup.speaker)" class="pictureinlistlarge" ng-src="{{teacup.speaker.pictureurl}}" alt=""></a>
                 </div>                
                 <div class="col-xs-9 col-sm-12 col-md-12 col-lg-12 detailsicon panel-heading panel-title">
                     <a data-ng-href="/#!/teacups/{{teacup._id}}/view"><strong>{{teacup.title}}</strong></a>
@@ -49,7 +49,7 @@
                 <div class="panel-default">
                     <div class="visible-sm visible-md visible-lg col-xs-2 col-sm-2 col-md-1 col-lg-1">
                         <teacup-userpicture ng-hide="hasPicture(teacup.speaker)" class="pictureinview" ng-attr-userid="{{teacup.speaker._id}}"></teacup-userpicture>
-                        <a data-ng-href="/#!/users/{{teacup.speaker._id}}"><img ng-model="teacup.speaker.pictureurl" ng-show="hasPicture(teacup.speaker)" class="pictureinview" ng-src="{{teacup.speaker.pictureurl}}" alt="commentpicture"></a>
+                        <a data-ng-href="/#!/users/{{teacup.speaker._id}}"><img ng-model="teacup.speaker.pictureurl" ng-show="hasPicture(teacup.speaker)" class="pictureinview" ng-src="{{teacup.speaker.pictureurl}}" alt=""></a>
                     </div>
                     <div class="col-xs-12 col-sm-10 col-md-4 col-lg-4">
                         <span ng-show="global.authenticated && global.user._id !== teacup.speaker._id" class="pull-right">
