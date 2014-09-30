@@ -47,7 +47,7 @@ var sendMail = function(user, res, done) {
         service: 'Gmail',
         auth: {
             user: 'startrackdevelopment@gmail.com',
-            pass: 'Start123!"'
+            pass: ''
         }
     });    
 
