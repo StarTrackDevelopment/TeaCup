@@ -76,7 +76,6 @@
     "mean-health": "^0.1.5",
     "nodemailer": "^1.2.1",
     "angular-loading-bar": "^0.5.0"
-	"uuid": "^1.4.1"
   },
   "devDependencies": {
     "grunt-karma": "^0.8.2",
