@@ -51,6 +51,14 @@ var UserSchema = new Schema({
         type: String,
         default: ''
     },
+    token: {
+        type: String,
+        default: ''
+    },
+    tokenauthenticated: {
+        type: Boolean,
+        default: false
+    },
     salt: String,
     facebook: {},
     twitter: {},
@@ -115,6 +123,10 @@ UserSchema.methods = {
      */
     authenticate: function(plainText) {
         return this.hashPassword(plainText) === this.hashed_password;
+    },
+
+    istokenauthenticated: function () {
+        return this.tokenauthenticated;
     },
 
     /**

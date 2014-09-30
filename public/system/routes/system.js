@@ -18,7 +18,8 @@
                 })
                 .state('auth', {
                     templateUrl: 'public/auth/views/index.html'
-                });
+                })
+                ;
         }
     ])
     .config(['$locationProvider',

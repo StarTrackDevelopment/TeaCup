@@ -7,8 +7,8 @@
                 <teacup-userpicture class="visible-sm visible-md visible-lg pictureinview" ng-attr-userid="{{global.user._id}}"></teacup-userpicture>
             </span>
             <span ng-show="global.user.pictureurl.length > 0">
-                <img data-ng-model="global.user.pictureurl" class="visible-xs pictureinlistlarge" ng-src="{{global.user.pictureurl}}" alt="userpicture">
-                <img data-ng-model="global.user.pictureurl" class="visible-sm visible-md visible-lg pictureinview" ng-src="{{global.user.pictureurl}}" alt="userpicture">
+                <img data-ng-model="global.user.pictureurl" class="visible-xs pictureinlistlarge" ng-src="{{global.user.pictureurl}}" alt="">
+                <img data-ng-model="global.user.pictureurl" class="visible-sm visible-md visible-lg pictureinview" ng-src="{{global.user.pictureurl}}" alt="">
             </span>
         </a>
         
@@ -34,10 +34,10 @@
 
     <div class="col-xs-12 panel-footer nopadding">
         <div class="visible-sm visible-md visible-lg col-xs-2 col-sm-2 col-md-2 col-lg-2">
-            <img class="pictureinlistlarge" ng-src="/public/Uploads/meeting.jpg" alt="meetingpicture">
+            <img class="pictureinlistlarge" ng-src="/public/Uploads/meeting.jpg" alt="">
         </div>
         <div class="visible-xs col-xs-2">
-            <img class="pictureinlistmedium" ng-src="/public/Uploads/meeting.jpg" alt="meetingpicture">
+            <img class="pictureinlistmedium" ng-src="/public/Uploads/meeting.jpg" alt="">
         </div>
         <div ng-show="nextmeetingasspeaker">
             <div class="visible-sm visible-md visible-lg h3 col-xs-10 col-sm-10 col-md-10 col-lg-10">Next meeting to hold</div>
@@ -86,10 +86,10 @@
 
     <div class="col-xs-12 panel-footer nopadding">
         <div class="visible-sm visible-md visible-lg col-xs-2 col-sm-2 col-md-2 col-lg-2">
-            <img class="pictureinlistlarge" ng-src="/public/Uploads/meeting.jpg" alt="meetingpicture">
+            <img class="pictureinlistlarge" ng-src="/public/Uploads/meeting.jpg" alt="">
         </div>
         <div class="visible-xs col-xs-2">
-            <img class="pictureinlistmedium" ng-src="/public/Uploads/meeting.jpg" alt="meetingpicture">
+            <img class="pictureinlistmedium" ng-src="/public/Uploads/meeting.jpg" alt="">
         </div>
         <div ng-show="nextsubscribedmeeting">
             <div class="visible-sm visible-md visible-lg h3 col-xs-10 col-sm-10 col-md-10 col-lg-10">Next subscribed meeting</div>
@@ -104,7 +104,7 @@
     <div ng-show="nextsubscribedmeeting" class="col-xs-12 nopadding">
         <div data-ng-model="global.user.pictureurl"  class="panel-heading visible-xs col-xs-3">
             <teacup-userpicture data-ng-model="global.user.pictureurl" ng-hide="hasPicture(nextsubscribedmeeting.speaker)" class="pictureinlistlarge" ng-attr-userid="{{nextsubscribedmeeting.speaker._id}}"></teacup-userpicture>
-            <a data-ng-href="/#!/users/{{nextsubscribedmeeting.speaker._id}}"><img data-ng-model="global.user.pictureurl" ng-show="hasPicture(nextsubscribedmeeting.speaker)" class="pictureinlistlarge" ng-src="{{nextsubscribedmeeting.speaker.pictureurl}}" alt="commentpicture"></a>
+            <a data-ng-href="/#!/users/{{nextsubscribedmeeting.speaker._id}}"><img data-ng-model="global.user.pictureurl" ng-show="hasPicture(nextsubscribedmeeting.speaker)" class="pictureinlistlarge" ng-src="{{nextsubscribedmeeting.speaker.pictureurl}}" alt=""></a>
         </div>
         <div class="col-xs-9 col-sm-12 col-md-12 col-lg-12 detailsicon panel-heading panel-title">
             <a data-ng-href="/#!/teacups/{{nextsubscribedmeeting._id}}/view"><strong>{{nextsubscribedmeeting.title}}</strong></a>
@@ -113,7 +113,7 @@
         <div class="panel-default">
             <div data-ng-model="global.user.pictureurl"  class="visible-sm visible-md visible-lg col-xs-2 col-sm-2 col-md-1 col-lg-1">
                 <teacup-userpicture data-ng-model="global.user.pictureurl"  ng-hide="hasPicture(nextsubscribedmeeting.speaker)" class="pictureinview" ng-attr-userid="{{nextsubscribedmeeting.speaker._id}}"></teacup-userpicture>
-                <a data-ng-href="/#!/users/{{nextsubscribedmeeting.speaker._id}}"><img data-ng-model="global.user.pictureurl" ng-show="hasPicture(nextsubscribedmeeting.speaker)" class="pictureinview" ng-src="{{nextsubscribedmeeting.speaker.pictureurl}}" alt="commentpicture"></a>
+                <a data-ng-href="/#!/users/{{nextsubscribedmeeting.speaker._id}}"><img data-ng-model="global.user.pictureurl" ng-show="hasPicture(nextsubscribedmeeting.speaker)" class="pictureinview" ng-src="{{nextsubscribedmeeting.speaker.pictureurl}}" alt=""></a>
             </div>
             <div class="col-xs-12 col-sm-10 col-md-4 col-lg-4">
                 <span ng-show="global.authenticated" class="pull-right">
@@ -153,10 +153,10 @@
 
     <div class="col-xs-12 panel-footer nopadding">
         <div class="visible-sm visible-md visible-lg col-xs-2 col-sm-2 col-md-2 col-lg-2">
-            <img class="pictureinlistlarge" ng-src="/public/Uploads/meeting.jpg" alt="meetingpicture">
+            <img class="pictureinlistlarge" ng-src="/public/Uploads/meeting.jpg" alt="">
         </div>
         <div class="visible-xs col-xs-2">
-            <img class="pictureinlistmedium" ng-src="/public/Uploads/meeting.jpg" alt="meetingpicture">
+            <img class="pictureinlistmedium" ng-src="/public/Uploads/meeting.jpg" alt="">
         </div>
         <div class="visible-sm visible-md visible-lg h3 col-xs-10 col-sm-10 col-md-10 col-lg-10">Next meetings <span class="badge alert-info">{{teacups.length}}</span></div>
         <div class="visible-xs h4 col-xs-10 col-sm-10 col-md-10 col-lg-10">Next meetings <span class="badge alert-info">{{teacups.length}}</span></div>
