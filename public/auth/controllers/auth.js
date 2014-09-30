@@ -29,19 +29,25 @@ angular.module('mean.controllers.login', [])
                             $location.url('/');
                         }
                     })
-                    .error(function() {
+                    .error(function (error) {
                         $scope.loginerror = 'Authentication failed.';
-                    });
+                        /*if (!error)
+                            $scope.loginerror = 'Authentication failed.';
+                        else {
+                            $scope.loginerror = error;
+                        }*/
+                });
             };
         }
     ])
-    .controller('RegisterCtrl', ['$scope', '$rootScope', '$http', '$location',
-        function($scope, $rootScope, $http, $location) {
+    .controller('RegisterCtrl', ['$scope', '$rootScope', '$http', '$location', 'Users',
+        function ($scope, $rootScope, $http, $location, Users) {
             $scope.user = {};
+            $scope.activating = true;            
 
             $scope.register = function() {
                 $scope.usernameError = null;
-                $scope.registerError = null;
+                $scope.registerError = null;                
                 $http.post('/register', {
                     email: $scope.user.email,
                     password: $scope.user.password,
@@ -52,11 +58,12 @@ angular.module('mean.controllers.login', [])
                     .success(function() {
                         // authentication OK
                         $scope.registerError = 0;
-                        $rootScope.user = $scope.user;
-                        $rootScope.$emit('loggedin');
+                        //$rootScope.user = $scope.user;
+                        //$rootScope.$emit('loggedin');
                         //$location.url('/');
-                        window.location = '#!/userhome';
-                        window.location.reload();
+                        $location.url('/registered');
+                        //window.location = '#!/registered';
+                        //window.location.reload();
                     })
                     .error(function(error) {
                         // Error: authentication failed
@@ -65,6 +72,31 @@ angular.module('mean.controllers.login', [])
                         } else {
                             $scope.registerError = error;
                         }
+                    });
+            };
+
+            $scope.activateaccount = function () {
+                $scope.activateError = null;
+                $scope.activating = true;
+                var tok = ($location.search()).token;
+                $http.post('/registertoken', {
+                    token: tok
+                })
+                    .success(function () {
+                        // authentication OK
+                        $scope.activateError = 0;
+                        //$rootScope.user = $scope.user;
+                        //$rootScope.$emit('loggedin');
+                        //$location.url('/');
+                        //$location.url('/registered');
+                        //window.location = '#!/registered';
+                        //window.location.reload();
+                        $scope.activating = false;
+                    })
+                    .error(function (error) {
+                        // Error: activation failed
+                        $scope.activateError = error;
+                        $scope.activating = false;
                     });
             };
         }

@@ -38,6 +38,14 @@ angular.module('mean.auth').config(['$stateProvider',
                 resolve: {
                     loggedin: checkLoggedOut
                 }
+            })
+            .state('auth.registered', {
+                url: '/registered',
+                templateUrl: 'public/auth/views/registered.html'
+            })
+            .state('auth.registertoken', {
+                url: '/registertoken',
+                templateUrl: 'public/auth/views/registertoken.html'
             });
     }
 ]);

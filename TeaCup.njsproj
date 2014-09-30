@@ -73,6 +73,8 @@
     <Content Include="public\auth\assets\img\icons\navbackgroundleft.png" />
     <Content Include="public\auth\assets\img\icons\navbackgroundright.png" />
     <Content Include="public\auth\assets\img\icons\teacuplogo.png" />
+    <Content Include="public\auth\views\registered.html" />
+    <Content Include="public\auth\views\registertoken.html" />
     <Content Include="public\system\lib\angular-file-upload\FileAPI.flash.swf" />
     <Content Include="public\system\lib\angular-loading-bar\loading-bar.css" />
     <Content Include="public\system\lib\angular-loading-bar\loading-bar.min.css" />

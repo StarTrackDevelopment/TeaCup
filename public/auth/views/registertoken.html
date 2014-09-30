@@ -1,0 +1,11 @@
+﻿<div class="row">
+    
+    <div data-ng-controller="RegisterCtrl" ng-init="activateaccount()">
+        <div class="h2 alert alert-warning animated fadeIn" ng-show="!activateError && activating">Activating account...</div>
+        <div class="h2 alert alert-success animated fadeIn" ng-show="!activateError && !activating">Account activated</div>
+        <div class="h2 alert alert-danger animated fadeIn" ng-show="activateError">Account could not be activated</div>
+        <div class="alert alert-danger animated fadeIn" ng-show="activateError">{{activateError}}</div>
+        <div ng-show="!activateError && !activating" class="h3">You can login and use the application now</div>
+        <a ui-sref='auth.login'><button ng-show="!activateError && !activating" class="btn btn-primary">Login</button></a>
+    </div>
+</div>

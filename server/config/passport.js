@@ -44,6 +44,11 @@ module.exports = function(passport) {
                         message: 'Unknown user'
                     });
                 }
+                if (!user.istokenauthenticated()) {
+                    return done(null, false, {
+                        message: 'Account is not activated'
+                    });
+                }
                 if (!user.authenticate(password)) {
                     return done(null, false, {
                         message: 'Invalid password'

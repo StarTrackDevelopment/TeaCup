@@ -17,6 +17,10 @@ module.exports = function(app, passport) {
     // Setting up the userId param
     app.param('userId', users.user);
 
+    // activat account
+    app.route('/registertoken')
+        .post(users.activate);
+
     // AngularJS route to check for authentication
     app.route('/loggedin')
         .get(function(req, res) {

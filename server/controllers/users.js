@@ -5,7 +5,8 @@
  */
 var mongoose = require('mongoose'),
     User = mongoose.model('User'),
-    nodemailer = require('nodemailer');
+    nodemailer = require('nodemailer'),
+    uuid = require('uuid');
 
 /**
  * Auth callback
@@ -39,38 +40,62 @@ exports.session = function (req, res) {
     res.redirect('/');
 };
 
-var sendMail = function (emailAddress) {
-        
-        // create reusable transporter object using SMTP transport
-        var transporter = nodemailer.createTransport({
-            service: 'Gmail',
-            auth: {
-                user: '...',
-                pass: '...'
-            }
-        });
+var sendMail = function(user, res, done) {
 
-        // NB! No need to recreate the transporter object. You can use
-        // the same transporter object for all e-mails
+    // create reusable transporter object using SMTP transport
+    var transporter = nodemailer.createTransport({
+        service: 'Gmail',
+        auth: {
+            user: 'startrackdevelopment@gmail.com',
+            pass: 'Start123!"'
+        }
+    });    
 
-        // setup e-mail data with unicode symbols
-        var mailOptions = {
-            from: 'Teacup App <foo@blurdybloop.com>', // sender address
-            to: emailAddress, // list of receivers
-            subject: 'Hello', // Subject line
-            text: 'Hello world', // plaintext body
-            html: '<b>Hello world</b>' // html body
-        };
+    // NB! No need to recreate the transporter object. You can use
+    // the same transporter object for all e-mails
 
-        // send mail with defined transport object
-        transporter.sendMail(mailOptions, function (error, info) {
-            if (error) {
-                console.log(error);
-            } else {
-                console.log('Message sent: ' + info.response);
-            }
-        });
+    var address = '';
+    if (process.env.NODE_ENV === 'development') {
+        address = 'http://localhost:3000/#!/registertoken?token=' + user.token;
+    } else {
+        address = 'http://teacupapp.herokuapp.com/#!/registertoken?token=' + user.token;
     }
+
+    var mailtext = 'Welcome ' + user.name + '!\n\n';
+    mailtext += 'You have succesfully registered to Teacup App.\nYou have to activate your account by clicking on the following link:\n';
+    mailtext += address;
+    mailtext += '\n\nBest Regards\nYour Teacup Team';
+
+    var mailhtml = '<h2>Welcome ' + user.name + '!</h2>';
+    mailhtml += '<p>You have succesfully registered to Teacup App.</p><p>You have to activate your account with clicking on the following link:';
+    mailhtml += '<a href=\"' + address;
+    mailhtml += '">' + address;
+    mailhtml += '</a>';
+    mailhtml += '</p>';
+    mailhtml += '<br/><p>Best Regards,<br/>Your Teacup Team</p>';
+
+    // setup e-mail data with unicode symbols
+    var mailOptions = {
+        from: 'Teacup App <startrackdevelopment@gmail.com>', // sender address
+        to: user.email, // list of receivers
+        subject: 'Teacup registration token for ' + user.name, // Subject line
+        text: mailtext, // plaintext body
+        html: mailhtml // html body
+    };
+
+    // send mail with defined transport object
+    transporter.sendMail(mailOptions, function(error, info) {
+        if (error) {
+            console.log(error);
+            res.status(400).send('Error occured while sendig token email:\n' + error.toString());
+            return done('Error occured while sendig token email:\n' + error.toString());
+        } else {            
+            console.log('Message sent: ' + info.response);
+            res.status(200);
+            return done();
+        }
+    });
+};
 
 /**
  * Create user
@@ -95,6 +120,8 @@ exports.create = function (req, res, next) {
 
     // Hard coded for now. Will address this with the user permissions system in v0.3.5
     user.roles = ['authenticated'];
+    user.token = uuid.v4();
+    user.tokenauthenticated = false;
     user.save(function (err) {
         if (err) {
             switch (err.code) {
@@ -108,14 +135,24 @@ exports.create = function (req, res, next) {
 
             return res.status(400);
         }
-        
-        sendMail(user.email)
-        
-        req.logIn(user, function (err) {
-            if (err) return next(err);
-            return res.redirect('/');
+
+        sendMail(user, res, function (error) {
+            if (error) {
+                user.remove(function (erruserdelete) {
+                    return res.status(400);
+                });
+                return res.status(400);
+            } else
+                return res.redirect('/');
         });
-        res.status(200);
+
+        res.status(200);        
+        //return res.redirect('/');
+
+        /*req.logIn(user, function (errlogin) {
+            if (errlogin) return next(errlogin);
+            return res.redirect('/');
+        });*/
     });
 };
 /**
@@ -139,4 +176,48 @@ exports.user = function (req, res, next, id) {
             req.profile = user;
             next();
         });
+};
+
+/**
+* Activate user account
+*/
+exports.activate = function(req, res) {
+
+    var filter = {};
+    if (!req.body.token) {
+        console.log('No token');
+        res.status(400).send('No token');
+        return res.status(400);
+    }
+
+    filter.token = req.body.token;
+
+    User
+        .findOne(filter)
+        .exec(function(err, user) {
+            if (err) {
+                console.log(err);
+                res.status(400).send('Error loading user account: ' + err);
+                return res.status(400);
+            }
+            if (!user) {
+                console.log('Failed to load User from token ' + filter.token);
+                res.status(400).send('Failed to load User from token ' + filter.token);
+                return res.status(400);
+            }
+            user.tokenauthenticated = true;
+            user.save(function(errsave) {
+                if (errsave) {
+                    console.log('Error saving changes in user account' + errsave);
+                    res.status(400).send('Error saving changes in user account' + errsave);
+                    return res.status(400);
+                } else {
+                    return res.redirect('/');
+                }
+            });
+    });
+    //req.profile = user;    
+//});
+
+    res.status(200);
 };
