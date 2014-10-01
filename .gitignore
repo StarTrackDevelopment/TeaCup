@@ -1,4 +1,4 @@
-# original  .gitignore
+# original .gitignore
 .DS_Store
 .nodemonignore
 .sass-cache/
