@@ -55,7 +55,7 @@ var sendMail = function(user, res, done) {
 
     var address = '';
     if (process.env.NODE_ENV === 'development') {
-        address = 'http://localhost:3000/#!/registertoken?token=' + user.token;
+        address = 'http://teacupapp.herokuapp.com/#!/registertoken?token=' + user.token;
     } else {
         address = 'http://teacupapp.herokuapp.com/#!/registertoken?token=' + user.token;
     }
