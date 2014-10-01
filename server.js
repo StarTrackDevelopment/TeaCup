@@ -12,7 +12,7 @@ var mongoose = require('mongoose'),
  * Please note that the order of loading is important.
  */
 
-//process.env.NODE_ENV = 'production';
+process.env.NODE_ENV = 'production';
 
 // Initializing system variables
 var config = require('./server/config/config');
