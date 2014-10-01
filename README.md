@@ -2,7 +2,6 @@ teacup
 ======
 
 Preconditions:
-
 1) install nodejs & configure proxy
 2) install git & configure proxy
 3) install bower & grunt-cli global
