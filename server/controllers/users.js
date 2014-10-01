@@ -5,8 +5,7 @@
  */
 var mongoose = require('mongoose'),
     User = mongoose.model('User'),
-    nodemailer = require('nodemailer'),
-    uuid = require('uuid');
+    nodemailer = require('nodemailer');
 
 /**
  * Auth callback
@@ -72,7 +71,7 @@ var sendMail = function(user, res, done) {
     mailhtml += '">' + address;
     mailhtml += '</a>';
     mailhtml += '</p>';
-    mailhtml += '<br/><p>Best Regards,<br/>Your Teacup Team</p>';
+    mailhtml += '<p>Best Regards,<br/>Your Teacup Team</p>';
 
     // setup e-mail data with unicode symbols
     var mailOptions = {
@@ -120,7 +119,8 @@ exports.create = function (req, res, next) {
 
     // Hard coded for now. Will address this with the user permissions system in v0.3.5
     user.roles = ['authenticated'];
-    user.token = uuid.v4();
+    //user.token = uuid.v4();
+    user.token = new Date().getTime();
     user.tokenauthenticated = false;
     user.save(function (err) {
         if (err) {

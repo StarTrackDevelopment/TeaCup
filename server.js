@@ -13,7 +13,7 @@ var mongoose = require('mongoose'),
  */
 
 process.env.NODE_ENV = 'production';
- 
+
 // Initializing system variables
 var config = require('./server/config/config');
 var db = mongoose.connect(config.db);
