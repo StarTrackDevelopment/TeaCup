@@ -1,7 +1,7 @@
 teacup
 ======
 
-Preconditions: 
+Preconditions:
 
 1) install nodejs & configure proxy
 2) install git & configure proxy
