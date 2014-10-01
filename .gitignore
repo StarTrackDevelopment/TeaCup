@@ -6,6 +6,7 @@
 .bower-*/
 .idea/
 node_modules/
+teacupapp/
 public/system/lib
 mean.iml
 test/coverage/
