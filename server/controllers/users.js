@@ -53,7 +53,7 @@ var sendMail = function(user, res, done) {
     // NB! No need to recreate the transporter object. You can use
     // the same transporter object for all e-mails
 
-    var address = '';
+    var address = ''; 
     if (process.env.NODE_ENV === 'development') {
         address = 'http://teacupapp.herokuapp.com/#!/registertoken?token=' + user.token;
     } else {
