@@ -24,11 +24,22 @@
             </div>
         </div>
         <div class="form-group">
+            <label mean-token="'create-scheduleDate'" for="scheduleDate" class="col-md-2 control-label">Date</label>
+            <div class="col-xs-12 col-md-3">
+                <input type="date" ng-model="scheduleDateString" ng-change="scheduleDateChanged(false)" id="scheduleDate" name="input" class="form-control" required>
+            </div>
+
+            <label mean-token="'create-scheduleTime'" for="scheduleTime" class="col-md-2 control-label">Time</label>
+            <div class="col-xs-12 col-md-2">
+                <input type="time" ng-model="scheduleTimeString" ng-change="scheduleDateChanged(false)" id="scheduleTime" name="input" class="form-control" required>
+            </div>
+        </div>
+        <!--<div class="form-group">
             <label mean-token="'create-scheduleDate'" class="control-label col-md-2">Date&Time</label>
             <div class="col-md-9">
                 <input type="datetime-local" class="form-control" data-ng-model="scheduleDate" id="scheduleDate" required>
             </div>
-        </div>
+        </div>-->
         <div class="form-group">
             <label mean-token="'create-description'" for="description" class="control-label col-md-2">Description</label>
             <div class="col-md-9">

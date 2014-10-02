@@ -5,6 +5,44 @@ angular.module('mean.teacups')
     function ($scope, $stateParams, $location, $http, Global, Teacups, Users, Rooms) {
         $scope.global = Global;
 
+        $scope.scheduleDateString = '';
+        $scope.scheduleTimeString = '';
+        $scope.isinit = true;
+
+        $scope.$watch('teacup.scheduleDate', function (newValue, oldValue) {
+            if (!$scope.isinit || !newValue) return;
+            var date = new Date(newValue);
+            var year = date.getFullYear();
+            var monthint = parseInt(date.getMonth());
+            var month = (monthint + 1 < 10 ? '0' + (monthint + 1) : (monthint + 1));
+            var dayint = parseInt(date.getDate());
+            var day = (dayint < 10 ? '0' + dayint : dayint);
+            $scope.scheduleDateString = year + '-' + month + '-' + day;
+            var hoursint = parseInt(date.getHours()); 
+            var hours = (hoursint < 10 ? '0' + hoursint : hoursint);
+            var minutesint = parseInt(date.getMinutes());
+            var minutes = (minutesint < 10 ? '0' + minutesint : minutesint);
+            $scope.scheduleTimeString = hours + ':' + minutes;
+            $scope.isinit = false;
+        });
+
+        $scope.scheduleDateChanged = function(isEdit) {
+            if (isEdit && !$scope.teacup) return;
+            var str = $scope.scheduleDateString.toString();
+            var strtime = $scope.scheduleTimeString.toString();
+            var year = str.substr(0, 4);
+            var month = str.substr(5, 2);
+            var day = str.substr(8, 2);
+            var hours = strtime.substr(0, 2);
+            var minutes = strtime.substr(3, 2);
+            if (isEdit) {
+                $scope.teacup.scheduleDate = new Date(year, month - 1, day, hours, minutes);
+                //(year + '-' + (month - 1) + '-' + day + 'T' + hours + ':' + minutes + '00.000Z');
+            } else {
+                this.scheduleDate = new Date(year, month - 1, day, hours, minutes);
+            }
+        };
+
         $scope.hasAuthorization = function(teacup) {
             if (!teacup || !teacup.user) return false;
             return $scope.global.isAdmin || teacup.user._id === $scope.global.user._id;
@@ -70,6 +108,7 @@ angular.module('mean.teacups')
                         $scope.teacups.splice(i, 1);
                     }
                 }
+                $location.path('userhome');
             } else {
                 $scope.teacup.$remove(function(response) {
                     $location.path('teacups');
