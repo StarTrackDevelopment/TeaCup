@@ -12,7 +12,6 @@ mean.iml
 test/coverage/
 modules/public/
 modules/views/
-/public/build/
 MongoDB/log/
 MongoDB/data/
 MongoDB/mongod.conf
