@@ -121,7 +121,7 @@ exports.create = function (req, res, next) {
     user.roles = ['authenticated'];
     //user.token = uuid.v4();
     user.token = new Date().getTime();
-    user.tokenauthenticated = false;
+    user.tokenauthenticated = (process.env.NODE_ENV === 'development');
     user.save(function (err) {
         if (err) {
             switch (err.code) {
@@ -136,18 +136,23 @@ exports.create = function (req, res, next) {
             return res.status(400);
         }
 
-        sendMail(user, res, function (error) {
-            if (error) {
-                user.remove(function (erruserdelete) {
+        if (process.env.NODE_ENV !== 'development') {
+            sendMail(user, res, function(error) {
+                if (error) {
+                    user.remove(function(erruserdelete) {
+                        return res.status(400);
+                    });
                     return res.status(400);
-                });
-                return res.status(400);
-            } else
-                return res.redirect('/');
-        });
+                } else
+                    return res.redirect('/');
+            });
+        }
 
-        res.status(200);        
-        //return res.redirect('/');
+        res.status(200);
+
+        if (process.env.NODE_ENV === 'development') {
+            return res.redirect('/');
+        }
 
         /*req.logIn(user, function (errlogin) {
             if (errlogin) return next(errlogin);
