@@ -57,6 +57,7 @@ var sendMail = function(user, res, done) {
     if (process.env.NODE_ENV === 'development') {
         address = 'http://localhost:3000/#!/registertoken?token=' + user.token;
     } else {
+        // TODO: dynamically determine base URL and use here
         address = 'http://teacupapp.herokuapp.com/#!/registertoken?token=' + user.token;
     }
 

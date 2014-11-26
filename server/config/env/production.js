@@ -3,7 +3,7 @@
 module.exports = {
     db: 'mongodb://admin:admin@ds033390.mongolab.com:33390/startrackdevelopment',
     // db: 'mongodb://admin:admin@ds033419.mongolab.com:33419/CloudFoundry_6pitp88d_pnpkjrnf',
-	//db: 'mongodb://localhost/mean-dev',
+	// db: 'mongodb://localhost/mean-dev',
 
     app: {
         name: 'STARTRACK - Teacups'
