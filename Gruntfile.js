@@ -160,7 +160,7 @@ module.exports = function(grunt) {
     } else {
         grunt.registerTask('default', ['clean', 'jshint', 'csslint', 'concurrent']);
         // Test task.
-        // grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:unit']);
+        grunt.registerTask('test', ['env:test', 'mochaTest']);
     }    
 
     // For Heroku users only.
